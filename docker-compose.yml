@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: pdi-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+    ports:
+      - "${POSTGRES_EXTERNAL_PORT}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+      args:
+      - DATABASE_URL=${DATABASE_URL}
+    container_name: para-mudar-backend
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      PORT: ${PORT}
+    ports:
+      - "${PORT}:${PORT}"
+    networks:
+      - para-mudar
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: para-mudar-frontend
+    env_file:
+      - .env
+    ports:
+      - "90:90"
+    networks:
+      - para-mudar
+
+networks:
+  para-mudar-network:
+
+volumes:
+  pgdata:
+
