@@ -14,15 +14,17 @@ datasource db {
 
 enum Role {
   ADMIN
-  CLIEN
+  CLIENT
 }
 
 model User {
-  id String @default(uuid())
+  id String @id @default(uuid())
   name String
   email String @unique
-  passoworld String
+  password String
   role Role @default(ADMIN)
+
+  userGames UserGame[] @relation("Users")
 
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
@@ -30,26 +32,51 @@ model User {
 }
 
 model Game {
-  id String @default(uuid())
+  id String @id @default(uuid())
   gameID String
   title String
-  normalPrice Float
-  maxPrice Float
-  minPrice Float
-  store String
   releaseDate DateTime
   thumb String
   type String
+  
+  price Price[]
+  userGames UserGame[] @relation("Games")
 
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   @@map("games")
 }
 
+model Store {
+  id String @id @default(uuid())
+  name String
+
+  prices Price[]
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  @@map("store")
+}
+
+model Price {
+  id String @id @default(uuid())
+  value Float
+
+  gameId String
+  game Game @relation(fields: [gameId], references: [id])
+
+  storeId String
+  store Store @relation(fields: [storeId], references: [id])
+
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  @@map("price")
+}
 
 model UserGame {
-  id String @default(uuid())
-  favorite String
+  id String @id @default(uuid())
+  favorite Boolean @default(true)
 
   gameId String
   game Game @relation("Games",fields: [gameId], references: [id])

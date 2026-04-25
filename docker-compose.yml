@@ -3,7 +3,7 @@ version: "3.8"
 services:
   postgres:
     image: postgres:17-alpine
-    container_name: pdi-postgres
+    container_name: game_compare-postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -12,14 +12,14 @@ services:
       - "${POSTGRES_EXTERNAL_PORT}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - game_compare
 
   backend:
     build:
-      context: ../backend
+      context: ./backend
       dockerfile: Dockerfile
-      args:
-      - DATABASE_URL=${DATABASE_URL}
-    container_name: para-mudar-backend
+    container_name: game_compare-backend
     env_file:
       - .env
     environment:
@@ -28,23 +28,24 @@ services:
     ports:
       - "${PORT}:${PORT}"
     networks:
-      - para-mudar
+      - game_compare
+    depends_on:
+      - postgres
 
   frontend:
     build:
-      context: ../frontend
+      context: ./frontend
       dockerfile: Dockerfile
-    container_name: para-mudar-frontend
+    container_name: game_compare-frontend
     env_file:
       - .env
     ports:
       - "90:90"
     networks:
-      - para-mudar
+      - game_compare
 
 networks:
-  para-mudar-network:
+  game_compare:
 
 volumes:
   pgdata:
-

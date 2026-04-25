@@ -4,9 +4,20 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci 
+RUN npm ci
 
-COPY . . 
+COPY . .
 
 RUN npm run build
 
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/dist ./dist
+
+RUN npm install -g serve
+
+EXPOSE 90
+
+CMD ["serve", "-s", "dist", "-l", "90"]
