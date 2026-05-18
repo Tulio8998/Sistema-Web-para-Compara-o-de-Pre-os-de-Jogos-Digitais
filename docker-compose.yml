@@ -1,36 +1,31 @@
 version: "3.8"
 
 services:
-  postgres:
-    image: postgres:17-alpine
-    container_name: game_compare-postgres
+  mongo:
+    image: mongo:latest
+    container_name: game_compare-mongo
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     ports:
-      - "${POSTGRES_EXTERNAL_PORT}:5432"
+      - "27017:27017"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - mongodata:/data/db
     networks:
       - game_compare
 
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
     container_name: game_compare-backend
     env_file:
       - .env
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-      PORT: ${PORT}
     ports:
       - "${PORT}:${PORT}"
     networks:
       - game_compare
     depends_on:
-      - postgres
+      - mongo
 
   frontend:
     build:
@@ -48,4 +43,4 @@ networks:
   game_compare:
 
 volumes:
-  pgdata:
+  mongodata:
