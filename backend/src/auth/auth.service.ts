@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { BadRequestException, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UserService } from 'src/user/user.service';
@@ -6,33 +5,33 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-    constructor(
-      private userService: UserService,
-      private jwtService: JwtService 
-    ) {}
-    
-    async validateUser(email: string, pass: string) {
-        const user = await this.userService.findByEmail(email);
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
-        if (!user) {
-            throw new BadRequestException();
-        } 
+  async validateUser(email: string, pass: string) {
+    const user = await this.userService.findByEmail(email);
 
-        const isPasswordValid = await bcrypt.compare(pass, user.password);
-
-        if (!isPasswordValid) {
-            throw new BadRequestException();
-        }
-
-        const { password, ...result } = user;
-        return result;
+    if (!user) {
+      throw new BadRequestException();
     }
 
-    async login(user: any) {
-        const payload = { sub: user.id, email: user.email };
+    const isPasswordValid = await bcrypt.compare(pass, user.password);
 
-        return {
-            access_token: this.jwtService.sign(payload)
-        }
+    if (!isPasswordValid) {
+      throw new BadRequestException();
     }
+
+    const { password, ...result } = user;
+    return result;
+  }
+
+  async login(user: any) {
+    const payload = { sub: user.id, email: user.email, role: user.role };
+
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
 }
