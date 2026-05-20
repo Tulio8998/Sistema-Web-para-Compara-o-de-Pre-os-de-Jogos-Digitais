@@ -1,10 +1,10 @@
 export class User {
-  id: String;
-  name: String;
-  email: String;
-  password: String;
-  role: String;
-  userGames: String;
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  userGames: string[];
   createdAt: Date;
   updatedAt: Date;
 }
