@@ -40,9 +40,9 @@ export class UserService {
     }
   }
 
-  findAll(user: User) {
+  async findAll(user: User) {
     Util.verificaRoleAdmin(user);
-    return this.prisma.user.findMany();
+    return await this.prisma.user.findMany();
   }
 
   async findOne(id: string, user: User) {

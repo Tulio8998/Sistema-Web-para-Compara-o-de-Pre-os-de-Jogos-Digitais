@@ -1,34 +1,47 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
 import { WishListService } from './wish-list.service';
 import { CreateWishListDto } from './dto/create-wish-list.dto';
 import { UpdateWishListDto } from './dto/update-wish-list.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Role } from '@prisma/client';
+import { Roles } from 'src/auth/decorators/roles.decorator';
 
 @Controller('wish-list')
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class WishListController {
   constructor(private readonly wishListService: WishListService) {}
 
   @Post()
+  @Roles(Role.ADMIN, Role.CLIENT)
   create(@Body() createWishListDto: CreateWishListDto) {
     return this.wishListService.create(createWishListDto);
   }
 
   @Get()
-  findAll() {
-    return this.wishListService.findAll();
+  @Roles(Role.ADMIN, Role.CLIENT)
+  findAll(@Req() req: any) {
+    return this.wishListService.findAll(req.user);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.wishListService.findOne(+id);
+  findOne(@Param('id') id: string, @Req() req: any) {
+    return this.wishListService.findOne(id, req.user);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateWishListDto: UpdateWishListDto) {
-    return this.wishListService.update(+id, updateWishListDto);
+  @Roles(Role.ADMIN, Role.CLIENT)
+  update(
+    @Param('id') id: string,
+    @Body() updateWishListDto: UpdateWishListDto,
+    @Req() req: any,
+  ) {
+    return this.wishListService.update(id, updateWishListDto,req.user);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.wishListService.remove(+id);
+  @Roles(Role.ADMIN, Role.CLIENT)
+  remove(@Param('id') id: string, @Req() req: any) {
+    return this.wishListService.remove(id, req.user);
   }
 }
