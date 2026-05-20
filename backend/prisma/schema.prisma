@@ -24,7 +24,7 @@ model User {
   password  String
   role      Role       @default(ADMIN)
 
-  userGames UserGame[] @relation("Users")
+  userGames WishList[] @relation("Users")
 
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
@@ -33,14 +33,14 @@ model User {
 
 model Game {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  gameID      String
+  gameID      String     @unique
   title       String
   releaseDate DateTime
   thumb       String
   type        String
   
   price       Price[]
-  userGames   UserGame[] @relation("Games")
+  userGames   WishList[] @relation("Games")
 
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
@@ -49,7 +49,7 @@ model Game {
 
 model Store {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
+  name      String   @unique
 
   prices    Price[]
 
@@ -73,7 +73,7 @@ model Price {
   @@map("price")
 }
 
-model UserGame {
+model WishList {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   favorite  Boolean  @default(true)
 
@@ -85,5 +85,7 @@ model UserGame {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  @@map("userGames")
+
+  @@unique([userId, gameId])
+  @@map("wishList")
 }
