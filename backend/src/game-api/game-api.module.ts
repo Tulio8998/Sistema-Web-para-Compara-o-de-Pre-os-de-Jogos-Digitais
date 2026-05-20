@@ -8,4 +8,4 @@ import { GameApiService } from './game-api.service';
   controllers: [GameApiController],
   providers: [GameApiService],
 })
-export class GameModule {}
+export class GameApiModule {}

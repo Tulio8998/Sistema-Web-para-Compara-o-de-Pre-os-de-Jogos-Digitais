@@ -1,26 +1,76 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreatePriceDto } from './dto/create-price.dto';
 import { UpdatePriceDto } from './dto/update-price.dto';
+import { User } from '@prisma/client';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Util } from 'src/Util/util';
 
 @Injectable()
 export class PriceService {
-  create(createPriceDto: CreatePriceDto) {
-    return 'This action adds a new price';
+  constructor(private prisma: PrismaService) {}
+
+  async create(data: CreatePriceDto) {
+    try {
+      return await this.prisma.price.create({
+        data: {
+          ...data,
+        },
+      });
+    } catch (error) {
+      throw new InternalServerErrorException('Ocorreu um erro inesperado');
+    }
   }
 
-  findAll() {
-    return `This action returns all price`;
+  async findAll(user: User) {
+    Util.verificaRoleAdmin(user);
+    return await this.prisma.game.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} price`;
+  async findOne(id: string, user: User) {
+    const priceFind = await this.prisma.price.findUnique({
+      where: { id },
+    });
+
+    if (!priceFind) {
+      throw new NotFoundException('Price nao encontrado');
+    }
+    Util.verificaRoleAdmin(user);
+    try {
+      return priceFind;
+    } catch (error) {
+      throw new InternalServerErrorException('Ocorreu um erro inesperado');
+    }
   }
 
-  update(id: number, updatePriceDto: UpdatePriceDto) {
-    return `This action updates a #${id} price`;
+  async update(id: string, updatePriceDto: UpdatePriceDto, user: User) {
+    const priceFind = await this.prisma.price.findFirst({
+      where: { id },
+    });
+
+    if (!priceFind) {
+      throw new NotFoundException('Price nao encontrado');
+    }
+    Util.verificaRoleAdmin(user);
+    try {
+      return await this.prisma.price.update({
+        where: { id },
+        data: {
+          ...updatePriceDto,
+        },
+      });
+    } catch (error) {
+      throw new InternalServerErrorException('Ocorreu um erro inesperado');
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} price`;
+  async remove(id: string, user: User) {
+    Util.verificaRoleAdmin(user);
+    try {
+      return this.prisma.store.delete({
+        where: { id },
+      });
+    } catch (error) {
+      throw new InternalServerErrorException('Ocorreu um erro inesperado');
+    }
   }
 }

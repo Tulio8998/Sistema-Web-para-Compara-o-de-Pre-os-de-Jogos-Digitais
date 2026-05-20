@@ -4,7 +4,7 @@ export class Price {
   discount: number;
   finalPrice: number;
   currency: string;
-  promotionTitle: string;
+  promotionTitle?: string;
   gameId: string;
   storeId: string;
   createdAt: Date;

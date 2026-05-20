@@ -1,5 +1,8 @@
+import { Price } from "@prisma/client";
+
 export class Game {
   id: string;
+  gameID: string;
   title: string;
   description: string;
   genre: string;
@@ -7,7 +10,7 @@ export class Game {
   publisher: string;
   coverImage: string;
   releaseDate: string;
-  prices: string[];
+  prices: Price[];
   createdAt: Date;
   updatedAt: Date;
 }
