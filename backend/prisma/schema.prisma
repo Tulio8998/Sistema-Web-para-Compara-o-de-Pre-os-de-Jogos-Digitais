@@ -35,22 +35,29 @@ model Game {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   gameID      String     @unique
   title       String
-  releaseDate DateTime
-  thumb       String
-  type        String
-  
+  description String
+  genre       String
+  developer   String
+  publisher   String
+  coverImage  String?
+  releaseDate DateTime?
+
   price       Price[]
-  userGames   WishList[] @relation("Games")
+  WishList   WishList[] @relation("Games")
 
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
+
   @@map("games")
 }
 
 model Store {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String   @unique
-
+  storeID   String   @unique
+  name      String
+  logo      String
+  description String?
+  
   prices    Price[]
 
   createdAt DateTime @default(now())
@@ -61,6 +68,9 @@ model Store {
 model Price {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   value     Float
+  discount  Float
+  currency  String
+  promotionTitle String?
 
   gameId    String   @db.ObjectId
   game      Game     @relation(fields: [gameId], references: [id])
