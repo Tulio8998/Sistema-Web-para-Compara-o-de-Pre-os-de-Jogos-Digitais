@@ -1,11 +1,13 @@
 export class Game {
   id: string;
-  gameID: string;
   title: string;
-  releaseDate: Date;
-  thumb: string;
-  type: string;
-  price: string;
+  description: string;
+  genre: string;
+  developer: string;
+  publisher: string;
+  coverImage: string;
+  releaseDate: string;
+  prices: string[];
   createdAt: Date;
   updatedAt: Date;
 }

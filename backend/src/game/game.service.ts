@@ -1,58 +1,26 @@
 import { Injectable } from '@nestjs/common';
-import { HttpService } from '@nestjs/axios';
-import { firstValueFrom } from 'rxjs';
+import { CreateGameDto } from './dto/create-game.dto';
+import { UpdateGameDto } from './dto/update-game.dto';
 
 @Injectable()
 export class GameService {
-  constructor(private readonly httpService: HttpService) {}
-
-  async findAllDeals(query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/deals?${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
-
-    return response.data;
+  create(createGameDto: CreateGameDto) {
+    return 'This action adds a new game';
   }
 
-  async findGameByTitle(title: string, query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/games?title=${title}&${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
-
-    return response.data;
+  findAll() {
+    return `This action returns all game`;
   }
 
-  async findGameById(id: string, query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/games?id=${id}&${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
-
-    return response.data;
+  findOne(id: number) {
+    return `This action returns a #${id} game`;
   }
 
-  async findByStore(store: string, query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/stores?${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
-
-    return response.data.filter((item: any) =>
-      item.storeName.toLowerCase().includes(store.toLowerCase()),
-    );
+  update(id: number, updateGameDto: UpdateGameDto) {
+    return `This action updates a #${id} game`;
   }
 
-  async findStoreById(id: string, query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/stores?${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
-
-    return response.data.find((item: any) => item.storeID === id);
-  }
-
-  async findAllStore(query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/stores?${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
-
-    return response.data;
+  remove(id: number) {
+    return `This action removes a #${id} game`;
   }
 }

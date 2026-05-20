@@ -1,48 +1,34 @@
-import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
-import { GameService } from './game.service';
-import { Roles } from 'src/auth/decorators/roles.decorator';
-import { Role } from '@prisma/client';
-import { AuthGuard } from '@nestjs/passport';
-import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { GameService } from '../services/game/game.service';
+import { CreateGameDto } from '../services/game/dto/create-game.dto';
+import { UpdateGameDto } from '../services/game/dto/update-game.dto';
 
 @Controller('game')
-@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class GameController {
   constructor(private readonly gameService: GameService) {}
 
-  @Get('deal')
-  @Roles(Role.ADMIN)
-  findAllDeals(@Query() query: any) {
-    return this.gameService.findAllDeals(query);
+  @Post()
+  create(@Body() createGameDto: CreateGameDto) {
+    return this.gameService.create(createGameDto);
   }
 
-  @Get('title/:title')
-  @Roles(Role.ADMIN)
-  findGameByTitle(@Param('title') title: string, @Query() query: any) {
-    return this.gameService.findGameByTitle(title, query);
+  @Get()
+  findAll() {
+    return this.gameService.findAll();
   }
 
-  @Get('id/:id')
-  @Roles(Role.ADMIN)
-  findGameById(@Param('id') id: string, @Query() query: any) {
-    return this.gameService.findGameById(id, query);
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.gameService.findOne(+id);
   }
 
-  @Get('store/:store')
-  @Roles(Role.ADMIN)
-  findByStore(@Param('store') store: string, @Query() query: any) {
-    return this.gameService.findByStore(store, query);
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto) {
+    return this.gameService.update(+id, updateGameDto);
   }
 
-  @Get('store/id/:id')
-  @Roles(Role.ADMIN)
-  findStoreById(@Param('id') id: string, @Query() query: any) {
-    return this.gameService.findStoreById(id, query);
-  }
-
-  @Get('store')
-  @Roles(Role.ADMIN)
-  findAllStore(@Query() query: any) {
-    return this.gameService.findAllStore(query);
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.gameService.remove(+id);
   }
 }
