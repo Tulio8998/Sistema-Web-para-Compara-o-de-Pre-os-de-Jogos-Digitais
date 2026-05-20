@@ -3,6 +3,10 @@ import { IsString, IsNotEmpty, IsUrl, IsOptional } from "class-validator";
 export class CreateGameDto {
   @IsString()
   @IsNotEmpty()
+  gameID: string;
+  
+  @IsString()
+  @IsNotEmpty()
   title: string;
 
   @IsString()
@@ -22,10 +26,10 @@ export class CreateGameDto {
   publisher: string;
 
   @IsUrl()
-  @IsNotEmpty()
+  @IsOptional()
   coverImage: string;
 
   @IsOptional()
   @IsString()
-  releaseDate?: string;
+  releaseDate?: Date;
 }

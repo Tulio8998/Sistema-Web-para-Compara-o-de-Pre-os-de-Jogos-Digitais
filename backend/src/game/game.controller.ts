@@ -1,34 +1,41 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { GameService } from '../services/game/game.service';
-import { CreateGameDto } from '../services/game/dto/create-game.dto';
-import { UpdateGameDto } from '../services/game/dto/update-game.dto';
+import { Controller, Get, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
+import { GameService } from '../game/game.service';
+import { UpdateGameDto } from '../game/dto/update-game.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Role } from '@prisma/client';
+import { Roles } from 'src/auth/decorators/roles.decorator';
 
 @Controller('game')
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class GameController {
   constructor(private readonly gameService: GameService) {}
 
-  @Post()
-  create(@Body() createGameDto: CreateGameDto) {
-    return this.gameService.create(createGameDto);
-  }
-
   @Get()
-  findAll() {
-    return this.gameService.findAll();
+  @Roles(Role.ADMIN, Role.CLIENT)
+  findAll(@Req() req: any) {
+    return this.gameService.findAll(req.user);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.gameService.findOne(+id);
+  @Roles(Role.ADMIN, Role.CLIENT)
+  findOne(@Param('id') id: string, @Req() req: any) {
+    return this.gameService.findOne(id, req.user);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto) {
-    return this.gameService.update(+id, updateGameDto);
+  @Roles(Role.ADMIN, Role.CLIENT)
+  update(
+    @Param('id') id: string,
+    @Body() updateGameDto: UpdateGameDto,
+    @Req() req: any,
+  ) {
+    return this.gameService.update(id, updateGameDto, req.user);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.gameService.remove(+id);
+  @Roles(Role.ADMIN, Role.CLIENT)
+  remove(@Param('id') id: string, @Req() req: any) {
+    return this.gameService.remove(id, req.user);
   }
 }

@@ -1,26 +1,97 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { User } from '@prisma/client';
+import { Util } from 'src/Util/util';
 
 @Injectable()
 export class GameService {
-  create(createGameDto: CreateGameDto) {
-    return 'This action adds a new game';
+  constructor(private prisma: PrismaService) {}
+
+  async create(data: CreateGameDto) {
+    const game = await this.prisma.game.findUnique({
+      where: { gameID: data.gameID },
+    });
+
+    if (!game) {
+      throw new BadRequestException('O game já existe no sistema');
+    }
+
+    try {
+      return this.prisma.game.create({
+        data: {
+          ...data,
+        },
+      });
+    } catch (error) {
+      throw new InternalServerErrorException('Ocorreu um erro inesperado');
+    }
   }
 
-  findAll() {
-    return `This action returns all game`;
+  async findAll(user: User) {
+    Util.verificaRoleAdmin(user);
+    return await this.prisma.game.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} game`;
+  async findOne(id: string, user: User) {
+    const gameFind = await this.prisma.game.findUnique({
+      where: { id },
+    });
+
+    if (!gameFind) {
+      throw new NotFoundException('Game nao encontrado');
+    }
+    Util.verificaRoleAdmin(user);
+    try {
+      return gameFind;
+    } catch (error) {
+      throw new InternalServerErrorException('Ocorreu um erro inesperado');
+    }
   }
 
-  update(id: number, updateGameDto: UpdateGameDto) {
-    return `This action updates a #${id} game`;
+  async update(id: string, updateGameDto: UpdateGameDto, user: User) {
+    const gameFind = await this.prisma.game.findFirst({
+      where: { id },
+    });
+
+    if (!gameFind) {
+      throw new NotFoundException('Game nao encontrado');
+    }
+    Util.verificaRoleAdmin(user);
+    try {
+      return await this.prisma.game.update({
+        where: { id },
+        data: {
+          ...updateGameDto,
+        },
+      });
+    } catch (error) {
+      throw new InternalServerErrorException('Ocorreu um erro inesperado');
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} game`;
+  async remove(id: string, user: User) {
+    const gameDelete = await this.prisma.game.findUnique({
+      where: { id },
+    });
+
+    if (!gameDelete) {
+      throw new NotFoundException('Game nao encontrado');
+    }
+
+    Util.verificaRoleAdmin(user);
+    try {
+      return this.prisma.game.delete({
+        where: { id },
+      });
+    } catch (error) {
+      throw new InternalServerErrorException('Ocorreu um erro inesperado');
+    }
   }
 }
