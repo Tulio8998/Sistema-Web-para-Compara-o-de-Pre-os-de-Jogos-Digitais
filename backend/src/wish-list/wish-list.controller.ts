@@ -14,8 +14,8 @@ export class WishListController {
 
   @Post()
   @Roles(Role.ADMIN, Role.CLIENT)
-  create(@Body() createWishListDto: CreateWishListDto) {
-    return this.wishListService.create(createWishListDto);
+  create(@Body() createWishListDto: CreateWishListDto, @Req() req: any) {
+    return this.wishListService.create(createWishListDto, req.user);
   }
 
   @Get()

@@ -1,15 +1,11 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateWishListDto {
-    @IsString()
-    @IsNotEmpty()
-    favorite: boolean;
+  @IsBoolean()
+  @IsNotEmpty()
+  favorite: boolean;
 
-    @IsString()
-    @IsNotEmpty()
-    gameId: string;
-
-    @IsString()
-    @IsNotEmpty()
-    userId: string;
+  @IsString()
+  @IsNotEmpty()
+  gameId: string;
 }
