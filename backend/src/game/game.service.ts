@@ -19,7 +19,7 @@ export class GameService {
       where: { gameID: data.gameID },
     });
 
-    if (!game) {
+    if (game) {
       throw new BadRequestException('O game já existe no sistema');
     }
 
@@ -39,20 +39,15 @@ export class GameService {
     return await this.prisma.game.findMany();
   }
 
-  async findOne(id: string, user: User) {
+  async findOne(gameID: string) {
     const gameFind = await this.prisma.game.findUnique({
-      where: { id },
+      where: { gameID: gameID },
     });
 
     if (!gameFind) {
-      throw new NotFoundException('Game nao encontrado');
+      throw new NotFoundException('Jogo não encontrado no banco local');
     }
-    Util.verificaRoleAdmin(user);
-    try {
-      return gameFind;
-    } catch (error) {
-      throw new InternalServerErrorException('Ocorreu um erro inesperado');
-    }
+    return gameFind;
   }
 
   async update(id: string, updateGameDto: UpdateGameDto, user: User) {

@@ -19,8 +19,8 @@ export class GameController {
 
   @Get(':id')
   @Roles(Role.ADMIN, Role.CLIENT)
-  findOne(@Param('id') id: string, @Req() req: any) {
-    return this.gameService.findOne(id, req.user);
+  findOne(@Param('id') id: string) {
+    return this.gameService.findOne(id);
   }
 
   @Patch(':id')
