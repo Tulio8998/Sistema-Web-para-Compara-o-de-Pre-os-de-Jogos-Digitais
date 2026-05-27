@@ -7,5 +7,6 @@ import { GameApiService } from './game-api.service';
   imports: [HttpModule],
   controllers: [GameApiController],
   providers: [GameApiService],
+  exports: [GameApiService],
 })
 export class GameApiModule {}

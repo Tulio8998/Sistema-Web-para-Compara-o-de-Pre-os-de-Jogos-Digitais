@@ -1,58 +1,164 @@
-import { Injectable } from '@nestjs/common';
-import { HttpService } from '@nestjs/axios';
-import { firstValueFrom } from 'rxjs';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 
 @Injectable()
 export class GameApiService {
-  constructor(private readonly httpService: HttpService) {}
+  private readonly baseUrl = 'https://api.isthereanydeal.com';
+  private readonly apiKey = process.env.ITAD_API_KEY;
 
-  async findAllDeals(query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/deals?${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
+  async searchGameByTitle(title: string) {
+    try {
+      const response = await fetch(
+        `${this.baseUrl}/games/search/v1?key=${this.apiKey}&title=${encodeURIComponent(title)}`,
+      );
+      if (!response.ok) throw new Error('Falha ao buscar jogo');
 
-    return response.data;
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Erro ao conectar com a API externa',
+      );
+    }
   }
 
-  async findGameByTitle(title: string, query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/games?title=${title}&${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
+  async getGameInfo(gameId: string) {
+    try {
+      const response = await fetch(
+        `${this.baseUrl}/games/info/v2?key=${this.apiKey}&id=${gameId}`,
+      );
+      if (response.status === 404) return null;
+      if (!response.ok) throw new Error('Falha ao buscar info');
 
-    return response.data;
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Erro ao conectar com a API externa',
+      );
+    }
   }
 
-  async findGameById(id: string, query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/games?id=${id}&${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
+  async getGamePrices(gameIds: string[], country = 'BR') {
+    try {
+      const response = await fetch(
+        `${this.baseUrl}/games/prices/v3?key=${this.apiKey}&country=${country}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(gameIds),
+        },
+      );
+      if (!response.ok) throw new Error('Falha ao buscar precos');
 
-    return response.data;
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Erro ao conectar com a API externa',
+      );
+    }
   }
 
-  async findByStore(store: string, query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/stores?${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
+  async getDeals(
+    limit: number = 20,
+    offset: number = 0,
+    country: string = 'BR',
+    shops?: string,
+  ) {
+    try {
+      let url = `${this.baseUrl}/deals/v2?key=${this.apiKey}&limit=${limit}&offset=${offset}&country=${country}`;
+      if (shops) url += `&shops=${shops}`;
 
-    return response.data.filter((item: any) =>
-      item.storeName.toLowerCase().includes(store.toLowerCase()),
-    );
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Falha ao buscar promocoes');
+
+      const data = await response.json();
+      return data.list;
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Erro ao conectar com a API externa',
+      );
+    }
   }
 
-  async findStoreById(id: string, query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/stores?${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
-
-    return response.data.find((item: any) => item.storeID === id);
+  async getHistoryLow(gameIds: string[], country: string = 'BR') {
+    try {
+      const response = await fetch(
+        `${this.baseUrl}/games/historylow/v1?key=${this.apiKey}&country=${country}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(gameIds),
+        },
+      );
+      if (!response.ok)
+        throw new Error('Falha ao buscar menor preço histórico');
+      return await response.json();
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Erro ao conectar com a API externa',
+      );
+    }
   }
 
-  async findAllStore(query: any) {
-    const params = new URLSearchParams(query).toString();
-    const url = `https://www.cheapshark.com/api/1.0/stores?${params}`;
-    const response: any = await firstValueFrom(this.httpService.get(url));
+  async getStoreLow(gameIds: string[], country: string = 'BR', shops?: string) {
+    try {
+      let url = `${this.baseUrl}/games/storelow/v2?key=${this.apiKey}&country=${country}`;
+      if (shops) url += `&shops=${shops}`;
 
-    return response.data;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(gameIds),
+      });
+      if (!response.ok) throw new Error('Falha ao buscar menor preço por loja');
+      return await response.json();
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Erro ao conectar com a API externa',
+      );
+    }
+  }
+
+  async getHistoryLog(gameId: string, country: string = 'BR') {
+    try {
+      const response = await fetch(
+        `${this.baseUrl}/games/history/v2?key=${this.apiKey}&id=${gameId}&country=${country}`,
+      );
+      if (!response.ok)
+        throw new Error('Falha ao buscar log de histórico de preço');
+      return await response.json();
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Erro ao conectar com a API externa',
+      );
+    }
+  }
+
+  async getOverview(gameIds: string[], country: string = 'BR') {
+    try {
+      const response = await fetch(
+        `${this.baseUrl}/games/overview/v2?key=${this.apiKey}&country=${country}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(gameIds),
+        },
+      );
+      if (!response.ok) throw new Error('Falha ao buscar overview geral');
+      return await response.json();
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Erro ao conectar com a API externa',
+      );
+    }
   }
 }

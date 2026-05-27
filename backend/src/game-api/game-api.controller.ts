@@ -1,4 +1,12 @@
-import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { GameApiService } from './game-api.service';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { Role } from '@prisma/client';
@@ -10,39 +18,60 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 export class GameApiController {
   constructor(private readonly gameService: GameApiService) {}
 
-  @Get('deal')
-  @Roles(Role.ADMIN)
-  findAllDeals(@Query() query: any) {
-    return this.gameService.findAllDeals(query);
+  @Get('search/:title')
+  @Roles(Role.ADMIN, Role.CLIENT)
+  searchGameByTitle(@Param('title') title: string) {
+    return this.gameService.searchGameByTitle(title);
   }
 
-  @Get('title/:title')
-  @Roles(Role.ADMIN)
-  findGameByTitle(@Param('title') title: string, @Query() query: any) {
-    return this.gameService.findGameByTitle(title, query);
+  @Get('info/:id')
+  @Roles(Role.ADMIN, Role.CLIENT)
+  getGameInfo(@Param('id') id: string) {
+    return this.gameService.getGameInfo(id);
   }
 
-  @Get('id/:id')
-  @Roles(Role.ADMIN)
-  findGameById(@Param('id') id: string, @Query() query: any) {
-    return this.gameService.findGameById(id, query);
+  @Get('deals')
+  @Roles(Role.ADMIN, Role.CLIENT)
+  getDeals(
+    @Query('limit') limit?: number,
+    @Query('offset') offset?: number,
+    @Query('country') country?: string,
+    @Query('shops') shops?: string,
+  ) {
+    return this.gameService.getDeals(limit, offset, country, shops);
   }
 
-  @Get('store/:store')
-  @Roles(Role.ADMIN)
-  findByStore(@Param('store') store: string, @Query() query: any) {
-    return this.gameService.findByStore(store, query);
+  @Post('prices')
+  @Roles(Role.ADMIN, Role.CLIENT)
+  getGamePrices(@Body() gameIds: string[], @Query('country') country?: string) {
+    return this.gameService.getGamePrices(gameIds, country);
   }
 
-  @Get('store/id/:id')
-  @Roles(Role.ADMIN)
-  findStoreById(@Param('id') id: string, @Query() query: any) {
-    return this.gameService.findStoreById(id, query);
+  @Post('history-low')
+  @Roles(Role.ADMIN, Role.CLIENT)
+  getHistoryLow(@Body() gameIds: string[], @Query('country') country?: string) {
+    return this.gameService.getHistoryLow(gameIds, country);
   }
 
-  @Get('store')
-  @Roles(Role.ADMIN)
-  findAllStore(@Query() query: any) {
-    return this.gameService.findAllStore(query);
+  @Post('store-low')
+  @Roles(Role.ADMIN, Role.CLIENT)
+  getStoreLow(
+    @Body() gameIds: string[],
+    @Query('country') country?: string,
+    @Query('shops') shops?: string,
+  ) {
+    return this.gameService.getStoreLow(gameIds, country, shops);
+  }
+
+  @Get('history-log/:id')
+  @Roles(Role.ADMIN, Role.CLIENT)
+  getHistoryLog(@Param('id') id: string, @Query('country') country?: string) {
+    return this.gameService.getHistoryLog(id, country);
+  }
+
+  @Post('overview')
+  @Roles(Role.ADMIN, Role.CLIENT)
+  getOverview(@Body() gameIds: string[], @Query('country') country?: string) {
+    return this.gameService.getOverview(gameIds, country);
   }
 }
