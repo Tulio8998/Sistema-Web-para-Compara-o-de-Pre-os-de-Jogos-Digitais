@@ -35,10 +35,9 @@ model Game {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   gameID      String     @unique
   title       String
-  description String
-  genre       String
-  developer   String
-  publisher   String
+  genre       String?    
+  developer   String?
+  publisher   String?
   coverImage  String?
   releaseDate DateTime?
 
