@@ -5,6 +5,7 @@ export class User {
   password: string;
   role: string;
   userGames: string[];
+  userComments: string[];
   createdAt: Date;
   updatedAt: Date;
 }
