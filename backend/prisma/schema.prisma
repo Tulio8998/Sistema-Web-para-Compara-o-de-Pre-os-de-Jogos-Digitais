@@ -25,10 +25,28 @@ model User {
   role      Role       @default(ADMIN)
 
   userGames WishList[] @relation("Users")
+  userComments Comments[] @relation("Users")
 
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   @@map("users")
+}
+
+model Comments {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId 
+  avaliation    Int?     @default(0)
+  comment       String[]
+  response      String[]
+
+  gameId    String
+  game      Game     @relation("Games", fields: [gameId], references: [id])
+
+  userId        String  @db.ObjectId
+  user          User    @relation("Users", fields: [userId], references: [id])
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  @@map("comments")
 }
 
 model Game {
@@ -43,6 +61,7 @@ model Game {
 
   price       Price[]
   WishList   WishList[] @relation("Games")
+  gameComments Comments[] @relation("Games")
 
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
