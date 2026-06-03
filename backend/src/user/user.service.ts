@@ -11,10 +11,15 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
 import { Util } from 'src/Util/util';
 import { User } from '@prisma/client';
+import { CreateCommentsDto } from './dto/create-comment.dto';
+import { GameApiService } from 'src/game-api/game-api.service';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private gameApi: GameApiService,
+  ) {}
 
   async create(data: CreateUserDto) {
     const exitingUser = await this.prisma.user.findUnique({
@@ -123,6 +128,30 @@ export class UserService {
       });
     } catch (error) {
       throw new InternalServerErrorException('Ocorreu um erro inesperado');
+    }
+  }
+
+  async createComment(
+    gameId: string,
+    createCommentsDto: CreateCommentsDto,
+    user: User,
+  ) {
+    const gameComment = await this.gameApi.getGameInfo(gameId);
+
+    if (!gameComment) {
+      throw new BadRequestException('Jogo nao encontrado para comentar');
+    }
+
+    try {
+      return await this.prisma.comments.create({
+        data: {
+          ...createCommentsDto,
+          gameId: gameId,
+          userId: user.id,
+        },
+      });
+    } catch (error) {
+      throw new InternalServerErrorException('Ocorreu um erro inesperado', error.message);
     }
   }
 }
