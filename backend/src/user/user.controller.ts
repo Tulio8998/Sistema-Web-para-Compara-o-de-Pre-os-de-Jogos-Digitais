@@ -16,6 +16,7 @@ import { Role } from '@prisma/client';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { CreateCommentsDto } from './dto/create-comment.dto';
 
 @Controller('user')
 export class UserController {
@@ -63,5 +64,16 @@ export class UserController {
   @Roles(Role.ADMIN)
   remove(@Param('id') id: string, @Req() req: any) {
     return this.userService.remove(id, req.user);
+  }
+
+  @Post('comment/:id')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(Role.ADMIN, Role.CLIENT)
+  createComment(
+    @Param('id') gameId: string,
+    @Body() createCommentsDto: CreateCommentsDto,
+    @Req() req: any,
+  ) {
+    return this.userService.createComment(gameId, createCommentsDto, req.user);
   }
 }
