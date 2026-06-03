@@ -68,7 +68,7 @@ export class GameApiService {
   }
 
   async getDeals(
-    limit: number = 20,
+    limit: number = 50,
     offset: number = 0,
     country: string = 'BR',
     shops?: string,
