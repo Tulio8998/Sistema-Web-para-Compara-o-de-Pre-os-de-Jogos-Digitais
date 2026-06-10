@@ -35,7 +35,6 @@ export class GameService {
   }
 
   async findAll(user: User) {
-    Util.verificaRoleAdmin(user);
     return await this.prisma.game.findMany();
   }
 

@@ -35,7 +35,6 @@ export class StoreService {
   }
 
   async findAll(user: User) {
-    Util.verificaRoleAdmin(user);
     return await this.prisma.store.findMany();
   }
 
@@ -47,7 +46,6 @@ export class StoreService {
     if (!storeFind) {
       throw new NotFoundException('Store nao encontrado');
     }
-    Util.verificaRoleAdmin(user);
     try {
       return storeFind;
     } catch (error) {

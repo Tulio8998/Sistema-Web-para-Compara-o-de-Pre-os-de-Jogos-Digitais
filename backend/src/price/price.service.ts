@@ -22,8 +22,7 @@ export class PriceService {
   }
 
   async findAll(user: User) {
-    Util.verificaRoleAdmin(user);
-    return await this.prisma.game.findMany();
+    return await this.prisma.price.findMany();
   }
 
   async findOne(id: string, user: User) {
@@ -34,7 +33,6 @@ export class PriceService {
     if (!priceFind) {
       throw new NotFoundException('Price nao encontrado');
     }
-    Util.verificaRoleAdmin(user);
     try {
       return priceFind;
     } catch (error) {
@@ -66,7 +64,7 @@ export class PriceService {
   async remove(id: string, user: User) {
     Util.verificaRoleAdmin(user);
     try {
-      return this.prisma.store.delete({
+      return this.prisma.price.delete({
         where: { id },
       });
     } catch (error) {
