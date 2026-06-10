@@ -25,11 +25,13 @@ export class WishListController {
   }
 
   @Get(':id')
+  @Roles(Role.ADMIN, Role.CLIENT)
   findById(@Param('id') id: string, @Req() req: any) {
     return this.wishListService.findById(id, req.user);
   }
 
   @Get(':title')
+  @Roles(Role.ADMIN, Role.CLIENT)
   findByTitle(@Param('title') title: string, @Req() req: any) {
     return this.wishListService.findByTitle(title, req.user);
   }
