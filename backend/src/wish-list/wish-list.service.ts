@@ -84,12 +84,53 @@ export class WishListService {
     }
   }
 
-  findAll(user: User) {
-    return `This action returns all wishList`;
+  async findAll(user: User) {
+    return await this.prisma.wishList.findMany({
+      where: { userId: user.id },
+      include: { game: true },
+    });
   }
 
-  findOne(id: string, user: User) {
-    return `This action returns a #${id} wishList`;
+  async findById(id: string, user: User) {
+    const wish = await this.prisma.wishList.findFirst({
+      where: { userId: user.id },
+      include: { game: true },
+    });
+
+    if (!wish) {
+      throw new BadRequestException('Jogo não encontrado');
+    }
+
+    try {
+      return wish;
+    } catch (error) {
+      throw new InternalServerErrorException('Erro inesperado');
+    }
+  }
+
+  async findByTitle(title: string, user: User) {
+    const wish = await this.prisma.wishList.findMany({
+      where: {
+        userId: user.id,
+        game: {
+          title: {
+            contains: title,
+            mode: 'insensitive',
+          },
+        },
+      },
+      include: { game: true },
+    });
+
+    if (wish.length === 0) {
+      throw new BadRequestException('Jogo não encontrado');
+    }
+
+    try {
+      return wish;
+    } catch (error) {
+      throw new InternalServerErrorException('Erro inesperado');
+    }
   }
 
   update(id: string, updateWishListDto: UpdateWishListDto, user: User) {

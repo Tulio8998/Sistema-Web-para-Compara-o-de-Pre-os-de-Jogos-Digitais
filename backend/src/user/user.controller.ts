@@ -37,8 +37,15 @@ export class UserController {
   @Get(':id')
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.ADMIN)
-  findOne(@Param('id') id: string, @Req() req: any) {
-    return this.userService.findOne(id, req.user);
+  findById(@Param('id') id: string, @Req() req: any) {
+    return this.userService.findById(id, req.user);
+  }
+
+  @Get(':name')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(Role.ADMIN)
+  findByName(@Param('name') name: string, @Req() req: any) {
+    return this.userService.findByName(name, req.user);
   }
 
   @Get('email/:email')

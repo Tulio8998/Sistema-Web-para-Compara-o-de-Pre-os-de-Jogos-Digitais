@@ -25,8 +25,13 @@ export class WishListController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string, @Req() req: any) {
-    return this.wishListService.findOne(id, req.user);
+  findById(@Param('id') id: string, @Req() req: any) {
+    return this.wishListService.findById(id, req.user);
+  }
+
+  @Get(':title')
+  findByTitle(@Param('title') title: string, @Req() req: any) {
+    return this.wishListService.findByTitle(title, req.user);
   }
 
   @Patch(':id')
