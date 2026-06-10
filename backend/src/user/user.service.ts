@@ -50,19 +50,43 @@ export class UserService {
     return await this.prisma.user.findMany();
   }
 
-  async findOne(id: string, user: User) {
+  async findById(id: string, user: User) {
     const userFind = await this.prisma.user.findUnique({
       where: { id },
     });
 
+    Util.verificaRoleAdmin(user);
+
     if (!userFind) {
       throw new NotFoundException('Usuario nao encontrado');
     }
-    Util.verificaRoleAdmin(user);
     try {
       return userFind;
     } catch (error) {
       throw new InternalServerErrorException('Ocorreu um erro inesperado');
+    }
+  }
+
+  async findByName(name: string, user: User) {
+    const userName = await this.prisma.user.findMany({
+      where: {
+        name: {
+          contains: name,
+          mode: 'insensitive',
+        },
+      },
+    });
+
+    Util.verificaRoleAdmin(user);
+
+    if (userName.length === 0) {
+      throw new BadRequestException('Nome nao encontrado');
+    }
+
+    try {
+      return userName;
+    } catch (error) {
+      throw new InternalServerErrorException('Erro inesperado');
     }
   }
 
