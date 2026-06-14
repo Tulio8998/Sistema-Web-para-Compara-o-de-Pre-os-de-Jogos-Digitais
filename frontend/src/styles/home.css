@@ -1,0 +1,141 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.start,
+.releases,
+.best-prices,
+.features,
+.create-account {
+    margin: 3rem 0;
+    padding: 5rem 0;
+}
+
+.start {
+    display: flex;
+}
+
+.start .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.start .title {
+    font-size: 3.5rem;
+    width: 50rem;
+    text-align: center;
+    margin: 5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.start .color-title {
+    font-weight: 700;
+    background: linear-gradient(
+        100deg,
+        rgba(192, 132, 252, 1) 0%,
+        rgba(139, 92, 246, 1) 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.start p {
+    margin-bottom: 0.5rem;
+    color: var(--color-text-gray);
+}
+
+
+
+
+.releases {
+    display: flex;
+    background: #0F1117;
+}
+
+.releases .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.releases .release-subtitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.release-subtitle h2 {
+    display: flex;
+    margin-left: 5rem;
+    padding-bottom: 4px;
+    font-weight: 800;
+    border-bottom: 3px solid #8B5CF6;
+}
+
+.release-subtitle a {
+    display: flex;
+    margin-right: 5rem;
+    color: #8B5CF6; 
+    font-size: 15px;   
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.release-subtitle .right-icon {
+    border-bottom-color: #8B5CF6;
+    color: #8B5CF6;
+    font-size: 11px;
+}
+
+
+.best-prices {
+    display: flex;
+}
+
+.best-prices .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.features {
+    display: flex;
+    background: #0F1117;
+}
+
+.features .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.features {
+    display: flex;
+}
+
+.create-account .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
