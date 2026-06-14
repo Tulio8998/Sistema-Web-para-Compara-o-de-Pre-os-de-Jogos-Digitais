@@ -1,11 +1,29 @@
 :root {
   --bg-color-fallback: #020024;
   --bg-gradient: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(23, 22, 41, 1) 30%, rgba(13, 13, 36, 1) 51%, rgba(22, 17, 33, 1) 70%, rgba(2, 0, 36, 1) 100%);
+  
+  
+  --color-text-gray: #9CA3AF;
+
+  --color-top-text: #6B7280;
+  --color-top-a: #6B7280;
+  --color-top-nav: #4B5563;
   --bg-top-bar: #0F1117;
+  --bg-top-search: #6B7280;
+  --bg-top-search-button: #8B5CF6;
+  --color-top-search-icon: #6B7280;
+  --color-top-border: #2D3243;
+
+  --color-footer-text: #6B7280;
+  --color-footer-a: #6B7280;
+  --color-footer-nav: #4B5563;
   --bg-footer-bar: #0F1117;
+  --color-footer-icon-disc: #2929d1;
+  --color-footer-icon-inst: #ba4e62;
+
 
   --font-fallback: "Inter", sans-serif;
-
+  
   --white: #FFFFFF;
   --black: #000000;
   --gray: #808080;  
@@ -15,6 +33,16 @@
   --spacing-lg: 4rem;     /* 64px */
   --spacing-xl: 6rem;     /* 96px */
 
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }
 
 * {

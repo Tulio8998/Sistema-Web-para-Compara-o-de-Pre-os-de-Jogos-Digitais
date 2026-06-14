@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     top: 0;
-    position: fixed;
+    position: static;
     background-color: var(--bg-top-bar);
     width: 100%;
     height: 8rem;
@@ -40,7 +40,7 @@
 
 .login {
     margin-left: auto;
-    border: 1px solid #2D3243;
+    border: 1px solid var(--color-top-border);
     border-radius: 7px;
     padding: 15px 20px;
 }
@@ -56,8 +56,8 @@
     align-items: center;
     flex: 1;
     max-width: 500px;
-    background-color: #2D3243;
-    border: 1px solid #6B7280;
+    background-color: var(--color-top-border);
+    border: 1px solid var(--bg-top-search);
     border-radius: 12px;
     padding: 0.4rem;
 }
@@ -93,13 +93,13 @@
 .searchbutton {
     border-radius: 8px;
     padding: 0.5rem 1rem;
-    background: #8B5CF6;
+    background: var(--bg-top-search-button);
     color: var(--white);
     cursor: pointer;
 }
 
 
 .search-icon {
-    color: #6B7280;
+    color: var(--color-top-search-icon);
     font-size: 30px;
 }
