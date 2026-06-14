@@ -2,6 +2,7 @@
   --bg-color-fallback: #020024;
   --bg-gradient: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(23, 22, 41, 1) 30%, rgba(13, 13, 36, 1) 51%, rgba(22, 17, 33, 1) 70%, rgba(2, 0, 36, 1) 100%);
   --bg-top-bar: #0F1117;
+  --bg-footer-bar: #0F1117;
 
   --font-fallback: "Inter", sans-serif;
 
@@ -25,6 +26,8 @@
   outline: none;
   background: none;
   text-decoration: none;
+  font-weight: 500;
+  list-style: none;
 }
 
 body {

@@ -21,20 +21,20 @@
     gap: 2rem;
 }
 
-a {
+.top-bar a {
     font-size: 1rem;
     color: var(--white);
     font-weight: 800;
 }
 
-a:hover {
+.top-bar a:hover {
     transition: 0.8s;
     transform: scale(1.1);
     filter:
         drop-shadow(0 0 5px rgb(79, 79, 79));
 }
 
-.logo {
+.top-bar .logo {
     margin-right: auto;
 }
 
@@ -62,7 +62,7 @@ a:hover {
     padding: 0.4rem;
 }
 
-input {
+.top-bar input {
     display: flex;
     padding: 0.8rem;
     width: 100%;
@@ -72,12 +72,12 @@ input {
     border-radius: 7%;
 }
 
-button {
+.top-bar button {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
 }
 
-button:hover {
+.top-bar button:hover {
     transition: 0.8s;
     transform: scale(1.05);
     filter:
