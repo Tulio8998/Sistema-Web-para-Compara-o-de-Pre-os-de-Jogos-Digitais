@@ -1,5 +1,7 @@
 import '../../styles/home.css'
 import { FaArrowRight } from "react-icons/fa";
+import { FaSteam } from "react-icons/fa";
+import { gamesMock } from '../../mocks/game';
 
 export function Home() {
     return(
@@ -12,34 +14,97 @@ export function Home() {
                 </div>
             </section>
 
-            <section className="releases">
+            <section className="preferences">
                 <div className='container'>
-                    <div className='release-subtitle'>
-                        <h2>Jogos</h2>
+                    <div className='preference-subtitle'>
+                        <h2>Suas preferâncias</h2>
                         <a href="">Ver todos <FaArrowRight className='right-icon'/> </a>
                     </div>
                     <div className='card-games'>
-                        <p>cards aqui</p>
+                        {gamesMock.map((game) => (
+                            <div className='cards'>
+                            <div className='card-top'>
+                                <p className='porcent-discount'>44%</p>
+                                <img className='image-game' src={game.deal.assets.boxart} alt="" />
+                            </div>
+                            <div className='card-bottom'>
+                                <p className='title-game'>{game.title}</p>
+                                <p className='store-game'><FaSteam className='store-icon'/>{game.deal.shop.name}</p>
+                                <div className='prices-game'>
+                                    <p className='descount-game'>R${game.deal.price.amount}</p>
+                                    <p className='price-game'>R${game.deal.regular.amount}</p>
+                                </div>
+                            </div> 
+                        </div>
+                        ))}
+                    </div>
+                </div>  
+            </section>
+
+            <section className="deals">
+                <div className='container'>
+                    <div className='deals-subtitle'>
+                        <h2>Melhores ofertas</h2>
+                        <a href="">Ver todos <FaArrowRight className='right-icon'/> </a>
+                    </div>
+                    <div className='card-games'>
+                        {gamesMock.map((game) => (
+                            <div className='cards'>
+                            <div className='card-top'>
+                                <p className='porcent-discount'>44%</p>
+                                <img className='image-game' src={game.deal.assets.boxart} alt="" />
+                            </div>
+                            <div className='card-bottom'>
+                                <p className='title-game'>{game.title}</p>
+                                <p className='store-game'><FaSteam className='store-icon'/>{game.deal.shop.name}</p>
+                                <div className='prices-game'>
+                                    <p className='descount-game'>R${game.deal.price.amount}</p>
+                                    <p className='price-game'>R${game.deal.regular.amount}</p>
+                                </div>
+                            </div> 
+                        </div>
+                        ))}
                     </div>
                 </div>  
             </section>
 
             <section className="best-prices">
                 <div className='container'>
-                    <h1>Teste</h1>
-                </div>  
-            </section>
-
-            <section className="features">
-                <div className='container'>
-                    <h1>Teste</h1>
+                    <div className='best-subtitle'>
+                        <h2>Melhores preços</h2>
+                        <a href="">Ver todos <FaArrowRight className='right-icon'/> </a>
+                    </div>
+                    <div className='card-games'>
+                        {gamesMock.map((game) => (
+                            <div className='cards'>
+                            <div className='card-top'>
+                                <p className='porcent-discount'>44%</p>
+                                <img className='image-game' src={game.deal.assets.boxart} alt="" />
+                            </div>
+                            <div className='card-bottom'>
+                                <p className='title-game'>{game.title}</p>
+                                <p className='store-game'><FaSteam className='store-icon'/>{game.deal.shop.name}</p>
+                                <div className='prices-game'>
+                                    <p className='descount-game'>R${game.deal.price.amount}</p>
+                                    <p className='price-game'>R${game.deal.regular.amount}</p>
+                                </div>
+                            </div> 
+                        </div>
+                        ))}
+                    </div>
                 </div>  
             </section>
 
             <section className="create-account">
                 <div className='container'>
-                    <h1>Teste</h1>
-                </div>  
+                    <h1 className="title">Nunca mais pague <span className="color-title"> caro </span>novamente</h1>
+                    <p>Crie uma conta de graça</p>
+                    <p>E fique por dentro dos melhores preços</p>
+                    <div className='button-area'>
+                        <button type="submit"className='button-create'>Se inscrever</button>
+                        <button type="submit" className='button-about'>Saiba mais sobre</button>
+                    </div>
+                </div>
             </section>
         </main>
     )

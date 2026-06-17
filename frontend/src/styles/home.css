@@ -6,9 +6,9 @@
 }
 
 .start,
-.releases,
+.deals,
 .best-prices,
-.features,
+.preferences,
 .create-account {
     margin: 3rem 0;
     padding: 5rem 0;
@@ -51,17 +51,17 @@
 .start p {
     margin-bottom: 0.5rem;
     color: var(--color-text-gray);
+    font-size: 1.3rem;
 }
 
 
 
-
-.releases {
+.preferences {
     display: flex;
     background: #0F1117;
 }
 
-.releases .container {
+.preferences .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,7 +69,7 @@
     width: 100%;
 }
 
-.releases .release-subtitle {
+.preference-subtitle {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -77,17 +77,15 @@
     width: 100%;
 }
 
-.release-subtitle h2 {
+.preference-subtitle h2 {
     display: flex;
-    margin-left: 5rem;
     padding-bottom: 4px;
     font-weight: 800;
     border-bottom: 3px solid #8B5CF6;
 }
 
-.release-subtitle a {
+.preference-subtitle a {
     display: flex;
-    margin-right: 5rem;
     color: #8B5CF6; 
     font-size: 15px;   
     align-items: center;
@@ -96,15 +94,77 @@
     gap: 10px;
 }
 
-.release-subtitle .right-icon {
+.preference-subtitle a:hover {
+    transition: 0.8s;
+    transform: scale(1.03);
+    filter:
+        drop-shadow(0 0 5px rgb(79, 79, 79));
+}
+
+.preference .right-icon {
     border-bottom-color: #8B5CF6;
     color: #8B5CF6;
     font-size: 11px;
 }
 
 
+
+
+.deals {
+    display: flex;
+}
+
+.deals .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.deals-subtitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.deals-subtitle h2 {
+    display: flex;
+    padding-bottom: 4px;
+    font-weight: 800;
+    border-bottom: 3px solid #f65c5c;
+}
+
+.deals-subtitle a {
+    display: flex;
+    color: #f65c5c; 
+    font-size: 15px;   
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.deals-subtitle a:hover {
+    transition: 0.8s;
+    transform: scale(1.03);
+    filter:
+        drop-shadow(0 0 5px rgb(79, 79, 79));
+}
+
+.deals-subtitle .right-icon {
+    border-bottom-color: #f65c5c;
+    color: #f65c5c;
+    font-size: 11px;
+}
+
+
+
 .best-prices {
     display: flex;
+    background: #0F1117;
 }
 
 .best-prices .container {
@@ -115,22 +175,159 @@
     width: 100%;
 }
 
-.features {
+.best-subtitle {
     display: flex;
-    background: #0F1117;
-}
-
-.features .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
 }
 
-.features {
+.best-subtitle h2 {
     display: flex;
+    padding-bottom: 4px;
+    font-weight: 800;
+    border-bottom: 3px solid #38bf23;
 }
+
+.best-subtitle a {
+    display: flex;
+    color: #38bf23; 
+    font-size: 15px;   
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.best-subtitle a:hover {
+    transition: 0.8s;
+    transform: scale(1.03);
+    filter:
+        drop-shadow(0 0 5px rgb(79, 79, 79));
+}
+
+.best .right-icon {
+    border-bottom-color: #38bf23;
+    color: #38bf23;
+    font-size: 11px;
+}
+
+
+
+
+
+.card-games {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 3rem;
+    gap: 1rem;
+}
+
+.card-games .cards{
+    border: 1px solid #6B7280;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 500px;
+    cursor: pointer;
+}
+
+.card-games .cards:hover {
+    transition: 0.8s;
+    transform: scale(1.1);
+    filter:
+        drop-shadow(0 0 5px rgb(79, 79, 79));
+}
+
+.card-games .card-top {
+    position: relative;
+}
+
+.card-games .card-bottom {
+    padding: 1rem;
+}
+
+.cards .image-game {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.preferences .porcent-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #8B5CF6;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.deals .porcent-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #f65c5c;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.best-prices .porcent-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #38bf23;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.cards .title-game {
+    font-weight: 800;
+    font-size: 20px;
+    padding: 5px 0;
+}
+
+.cards .store-game {
+    display: flex;
+    gap: 5px;
+    color: #9CA3AF;
+    padding: 5px 0;
+}
+
+.cards .prices-game {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.cards .price-game {
+    color: #10B981;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.cards .descount-game {
+    color: #6B7280;
+    text-decoration: line-through;
+}
+
+.cards .store-icon {
+
+}
+
+
+
+
 
 .create-account .container {
     display: flex;
@@ -138,4 +335,78 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+.create-account .title {
+    font-size: 3.5rem;
+    width: 60rem;
+    text-align: center;
+    margin: 5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.create-account .color-title {
+    font-weight: 700;
+    background: linear-gradient(
+        100deg,
+        rgb(252, 132, 132) 0%,
+        rgb(246, 92, 92) 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.create-account p {
+    margin-bottom: 0.5rem;
+    color: var(--color-text-gray);
+    font-size: 1.3rem;
+}
+
+.create-account .button-area {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem;
+    gap: 4rem;
+}
+
+
+.button-area .button-create {
+    border: 1px solid #6B7280;
+    padding: 1rem;
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 800;
+    background: #8B5CF6;
+    cursor: pointer;
+}
+
+.button-area .button-create:hover {
+    transition: 0.8s;
+    transform: scale(1.1);
+    filter:
+        drop-shadow(0 0 5px rgb(79, 79, 79));
+}
+
+.button-area .button-about {
+    border: 1px solid #6B7280;
+    padding: 1rem;
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.button-area .button-about:hover {
+    transition: 0.8s;
+    transform: scale(1.1);
+    filter:
+        drop-shadow(0 0 5px rgb(79, 79, 79));
 }
