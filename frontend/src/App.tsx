@@ -3,6 +3,7 @@ import { Home } from "./pages/home/home";
 import { SignUp } from "./pages/login/signUp";
 import { MainLayout } from "./components/layout";
 import { AuthLayout } from "./components/auth-layout";
+import { SignIn } from "./pages/login/signIn";
 
 export function App() {
   return (
@@ -14,7 +15,7 @@ export function App() {
         </Route>
 
         <Route element={<AuthLayout />}>
-          <Route path="/signIn" element={<SignUp/>}/>
+          <Route path="/signIn" element={<SignIn/>}/>
           <Route path="/signUp" element={<SignUp/>}/>
         </Route>
 
