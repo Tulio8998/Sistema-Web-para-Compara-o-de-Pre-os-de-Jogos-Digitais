@@ -16,9 +16,9 @@ export function SignIn() {
 
                 <div className='container list'>
                     <ul>
-                        <li><CiSquareCheck className='icon-check1'/><span>Acompanhe preços</span>de mais de 30 loja</li>
+                        <li><CiSquareCheck className='icon-check1'/><span>Acompanhe preços</span>de mais de 30 lojas</li>
                         <li><CiSquareCheck className='icon-check2'/>Salve jogos preferidos em sua <span>lista de desejos</span></li>
-                        <li><CiSquareCheck className='icon-check3'/>Comente suas <span>suas opniões</span> nos jogos</li>
+                        <li><CiSquareCheck className='icon-check3'/>Comente suas <span>suas opiniões</span> nos jogos</li>
                     </ul>
                 </div>
 

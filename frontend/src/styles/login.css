@@ -3,8 +3,6 @@
     grid-template-columns: 1fr 1fr;
     width: 100%;
     height: 100%;
-    margin-top: 10rem;
-    margin-bottom: 10rem;
 }
 
 .login-page .container {
@@ -61,13 +59,13 @@
 }
 
 .slogan .list .icon-check1 {
-    color: #A78BFA;
+    color: #c5b2ff;
     font-size: 2rem;
     margin-right: 1rem;
 }
 
 .slogan .list .icon-check2 {
-    color: #818CF8;
+    color: #6775f7;
     font-size: 2rem;
     margin-right: 1rem;
 }
@@ -119,9 +117,15 @@
     border: 1px solid #54496d;
     border-radius: 25px;
     background: #383f6677;
-    font-weight: 800;
 }
 
 .slogan .icons p:last-child {
     color: #FBBF24;
+}
+
+
+
+
+.login-account {
+    background: #13151F;
 }

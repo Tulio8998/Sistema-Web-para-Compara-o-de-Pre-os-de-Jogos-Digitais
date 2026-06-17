@@ -102,8 +102,8 @@ export function Home() {
                     <p>E fique por dentro dos melhores preços, acompanhando </p>
                     <p>de perto seus jogos favoritos mais baratos</p>
                     <div className='button-area'>
-                        <button type="submit"className='button-create'>Inscreva-se de graça</button>
-                        <button type="submit" className='button-about'>Veja as ofertas</button>
+                        <a type="submit"className='button-create' href="/signIn">Inscreva-se de graça</a>
+                        <a type="submit" className='button-about'>Veja as ofertas</a>
                     </div>
                 </div>
             </section>
