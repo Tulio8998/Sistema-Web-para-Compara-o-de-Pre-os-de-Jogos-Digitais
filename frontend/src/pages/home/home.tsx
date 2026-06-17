@@ -99,10 +99,11 @@ export function Home() {
                 <div className='container'>
                     <h1 className="title">Nunca mais pague <span className="color-title"> caro </span>novamente</h1>
                     <p>Crie uma conta de graça</p>
-                    <p>E fique por dentro dos melhores preços</p>
+                    <p>E fique por dentro dos melhores preços, acompanhando </p>
+                    <p>de perto seus jogos favoritos mais baratos</p>
                     <div className='button-area'>
-                        <button type="submit"className='button-create'>Se inscrever</button>
-                        <button type="submit" className='button-about'>Saiba mais sobre</button>
+                        <button type="submit"className='button-create'>Inscreva-se de graça</button>
+                        <button type="submit" className='button-about'>Veja as ofertas</button>
                     </div>
                 </div>
             </section>
