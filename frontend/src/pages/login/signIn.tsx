@@ -1,9 +1,11 @@
-import '../../styles/login.css'
+import '../../styles/signIn.css'
 import { FaSteam } from "react-icons/fa";
 import { SiEpicgames } from "react-icons/si";
 import { FaGhost } from "react-icons/fa";
 import { CiSquareCheck } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
+import { MdEmail } from "react-icons/md";
+import { FaLock } from "react-icons/fa6";
 
 export function SignIn() {
     return(
@@ -44,10 +46,16 @@ export function SignIn() {
                             <form action="">
                                 <div>
                                     <p>Endereço de email</p>
-                                    <input type="email" placeholder='email@exemple.com'/>
-
+                                    <div className='icon-group'>
+                                        <MdEmail className='icon-email'/>
+                                        <input type="email" placeholder='email@exemple.com'/>
+                                    </div>
+                                    
                                     <p>Senha</p>
-                                    <input type="password" placeholder='senha'/>
+                                    <div className='icon-group'>
+                                        <FaLock className='icon-password'/>
+                                        <input type="password" placeholder='senha'/>
+                                    </div>
                                 </div>
 
                                 <div className='forget-pass'>

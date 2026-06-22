@@ -26,7 +26,6 @@
     margin: 5rem;
     padding: 3rem 0 3rem 0;
     background: #0F1117;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .login-page .slogan {
@@ -171,13 +170,26 @@
     font-weight: 800;
 }
 
-.login-account .input-data input {
+
+.login-account .input-data .icon-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: var(--white);
     border: 1px solid #8B5CF6;
     border-radius: 10px;
     padding: 1rem;
     width: 100%;
 }
+
+.input-data .icon-group .icon-email {
+    color: #4B5563;
+}
+
+.input-data .icon-group .icon-password {
+    color: #4B5563;
+    font-size: 13px;
+} 
 
 .login-account .input-data input::placeholder {
     color: var(--white);
