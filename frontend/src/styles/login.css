@@ -13,22 +13,39 @@
     width: 100%;
 }
 
+.login-page .login-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .login-account .container {
     border: 1px solid #54496d;
     border-radius: 25px;
-    width: 80%;
+    width: 55%;
     margin: 5rem;
     padding: 3rem 0 3rem 0;
+    background: #0F1117;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .login-page .slogan {
-    border: 1px solid #54496d;
-    border-radius: 25px;
-    width: 80%;
-    margin: 5rem;
-    padding: 3rem 0 3rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.slogan .container{
+    border: 1px solid #54496d;
+    border-radius: 25px;
+    margin: 5rem;
+    padding: 3rem 0 3rem 0;
+    height: 70%;
+}
+
+.slogan .init .logo{
+    text-align: center;
+}
 
 .slogan .init .title {
     font-weight: 700;
@@ -56,27 +73,28 @@
     display: flex;
     align-items: center;
     margin: 1rem;
+    gap: 5px;
 }
 
 .slogan .list .icon-check1 {
     color: #c5b2ff;
     font-size: 2rem;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 }
 
 .slogan .list .icon-check2 {
     color: #6775f7;
     font-size: 2rem;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 }
 
 .slogan .list .icon-check3 {
     color: #6EE7B7;
     font-size: 2rem;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 }
 
-.slogan .list li span {
+.slogan .list li .color-li {
     color: #C4B5FD;
 }
 
@@ -128,4 +146,121 @@
 
 .login-account {
     background: #13151F;
+}
+
+.login-init .subtitle {
+    font-weight: 800;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.login-init .description {
+    color: #6B7280;
+    margin-bottom: 2rem;
+    
+}
+
+.login-account .input-data {
+    
+}
+
+.login-account .input-data p{
+    color: #9CA3AF;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.login-account .input-data input {
+    color: var(--white);
+    border: 1px solid #8B5CF6;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 100%;
+}
+
+.login-account .input-data input::placeholder {
+    color: var(--white);
+}
+
+.login-account .input-data .forget-pass {
+    display: flex;
+    justify-content: end;
+}
+
+.login-account .input-data .forget-pass a {
+    margin-top: 1rem;
+    color: #8B5CF6;
+    font-weight: 800;
+}
+
+.login-account .input-data button {
+    width: 100%;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    color: var(--white);
+    font-weight: 800;
+    border: 1px solid #8B5CF6;
+    background: #8B5CF6;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.others-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.no-account {
+    display: flex;
+    justify-content: center;
+    color: #6B7280;
+    margin-top: 2rem;
+    gap: 10px;
+}
+
+.others-login .no-account a{
+    color: #8B5CF6;
+    font-weight: 800;
+}
+
+.others-login p:first-child{
+    margin-bottom: 2rem;
+    color: #6B7280;
+    font-size: 0.8rem;
+}
+
+.others-login a:nth-child(2){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #2D3243;
+    border-radius: 15px;
+    width: 9rem;
+    background: #1A1D27;
+}
+
+.others-login .icon-google{
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.terms-service {
+    width: 20rem;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.terms-service p {
+    color: #374151;
+}
+
+.terms-service a {
+    color: #6B7280;
+    border-bottom: 1px solid #6B7280;
 }
