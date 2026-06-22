@@ -1,4 +1,4 @@
-import '../../styles/signIn.css'
+import styles from '../../styles/signIn.module.css';
 import { FaSteam } from "react-icons/fa";
 import { SiEpicgames } from "react-icons/si";
 import { FaGhost } from "react-icons/fa";
@@ -9,56 +9,56 @@ import { FaLock } from "react-icons/fa6";
 
 export function SignIn() {
     return(
-        <section className='login-page'>
-            <div className='slogan'>
-                <div className='container'>
-                    <div className='init'>
-                        <p className='logo'>Logo</p>
-                        <h1 className='title'>Nome</h1>
-                        <h2 className='subtitle'>COMPARE . ECONOMIZE . JOGUE</h2>
+        <section className={styles['login-page']}>
+            <div className={styles.slogan}>
+                <div className={styles.container}>
+                    <div className={styles.init}>
+                        <p className={styles.logo}>Logo</p>
+                        <h1 className={styles.title}>Nome</h1>
+                        <h2 className={styles.subtitle}>COMPARE . ECONOMIZE . JOGUE</h2>
                     </div>
 
-                    <div className='list'>
+                    <div className={styles.list}>
                         <ul>
-                            <li><CiSquareCheck className='icon-check1'/><span className='color-li'>Acompanhe preços </span>de mais de 30 lojas</li>
-                            <li><CiSquareCheck className='icon-check2'/>Salve jogos preferidos em sua <span className='color-li'> lista de desejos</span></li>
-                            <li><CiSquareCheck className='icon-check3'/>Comente <span className='color-li'>suas opiniões </span> nos jogos</li>
+                            <li><CiSquareCheck className={styles['icon-check1']}/><span className={styles['color-li']}>Acompanhe preços </span>de mais de 30 lojas</li>
+                            <li><CiSquareCheck className={styles['icon-check2']}/>Salve jogos preferidos em sua <span className={styles['color-li']}> lista de desejos</span></li>
+                            <li><CiSquareCheck className={styles['icon-check3']}/>Comente <span className={styles['color-li']}>suas opiniões </span> nos jogos</li>
                         </ul>
                     </div>
 
-                    <div className='icons'>
-                        <p><FaSteam className='icon-steam'/>Steam</p>
-                        <p><SiEpicgames className='icon-epic'/>Epic</p>
-                        <p><FaGhost className='icon-gog'/>GOG</p>
+                    <div className={styles.icons}>
+                        <p><FaSteam className={styles['icon-steam']}/>Steam</p>
+                        <p><SiEpicgames className={styles['icon-epic']}/>Epic</p>
+                        <p><FaGhost className={styles['icon-gog']}/>GOG</p>
                         <p>+20 lojas</p>
                     </div>
                 </div>
             </div>
            
-           <div className='login-account'>
-                <div className='container'>
-                    <div className='login-init'>
-                        <p className='logo'>Logo</p>
-                        <h2 className='subtitle'>Seja bem vindo</h2>
-                        <p className='description'>Entre em sua conta para continuar</p>
+           <div className={styles['login-account']}>
+                <div className={styles.container}>
+                    <div className={styles['login-init']}>
+                        <p className={styles.logo}>Logo</p>
+                        <h2 className={styles.subtitle}>Seja bem vindo</h2>
+                        <p className={styles.description}>Entre em sua conta para continuar</p>
 
-                        <div className='input-data'>
+                        <div className={styles['input-data']}>
                             <form action="">
                                 <div>
                                     <p>Endereço de email</p>
-                                    <div className='icon-group'>
-                                        <MdEmail className='icon-email'/>
+                                    <div className={styles['icon-group']}>
+                                        <MdEmail className={styles['icon-email']}/>
                                         <input type="email" placeholder='email@exemple.com'/>
                                     </div>
                                     
                                     <p>Senha</p>
-                                    <div className='icon-group'>
-                                        <FaLock className='icon-password'/>
+                                    <div className={styles['icon-group']}>
+                                        <FaLock className={styles['icon-password']}/>
                                         <input type="password" placeholder='senha'/>
                                     </div>
                                 </div>
 
-                                <div className='forget-pass'>
+                                <div className={styles['forget-pass']}>
                                     <a href="">Esqueceu a senha?</a>
                                 </div>
 
@@ -66,14 +66,14 @@ export function SignIn() {
                             </form>
                         </div>
 
-                        <div className='others-login'>
+                        <div className={styles['others-login']}>
                             <p>ou continue com</p>
-                            <a><FcGoogle className='icon-google'/>Google</a>
-                            <p className='no-account'>Não tem uma conta?  <a href=""> Se inscreva-se</a></p>
+                            <a><FcGoogle className={styles['icon-google']}/>Google</a>
+                            <p className={styles['no-account']}>Não tem uma conta?  <a href="/signUp"> Se inscreva-se</a></p>
                         </div>
 
-                        <div className='terms-service'>
-                            <p> Se inscrevendo você concorda com nossos <a href="" className='link-term'>Termos e Serviços</a> e <a href="" className='link-poli'>Politicas de Privicidade</a></p>
+                        <div className={styles['terms-service']}>
+                            <p> Se inscrevendo você concorda com nossos <a href="" className={styles['link-term']}>Termos e Serviços</a> e <a href="" className={styles['link-poli']}>Politicas de Privicidade</a></p>
                         </div>
 
                     </div>

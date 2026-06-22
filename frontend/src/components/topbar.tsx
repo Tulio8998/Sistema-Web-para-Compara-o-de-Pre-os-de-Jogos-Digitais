@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import '../styles/topbar.css'
+import styles from '../styles/topbar.module.css';
 import { IoSearchOutline } from "react-icons/io5";
-
 
 export function Topbar() {
     const [ search, setSearch ] = useState("");
@@ -10,26 +9,26 @@ export function Topbar() {
         setSearch("");
     }
 
-    function handleSubmitSearch() {
-        event?.preventDefault();
+    function handleSubmitSearch(event: React.FormEvent) {
+        event.preventDefault();
         console.log(search)
     }
 
     return (
-        <aside className="top-bar">
-            <div className="container">
+        <aside className={styles['top-bar']}>
+            <div className={`container ${styles.container}`}>
                 <nav>
-                    <a className='logo' href="">Logo</a>
+                    <a className={styles.logo} href="">Logo</a>
                     <a href="">Início</a>
                     <a href="">Ofertas</a>
-                    <form className='searchbar' onSubmit={handleSubmitSearch}>
-                        <IoSearchOutline  className="search-icon"/>
+                    <form className={styles.searchbar} onSubmit={handleSubmitSearch}>
+                        <IoSearchOutline className={styles['search-icon']}/>
                         <input type="text" placeholder='Busque aqui' value={search} onChange={(e) => setSearch(e.target.value)}/>
-                        <button type="button" className='clearbutton' onClick={handleClearSearch}>Limpar</button>
-                        <button type="submit" className='searchbutton'>Buscar</button>
+                        <button type="button" className={styles.clearbutton} onClick={handleClearSearch}>Limpar</button>
+                        <button type="submit" className={styles.searchbutton}>Buscar</button>
                     </form>
-                    <a className='login' href="/signIn">Login</a>
-                    <a className='signup' href="/signUp">Se-inscrever</a>
+                    <a className={styles.login} href="/signIn">Login</a>
+                    <a className={styles.signup} href="/signUp">Se-inscrever</a>
                 </nav>
             </div>
         </aside>

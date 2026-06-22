@@ -35,7 +35,7 @@
     align-items: center;
 }
 
-.slogan .container{
+.login-page .slogan .container{
     border: 1px solid #54496d;
     border-radius: 25px;
     margin: 5rem;
@@ -44,11 +44,11 @@
     box-shadow: 0 8px 60px rgba(123, 17, 165, 0.082);
 }
 
-.slogan .init .logo{
+.login-page .slogan .init .logo{
     text-align: center;
 }
 
-.slogan .init .title {
+.login-page .slogan .init .title {
     font-weight: 700;
     background: linear-gradient(100deg,rgba(192, 132, 252, 1) 0%, rgba(139, 92, 246, 1) 50%, rgba(109, 40, 217, 1) 100%);
     background-clip: text;
@@ -62,7 +62,7 @@
     margin-bottom: 1rem;
 }
 
-.slogan .init .subtitle {
+.login-page .slogan .init .subtitle {
     font-weight: 500;
     color: #5a42a1;
     font-size: 1.5rem;
@@ -70,36 +70,36 @@
     margin-bottom: 2.5rem;
 }
 
-.slogan .list li {
+.login-page .slogan .list li {
     display: flex;
     align-items: center;
     margin: 1rem;
     gap: 5px;
 }
 
-.slogan .list .icon-check1 {
+.login-page .slogan .list .icon-check1 {
     color: #c5b2ff;
     font-size: 2rem;
     margin-right: 0.5rem;
 }
 
-.slogan .list .icon-check2 {
+.login-page .slogan .list .icon-check2 {
     color: #6775f7;
     font-size: 2rem;
     margin-right: 0.5rem;
 }
 
-.slogan .list .icon-check3 {
+.login-page .slogan .list .icon-check3 {
     color: #6EE7B7;
     font-size: 2rem;
     margin-right: 0.5rem;
 }
 
-.slogan .list li .color-li {
+.login-page .slogan .list li .color-li {
     color: #C4B5FD;
 }
 
-.slogan .icons {
+.login-page .slogan .icons {
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -108,23 +108,23 @@
     gap: 15px;
 }
 
-.slogan .icons .icon-steam, .icon-epic, .icon-gog{
+.login-page .slogan .icons .icon-steam, .icon-epic, .icon-gog{
     margin-right: 5px;
 }
 
-.slogan .icons .icon-steam{
+.login-page .slogan .icons .icon-steam{
     color: #5482bd;
 }
 
-.slogan .icons .icon-epic{
+.login-page .slogan .icons .icon-epic{
     color: #a583d3;
 }
 
-.slogan .icons .icon-gog{
+.login-page .slogan .icons .icon-gog{
     color: #90d383;
 }
 
-.slogan .icons p{
+.login-page .slogan .icons p{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -138,7 +138,7 @@
     background: #383f6677;
 }
 
-.slogan .icons p:last-child {
+.login-page .slogan .icons p:last-child {
     color: #FBBF24;
 }
 
@@ -184,11 +184,15 @@
     width: 100%;
 }
 
-.input-data .icon-group .icon-email {
+.login-account .icon-group input{
+    color: var(--white);
+}
+
+.login-account .input-data .icon-group .icon-email {
     color: #4B5563;
 }
 
-.input-data .icon-group .icon-password {
+.login-account .input-data .icon-group .icon-password {
     color: #4B5563;
     font-size: 13px;
 } 
@@ -220,7 +224,7 @@
     padding: 1rem;
 }
 
-.others-login {
+.login-account .others-login {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -229,7 +233,7 @@
     margin-bottom: 2rem;
 }
 
-.no-account {
+.login-account .no-account {
     display: flex;
     justify-content: center;
     color: #6B7280;
@@ -237,18 +241,18 @@
     gap: 10px;
 }
 
-.others-login .no-account a{
+.login-account .others-login .no-account a{
     color: #8B5CF6;
     font-weight: 800;
 }
 
-.others-login p:first-child{
+.login-account .others-login p:first-child{
     margin-bottom: 2rem;
     color: #6B7280;
     font-size: 0.8rem;
 }
 
-.others-login a:nth-child(2){
+.login-account .others-login a:nth-child(2){
     display: flex;
     justify-content: center;
     align-items: center;
@@ -259,22 +263,22 @@
     background: #1A1D27;
 }
 
-.others-login .icon-google{
+.login-account .others-login .icon-google{
     font-size: 1.5rem;
     margin-right: 0.5rem;
 }
 
-.terms-service {
+.login-account .terms-service {
     width: 20rem;
     font-size: 0.8rem;
     text-align: center;
 }
 
-.terms-service p {
+.login-account .terms-service p {
     color: #374151;
 }
 
-.terms-service a {
+.login-account .terms-service a {
     color: #6B7280;
     border-bottom: 1px solid #6B7280;
 }

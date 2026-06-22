@@ -1,11 +1,11 @@
-import '../styles/topbar.css'
+import styles from '../styles/topbar.module.css';
 
 export function TopbarAuth() {
     return (
-        <aside className="top-bar-auth">
-            <div className="container">
+        <aside className={styles['top-bar-auth']}>
+            <div className={`container ${styles.container}`}>
                 <nav>
-                    <a className='logo' href="">Logo</a>
+                    <a className={styles.logo} href="">Logo</a>
                     <a href="/">Início</a>
                     <a href="">Ofertas</a>
                 </nav>

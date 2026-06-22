@@ -1,109 +1,109 @@
-import '../../styles/home.css'
+import styles from '../../styles/home.module.css';
 import { FaArrowRight } from "react-icons/fa";
 import { FaSteam } from "react-icons/fa";
 import { gamesMock } from '../../mocks/game';
 
 export function Home() {
     return(
-        <main className="home-page">
-            <section className="start">
-                <div className='container'>
-                    <h1 className="title">Encontre o<span className="color-title"> melhor preço </span>para qualquer jogo</h1>
+        <main className={styles['home-page']}>
+            <section className={styles.start}>
+                <div className={`container ${styles.container}`}>
+                    <h1 className={styles.title}>Encontre o<span className={styles['color-title']}> melhor preço </span>para qualquer jogo</h1>
                     <p>Compare preços da Steam, Epic, GOG, e muito mais</p>
                     <p>Economize mais, jogue mais</p>
                 </div>
             </section>
 
-            <section className="preferences">
-                <div className='container'>
-                    <div className='preference-subtitle'>
+            <section className={styles.preferences}>
+                <div className={`container ${styles.container}`}>
+                    <div className={styles['preference-subtitle']}>
                         <h2>Suas preferâncias</h2>
-                        <a href="">Ver todos <FaArrowRight className='right-icon'/> </a>
+                        <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
-                    <div className='card-games'>
-                        {gamesMock.map((game) => (
-                            <div className='cards'>
-                            <div className='card-top'>
-                                <p className='porcent-discount'>44%</p>
-                                <img className='image-game' src={game.deal.assets.boxart} alt="" />
-                            </div>
-                            <div className='card-bottom'>
-                                <p className='title-game'>{game.title}</p>
-                                <p className='store-game'><FaSteam className='store-icon'/>{game.deal.shop.name}</p>
-                                <div className='prices-game'>
-                                    <p className='descount-game'>R${game.deal.price.amount}</p>
-                                    <p className='price-game'>R${game.deal.regular.amount}</p>
+                    <div className={styles['card-games']}>
+                        {gamesMock.map((game, index) => (
+                            <div className={styles.cards} key={index}>
+                                <div className={styles['card-top']}>
+                                    <p className={styles['porcent-discount']}>44%</p>
+                                    <img className={styles['image-game']} src={game.deal.assets.boxart} alt="" />
                                 </div>
-                            </div> 
-                        </div>
+                                <div className={styles['card-bottom']}>
+                                    <p className={styles['title-game']}>{game.title}</p>
+                                    <p className={styles['store-game']}><FaSteam className={styles['store-icon']}/>{game.deal.shop.name}</p>
+                                    <div className={styles['prices-game']}>
+                                        <p className={styles['descount-game']}>R${game.deal.price.amount}</p>
+                                        <p className={styles['price-game']}>R${game.deal.regular.amount}</p>
+                                    </div>
+                                </div> 
+                            </div>
                         ))}
                     </div>
                 </div>  
             </section>
 
-            <section className="deals">
-                <div className='container'>
-                    <div className='deals-subtitle'>
+            <section className={styles.deals}>
+                <div className={`container ${styles.container}`}>
+                    <div className={styles['deals-subtitle']}>
                         <h2>Melhores ofertas</h2>
-                        <a href="">Ver todos <FaArrowRight className='right-icon'/> </a>
+                        <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
-                    <div className='card-games'>
-                        {gamesMock.map((game) => (
-                            <div className='cards'>
-                            <div className='card-top'>
-                                <p className='porcent-discount'>44%</p>
-                                <img className='image-game' src={game.deal.assets.boxart} alt="" />
-                            </div>
-                            <div className='card-bottom'>
-                                <p className='title-game'>{game.title}</p>
-                                <p className='store-game'><FaSteam className='store-icon'/>{game.deal.shop.name}</p>
-                                <div className='prices-game'>
-                                    <p className='descount-game'>R${game.deal.price.amount}</p>
-                                    <p className='price-game'>R${game.deal.regular.amount}</p>
+                    <div className={styles['card-games']}>
+                        {gamesMock.map((game, index) => (
+                            <div className={styles.cards} key={index}>
+                                <div className={styles['card-top']}>
+                                    <p className={styles['porcent-discount']}>44%</p>
+                                    <img className={styles['image-game']} src={game.deal.assets.boxart} alt="" />
                                 </div>
-                            </div> 
-                        </div>
+                                <div className={styles['card-bottom']}>
+                                    <p className={styles['title-game']}>{game.title}</p>
+                                    <p className={styles['store-game']}><FaSteam className={styles['store-icon']}/>{game.deal.shop.name}</p>
+                                    <div className={styles['prices-game']}>
+                                        <p className={styles['descount-game']}>R${game.deal.price.amount}</p>
+                                        <p className={styles['price-game']}>R${game.deal.regular.amount}</p>
+                                    </div>
+                                </div> 
+                            </div>
                         ))}
                     </div>
                 </div>  
             </section>
 
-            <section className="best-prices">
-                <div className='container'>
-                    <div className='best-subtitle'>
+            <section className={styles['best-prices']}>
+                <div className={`container ${styles.container}`}>
+                    <div className={styles['best-subtitle']}>
                         <h2>Melhores preços</h2>
-                        <a href="">Ver todos <FaArrowRight className='right-icon'/> </a>
+                        <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
-                    <div className='card-games'>
-                        {gamesMock.map((game) => (
-                            <div className='cards'>
-                            <div className='card-top'>
-                                <p className='porcent-discount'>44%</p>
-                                <img className='image-game' src={game.deal.assets.boxart} alt="" />
-                            </div>
-                            <div className='card-bottom'>
-                                <p className='title-game'>{game.title}</p>
-                                <p className='store-game'><FaSteam className='store-icon'/>{game.deal.shop.name}</p>
-                                <div className='prices-game'>
-                                    <p className='descount-game'>R${game.deal.price.amount}</p>
-                                    <p className='price-game'>R${game.deal.regular.amount}</p>
+                    <div className={styles['card-games']}>
+                        {gamesMock.map((game, index) => (
+                            <div className={styles.cards} key={index}>
+                                <div className={styles['card-top']}>
+                                    <p className={styles['porcent-discount']}>44%</p>
+                                    <img className={styles['image-game']} src={game.deal.assets.boxart} alt="" />
                                 </div>
-                            </div> 
-                        </div>
+                                <div className={styles['card-bottom']}>
+                                    <p className={styles['title-game']}>{game.title}</p>
+                                    <p className={styles['store-game']}><FaSteam className={styles['store-icon']}/>{game.deal.shop.name}</p>
+                                    <div className={styles['prices-game']}>
+                                        <p className={styles['descount-game']}>R${game.deal.price.amount}</p>
+                                        <p className={styles['price-game']}>R${game.deal.regular.amount}</p>
+                                    </div>
+                                </div> 
+                            </div>
                         ))}
                     </div>
                 </div>  
             </section>
 
-            <section className="create-account">
-                <div className='container'>
-                    <h1 className="title">Nunca mais pague <span className="color-title"> caro </span>novamente</h1>
+            <section className={styles['create-account']}>
+                <div className={`container ${styles.container}`}>
+                    <h1 className={styles.title}>Nunca mais pague <span className={styles['color-title']}> caro </span>novamente</h1>
                     <p>Crie uma conta de graça</p>
                     <p>E fique por dentro dos melhores preços, acompanhando </p>
                     <p>de perto seus jogos favoritos mais baratos</p>
-                    <div className='button-area'>
-                        <a type="submit"className='button-create' href="/signIn">Inscreva-se de graça</a>
-                        <a type="submit" className='button-about'>Veja as ofertas</a>
+                    <div className={styles['button-area']}>
+                        <a type="submit" className={styles['button-create']} href="/signIn">Inscreva-se de graça</a>
+                        <a type="submit" className={styles['button-about']}>Veja as ofertas</a>
                     </div>
                 </div>
             </section>

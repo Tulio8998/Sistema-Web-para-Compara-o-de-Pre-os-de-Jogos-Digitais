@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/home/home";
 import { SignUp } from "./pages/login/signUp";
+import { SignIn } from "./pages/login/signIn";
 import { MainLayout } from "./components/layout";
 import { AuthLayout } from "./components/auth-layout";
-import { SignIn } from "./pages/login/signIn";
 
 export function App() {
   return (
