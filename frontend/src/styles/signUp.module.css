@@ -1,11 +1,11 @@
-.login-page {
+.create-page {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
     height: 100%;
 }
 
-.login-page .container {
+.create-page .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,13 +13,14 @@
     width: 100%;
 }
 
-.login-page .login-account {
+.create-page .create-account {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 
-.login-account .container {
+.create-account .container {
     border: 1px solid #54496d;
     border-radius: 25px;
     width: 55%;
@@ -29,13 +30,13 @@
     box-shadow: 0 8px 60px rgba(0, 0, 0, 0.452);
 }
 
-.login-page .slogan {
+.create-page .slogan-create {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.login-page .slogan .container{
+.create-page .slogan-create .container{
     border: 1px solid #54496d;
     border-radius: 25px;
     margin: 5rem;
@@ -44,11 +45,11 @@
     box-shadow: 0 8px 60px rgba(123, 17, 165, 0.082);
 }
 
-.login-page .slogan .init .logo{
+.create-page .slogan-create .init .logo{
     text-align: center;
 }
 
-.login-page .slogan .init .title {
+.create-page .slogan-create .init .title {
     font-weight: 700;
     background: linear-gradient(100deg,rgba(192, 132, 252, 1) 0%, rgba(139, 92, 246, 1) 50%, rgba(109, 40, 217, 1) 100%);
     background-clip: text;
@@ -62,7 +63,7 @@
     margin-bottom: 1rem;
 }
 
-.login-page .slogan .init .subtitle {
+.create-page .slogan-create .init .subtitle {
     font-weight: 500;
     color: #5a42a1;
     font-size: 1.5rem;
@@ -70,36 +71,36 @@
     margin-bottom: 2.5rem;
 }
 
-.login-page .slogan .list li {
+.create-page .slogan-create .list li {
     display: flex;
     align-items: center;
     margin: 1rem;
     gap: 5px;
 }
 
-.login-page .slogan .list .icon-check1 {
+.create-page .slogan-create .list .icon-check1 {
     color: #c5b2ff;
     font-size: 2rem;
     margin-right: 0.5rem;
 }
 
-.login-page .slogan .list .icon-check2 {
+.create-page .slogan-create .list .icon-check2 {
     color: #6775f7;
     font-size: 2rem;
     margin-right: 0.5rem;
 }
 
-.login-page .slogan .list .icon-check3 {
+.create-page .slogan-create .list .icon-check3 {
     color: #6EE7B7;
     font-size: 2rem;
     margin-right: 0.5rem;
 }
 
-.login-page .slogan .list li .color-li {
+.create-page .slogan-create .list li .color-li {
     color: #C4B5FD;
 }
 
-.login-page .slogan .icons {
+.create-page .slogan-create .icons {
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -108,23 +109,23 @@
     gap: 15px;
 }
 
-.login-page .slogan .icons .icon-steam, .icon-epic, .icon-gog{
+.create-page .slogan-create .icons .icon-steam, .icon-epic, .icon-gog{
     margin-right: 5px;
 }
 
-.login-page .slogan .icons .icon-steam{
+.create-page .slogan-create .icons .icon-steam{
     color: #5482bd;
 }
 
-.login-page .slogan .icons .icon-epic{
+.create-page .slogan-create .icons .icon-epic{
     color: #a583d3;
 }
 
-.login-page .slogan .icons .icon-gog{
+.create-page .slogan-create .icons .icon-gog{
     color: #90d383;
 }
 
-.login-page .slogan .icons p{
+.create-page .slogan-create .icons p{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -138,34 +139,34 @@
     background: #383f6677;
 }
 
-.login-page .slogan .icons p:last-child {
+.create-page .slogan-create .icons p:last-child {
     color: #FBBF24;
 }
 
 
 
 
-.login-account {
+.create-account {
     background: #13151F;
 }
 
-.login-init .subtitle {
+.create-init .subtitle {
     font-weight: 800;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
 
-.login-init .description {
+.create-init .description {
     color: #6B7280;
     margin-bottom: 2rem;
     
 }
 
-.login-account .input-data {
+.create-account .input-data {
     
 }
 
-.login-account .input-data p{
+.create-account .input-data p{
     color: #9CA3AF;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
@@ -173,7 +174,7 @@
 }
 
 
-.login-account .input-data .icon-group {
+.create-account .input-data .icon-group {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -184,42 +185,78 @@
     width: 100%;
 }
 
-.login-account .icon-group input{
+.create-account .input-data .icon-group.error {
+    border: 1px solid #f65c5c;
+}
+
+.create-account .input-data .icon-group.success {
+    border: 1px solid #22c55e;
+}
+
+.create-account .input-data .email-label {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+}
+.create-account .input-data .email-label.success {
+    color: #22c55e;
+}
+.create-account .input-data .email-label.error {
+    color: #f65c5c;
+}
+
+.create-account .icon-group input{
     color: var(--white);
 }
 
-.login-account .input-data .icon-group .icon-email {
+.create-account .input-data .icon-group .icon-user {
     color: #4B5563;
 }
 
-.login-account .input-data .icon-group .icon-password {
+.create-account .input-data .icon-group .icon-email {
+    color: #4B5563;
+}
+
+.create-account .input-data .icon-group .icon-password {
     color: #4B5563;
     font-size: 13px;
 } 
 
-.login-account .input-data input::placeholder {
+.create-account .input-data .password-label {
+    font-weight: 400;
+}
+
+.create-account .input-data .password-strength {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.create-account .input-data .segment {
+    flex: 1;
+    height: 8px;
+    background: #2D3243;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+.create-account .input-data input::placeholder {
     color: var(--white);
 }
 
-.login-account .input-data .forget-pass {
+.create-account .input-data .forget-pass {
     display: flex;
     justify-content: end;
 }
 
-.login-account .input-data .forget-pass a {
+.create-account .input-data .forget-pass a {
     margin-top: 1rem;
     color: #8B5CF6;
     font-weight: 800;
 }
 
-.login-account .input-data .forget-pass a:hover {
-    transition: 0.8s;
-    transform: scale(1.01);
-    filter:
-        drop-shadow(0 0 5px rgb(79, 79, 79));
-}
-
-.login-account .input-data button {
+.create-account .input-data button {
     width: 100%;
     font-size: 1.2rem;
     margin-top: 1.5rem;
@@ -232,24 +269,24 @@
     cursor: pointer;
 }
 
-.login-account .input-data button:hover {
+.create-account .input-data button:hover {
     transition: 0.8s;
     transform: scale(1.01);
     filter:
         drop-shadow(0 0 5px rgb(79, 79, 79));
 }
 
-.login-account .others-login {
+
+.create-account .others-login {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    cursor: pointer;
 }
 
-.login-account .no-account {
+.create-account .no-account {
     display: flex;
     justify-content: center;
     color: #6B7280;
@@ -257,25 +294,25 @@
     gap: 10px;
 }
 
-.login-account .others-login .no-account a{
+.create-account .others-login .no-account a{
     color: #8B5CF6;
     font-weight: 800;
 }
 
-.login-account .others-login .no-account a:hover{
+.create-account .others-login .no-account a:hover{
     transition: 0.8s;
     transform: scale(1.01);
     filter:
         drop-shadow(0 0 5px rgb(79, 79, 79));
 }
 
-.login-account .others-login p:first-child{
+.create-account .others-login p:first-child{
     margin-bottom: 2rem;
     color: #6B7280;
     font-size: 0.8rem;
 }
 
-.login-account .others-login a:nth-child(2){
+.create-account .others-login a:nth-child(2){
     display: flex;
     justify-content: center;
     align-items: center;
@@ -284,31 +321,32 @@
     border-radius: 15px;
     width: 9rem;
     background: #1A1D27;
+    cursor: pointer;
 }
 
-.login-account .others-login a:nth-child(2):hover{
+.create-account .others-login a:nth-child(2):hover{
     transition: 0.8s;
     transform: scale(1.01);
     filter:
         drop-shadow(0 0 5px rgb(79, 79, 79));
 }
 
-.login-account .others-login .icon-google{
+.create-account .others-login .icon-google{
     font-size: 1.5rem;
     margin-right: 0.5rem;
 }
 
-.login-account .terms-service {
+.create-account .terms-service {
     width: 20rem;
     font-size: 0.8rem;
     text-align: center;
 }
 
-.login-account .terms-service p {
+.create-account .terms-service p {
     color: #374151;
 }
 
-.login-account .terms-service a {
+.create-account .terms-service a {
     color: #6B7280;
     border-bottom: 1px solid #6B7280;
 }
