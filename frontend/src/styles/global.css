@@ -17,13 +17,12 @@
   --color-footer-text: #6B7280;
   --color-footer-a: #6B7280;
   --color-footer-nav: #4B5563;
-  --bg-footer-bar: #0F1117;
+  --bg-footer-bar: #090B11;
   --color-footer-icon-disc: #2929d1;
   --color-footer-icon-inst: #ba4e62;
 
 
   --font-fallback: "Inter", sans-serif;
-  --font-fall: "Inter", bo;
 
   --white: #FFFFFF;
   --black: #000000;
@@ -33,6 +32,9 @@
   --spacing-md: 2rem;     /* 32px */
   --spacing-lg: 4rem;     /* 64px */
   --spacing-xl: 6rem;     /* 96px */
+  --spacing-xm: 8rem;     /* 104px */
+  --spacing-xy: 10rem;     /* 112px */
+  --spacing-xx: 12rem;     /* 120px */
 
 }
 
@@ -63,6 +65,10 @@ body {
   background: var(--bg-gradient);
   font-family: var(--font-fallback);
   color: var(--white)
+}
+
+body.offer-body {
+    background: #0F1117;
 }
 
 .container {

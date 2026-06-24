@@ -7,7 +7,7 @@ export function TopbarAuth() {
                 <nav>
                     <a className={styles.logo} href="">Logo</a>
                     <a href="/">Início</a>
-                    <a href="">Ofertas</a>
+                    <a href="/offers">Ofertas</a>
                 </nav>
             </div>
         </aside>

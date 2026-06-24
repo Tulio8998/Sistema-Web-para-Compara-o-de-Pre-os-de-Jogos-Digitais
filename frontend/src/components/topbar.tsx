@@ -19,8 +19,8 @@ export function Topbar() {
             <div className={`container ${styles.container}`}>
                 <nav>
                     <a className={styles.logo} href="">Logo</a>
-                    <a href="">Início</a>
-                    <a href="">Ofertas</a>
+                    <a href="/">Início</a>
+                    <a href="/offers">Ofertas</a>
                     <form className={styles.searchbar} onSubmit={handleSubmitSearch}>
                         <IoSearchOutline className={styles['search-icon']}/>
                         <input type="text" placeholder='Busque aqui' value={search} onChange={(e) => setSearch(e.target.value)}/>
