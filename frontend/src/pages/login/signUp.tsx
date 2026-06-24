@@ -2,17 +2,12 @@ import styles from '../../styles/signUp.module.css';
 import { FaLock, FaSteam } from "react-icons/fa";
 import { SiEpicgames } from "react-icons/si";
 import { FaGhost } from "react-icons/fa";
-import { CiSquareCheck } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
 import { MdEmail } from 'react-icons/md';
 import { MdAlternateEmail } from "react-icons/md";
-import { GoCheckCircleFill } from "react-icons/go";
-import { IoIosCloseCircle } from "react-icons/io";
+import { FaUserPlus } from "react-icons/fa6";
 import { useState } from 'react';
-import { calculatePasswordStrength, validName } from '../../utils/login';
-import { validateEmail } from '../../utils/login';
-import { passwordsMatch } from '../../utils/login';
-
+import { calculatePasswordStrength, validateUsername, validateEmail, passwordsMatch } from '../../utils/login';
 
 export function SignUp() {
     const [username, setUsername] = useState('');
@@ -20,14 +15,43 @@ export function SignUp() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const nameValidation: any = validName(username);
+    const [formError, setFormError] = useState('');
+
+    const usernameValidation: any = validateUsername(username);
     const emailValidation: any = validateEmail(email);
     const passwordStrength: any = calculatePasswordStrength(password);
-    const passwordIsEqual: boolean = passwordsMatch(password, confirmPassword);
+    const passwordIsEqual: any = passwordsMatch(password, confirmPassword);
 
-    const validationClass = email === '' 
-    ? '' 
-    : (emailValidation.valid ? styles.success : styles.error);
+    const validationUsernameClass = username === '' 
+        ? '' 
+        : (usernameValidation.valid ? styles.success : styles.error);
+
+    const validationEmailClass = email === '' 
+        ? '' 
+        : (emailValidation.valid ? styles.success : styles.error);
+
+    const validationPasswordClass = confirmPassword === ''
+        ? ''
+        : (passwordIsEqual.valid ? styles.success : styles.error);
+
+    function handleRegisterSubmit(event: React.FormEvent) {
+        event.preventDefault();
+        
+        const submitData = [username, email, password, confirmPassword];
+        const allFieldsFilled = submitData.every(field => field.trim() !== '');
+
+        if (!allFieldsFilled) {
+            setFormError("Por favor, preencha todos os campos antes de cadastrar!");
+            return;
+        }
+
+        if (!usernameValidation.valid || !emailValidation.valid || !passwordIsEqual.valid) {
+            setFormError("Existem campos com erros. Corrija-os antes de continuar.");
+            return;
+        }
+
+        setFormError('');
+    }
 
     return(
         <section className={styles['create-page']}>
@@ -37,14 +61,24 @@ export function SignUp() {
                         <p className={styles.logo}>Logo</p>
                         <h1 className={styles.title}>Nome</h1>
                         <h2 className={styles.subtitle}>COMPARE . ECONOMIZE . JOGUE</h2>
+                        <h3 className={styles['sub-subtitle']}>COMEÇAR É FÁCIL</h3>
                     </div>
 
-                    <div className={styles.list}>
-                        <ul>
-                            <li><CiSquareCheck className={styles['icon-check1']}/><span className={styles['color-li']}>Acompanhe preços </span>de mais de 30 lojas</li>
-                            <li><CiSquareCheck className={styles['icon-check2']}/>Salve jogos preferidos em sua <span className={styles['color-li']}> lista de desejos</span></li>
-                            <li><CiSquareCheck className={styles['icon-check3']}/>Comente <span className={styles['color-li']}>suas opiniões </span> nos jogos</li>
-                        </ul>
+                    <div className={styles['circles']}>
+                        <div className={styles['circle-one']}>
+                            <p>1</p>
+                            <p>Criar Conta</p>
+                        </div>
+                        <div className={styles.line1}></div>
+                        <div className={styles['circle-two']}>
+                            <p>2</p>
+                            <p>Definir preferências</p>
+                        </div>
+                        <div className={styles.line2}></div>
+                        <div className={styles['circle-three']}>
+                            <p>3</p>
+                            <p>Começar a economizar</p>
+                        </div>
                     </div>
 
                     <div className={styles.icons}>
@@ -64,30 +98,26 @@ export function SignUp() {
                         <p className={styles.description}>Entre em sua conta para continuar</p>
 
                         <div className={styles['input-data']}>
-                            <form action="">
+                            <form onSubmit={handleRegisterSubmit}>
                                 <div>
                                     <p>Nome de usuário</p>
-                                    <div className={styles['icon-group']}>
+                                    <div className={`${styles['icon-group']} ${validationUsernameClass}`}>
                                         <MdAlternateEmail className={styles['icon-user']}/>
                                         <input type="text" placeholder='nome' value={username} onChange={(e) => setUsername(e.target.value)}/>
                                     </div>
+                                    <p className={`${styles['name-label']} ${validationUsernameClass}`}> {usernameValidation.message || '\u00A0'}</p>
 
                                     <p>Endereço de email</p>
-                                    <div className={`${styles['icon-group']} ${validationClass}`}>
+                                    <div className={`${styles['icon-group']} ${validationEmailClass}`}>
                                         <MdEmail className={styles['icon-email']} />
-                                        <input 
-                                            type="email" 
-                                            placeholder="email@exemple.com" 
-                                            value={email} 
-                                            onChange={(e) => setEmail(e.target.value)} 
-                                        />
+                                        <input type="email" placeholder="email@exemple.com" value={email} onChange={(e) => setEmail(e.target.value)}/>
                                     </div>
-                                    <p className={`${styles['email-label']} ${validationClass}`}>
-                                        {emailValidation.message}
+                                    <p className={`${styles['email-label']} ${validationEmailClass}`}>
+                                        {emailValidation.message || '\u00A0'}
                                     </p>
                                     
                                     <p>Senha</p>
-                                    <div className={styles['icon-group']}>
+                                    <div className={`${styles['icon-group']}`}>
                                         <FaLock className={styles['icon-password']}/>
                                         <input type="password" placeholder='senha' value={password} onChange={(e) => setPassword(e.target.value)}/>
                                     </div>
@@ -129,15 +159,24 @@ export function SignUp() {
                                             }}
                                         />
                                     </div>
-                                    <p className={styles['password-label']}> {passwordStrength.label}</p>
+                                    <p className={styles['password-label']}> {passwordStrength.label || '\u00A0'}</p>
 
                                     <p>Confirmar senha</p>
-                                    <div className={styles['icon-group']}>
+                                    <div className={`${styles['icon-group']} ${validationPasswordClass}`}>
                                         <FaLock className={styles['icon-password']}/>
                                         <input type="password" placeholder='confirmar senha' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
                                     </div>
+                                    <p className={`${styles['password-label']} ${validationPasswordClass}`}> {passwordIsEqual.message || '\u00A0'} </p>
                                 </div>
-                                <button className='new-account'>Cadastrar</button>
+                                <p className={styles['form-submit-error']}>{formError || '\u00A0'}</p>
+                                <div>
+
+                                </div>
+                                <div className={styles['terms-service-box']}>
+                                    <input type="checkbox" name="" id="" />
+                                    <p>Eu concordo com os <a href="" className={styles['link-term-box']}>Termos e Serviços</a> e <a href="" className={styles['link-poli-box']}>Politicas de Privicidade</a></p>
+                                </div>
+                                <button type="submit" className='new-account'><FaUserPlus className={styles['icon-create']}/>Cadastrar</button>
                             </form>
                         </div>
 

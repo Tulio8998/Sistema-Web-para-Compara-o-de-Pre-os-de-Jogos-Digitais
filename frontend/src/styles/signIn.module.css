@@ -172,16 +172,23 @@
     font-weight: 800;
 }
 
+.create-account .input-data form{
+    width: 20rem;
+}
 
 .login-account .input-data .icon-group {
     display: flex;
     align-items: center;
     gap: 10px;
     color: var(--white);
-    border: 1px solid #8B5CF6;
+    border: 1px solid #2D3243;
     border-radius: 10px;
     padding: 1rem;
     width: 100%;
+}
+
+.login-account .input-data .icon-group:hover {
+    border: 1px solid #8B5CF6;
 }
 
 .login-account .icon-group input{
