@@ -69,14 +69,14 @@ export function Offer() {
 
                             <ul className={`${styles['dropdown-filter']} ${genreOpen ? styles.openFilter : ''}`}>
                                 <li>
-                                    <label> <input type="checkbox"/>RPG </label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>RPG </label>
                                 </li>
                                 <li>
-                                    <label> <input type="checkbox"/>Ação </label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Ação </label>
                                 </li>
 
                                 <li>
-                                    <label> <input type="checkbox"/>Aventura </label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Aventura </label>
                                 </li>
                             </ul>
                         </div>
@@ -208,14 +208,14 @@ export function Offer() {
 
                             <ul className={`${styles['dropdown-filter']} ${compatOpen ? styles.openFilter : ''}`}>
                                 <li>
-                                    <label> <input type="checkbox"/>Windows </label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Windows </label>
                                 </li>
                                 <li>
-                                    <label> <input type="checkbox"/>macOS </label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>macOS </label>
                                 </li>
 
                                 <li>
-                                    <label> <input type="checkbox"/>Linux </label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Linux </label>
                                 </li>
                             </ul>
                         </div>

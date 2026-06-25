@@ -249,7 +249,7 @@
     
 }
 
-.aside-bar .aside-genre .aside-compati, input {
+.aside-bar .aside-genre.aside-compati, .input-checkbox {
     appearance: none;
     width: 18px;
     height: 18px;
