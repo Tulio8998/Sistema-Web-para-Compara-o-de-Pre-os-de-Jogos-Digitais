@@ -3,7 +3,7 @@
 }
 
 .offer-page .container {
-    margin: 5rem var(--spacing-xx);
+    margin: 5rem var(--spacing-xm);
 }
 
 .offer-page .horizontal-border {
@@ -164,7 +164,7 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
-    width: 30%;
+    width: 25%;
     height: 100%;
     background: #13151F;
     border: 1px solid #2D3243;
@@ -218,6 +218,64 @@
     padding-bottom: 1rem;
 }
 
+.icon-star{
+    font-size: 1rem;
+    color: #FACC15;
+}
+
+.icon-star-void{
+   font-size: 1rem;
+   color: #cfd1d4;
+}
+
+.aside-bar .aside-rating .input-checkbox {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #6B7280;
+    border-radius: 10px;
+    background-color: #13151F;
+    cursor: pointer;
+    position: relative;
+}
+
+.aside-bar .aside-rating span{ 
+    color: #9CA3AF;
+    font-weight: 800;
+}
+
+.aside-bar .aside-rating input:checked {
+    background-color: #8B5CF6;
+    border: 2px solid #8B5CF6;
+}
+
+.aside-bar .aside-rating input:checked::after {
+    content: "";
+}
+
+.aside-bar .aside-release label {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    border: 1px solid #2D3243;
+    border-radius: 15px;
+    background: #1A1D27;
+    width: 100%;
+
+}
+
+.aside-bar .aside-release ul{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.aside-bar .aside-release label:hover {
+    transition: 0.5s;
+    transform: scale(1.001);
+    filter:
+        drop-shadow(0 0 1px rgb(79, 79, 79));
+}
+
 .aside-bar .aside-price input {
     appearance: none;
     width: 100%;
@@ -246,10 +304,10 @@
 }
 
 .aside-bar .aside-discount input:checked::after {
-    
+    content: "";
 }
 
-.aside-bar .aside-genre.aside-compati, .input-checkbox {
+.aside-bar .aside-genre .aside-compati .aside-store, .input-checkbox {
     appearance: none;
     width: 18px;
     height: 18px;
@@ -260,12 +318,12 @@
     position: relative;
 }
 
-.aside-bar .aside-genre .aside-compati input:checked {
+.aside-bar .aside-genre .aside-compati .aside-store, .input-checkbox:checked {
     background-color: #8B5CF6;
     border: 2px solid #8B5CF6;
 }
 
-.aside-bar .aside-genre .aside-compati input:checked::after {
+.aside-bar .aside-genre .aside-compati .aside-store, .input-checkbox:checked::after {
     content: "✓";
     color: white;
     position: absolute;
@@ -327,21 +385,132 @@
 }
 
 
+
+
+
 .offer-container .offer-main{
     width: 100%;
     height: 100%;
-    background: #13151F;
-    border: 1px solid #2D3243;
     border-radius: 4px;
-    padding: 1rem;
+
 }
 
 .offer-container .container-card{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto auto auto;
 }
 
 .offer-container .card-game{
-    
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 0 0.5rem 2rem 0.5rem;
+    border: 1px solid #2D3243;
+    border-radius: 15px;
+    background: #1A1D27;
+}
+
+.card-game .description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #2D3243;
+}
+
+.card-game .description .tags, .stores, .rating{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-game .description .tags p {
+    color: #9CA3AF;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background: #252936;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.card-game .description .stores p{
+    color: #9CA3AF;
+}
+
+.card-game .description .ratings .icon-star{
+    margin-right: 0.3rem;
+}
+
+.card-game .description .ratings p, span{
+    color: #9CA3AF;
+}
+
+
+.card-game .detail-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-game .detail-price span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-game .detail-price .real-price{
+    color: #6B7280;
+    font-weight: 100;
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+
+.card-game .detail-price .discount-price{
+    color: #10B981;
+    font-size: 1.4rem;
+}
+
+.card-game .detail-price button{
+    color: #8B5CF6;
+    border: 2px solid #8B5CF6;
+    border-radius: 13px;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.card-game .card-top {
+    position: relative;
+}
+
+.card-game .card-bottom {
+    padding: 1rem;
+}
+
+.cards .image-game {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.preferences .porcent-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #8B5CF6;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.steam-icon {
+    font-size: 1.3rem;
+    color: #385588;
 }

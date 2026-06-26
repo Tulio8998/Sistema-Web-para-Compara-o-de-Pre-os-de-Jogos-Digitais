@@ -5,7 +5,8 @@ import { FaAngleDown } from "react-icons/fa6";
 import { FaAngleUp } from "react-icons/fa6";
 import { FaFilter } from "react-icons/fa";
 import { PriceFilter } from '../../utils/offer';
-
+import { FaStar } from "react-icons/fa";
+import { FaSteam } from "react-icons/fa";
 
 export function Offer() {
     const [isOpen, setIsOpen] = useState(false);
@@ -108,20 +109,20 @@ export function Offer() {
 
                             <ul className={`${styles['dropdown-filter']} ${storeOpen ? styles.openFilter : ''}`}>
                                 <li>
-                                    <label> <input type="checkbox"/>Steam</label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Steam</label>
                                 </li>
                                 <li>
-                                    <label> <input type="checkbox"/>GOG</label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>GOG</label>
                                 </li>
 
                                 <li>
-                                    <label> <input type="checkbox"/>Epic</label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Epic</label>
                                 </li>
                                 <li>
-                                    <label> <input type="checkbox"/>Humble</label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Humble</label>
                                 </li>
                                 <li>
-                                    <label> <input type="checkbox"/>Nuuvem</label>
+                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Nuuvem</label>
                                 </li>
                             </ul>
                         </div>
@@ -162,14 +163,19 @@ export function Offer() {
 
                             <ul className={`${styles['dropdown-filter']} ${ratingOpen ? styles.openFilter : ''}`}>
                                 <li>
-                                    <label> <input type="checkbox"/>RPG </label>
+                                    <label><input className={`${styles['input-checkbox']}`} type="checkbox"/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span>5+ Estrelas</span></label>
                                 </li>
                                 <li>
-                                    <label> <input type="checkbox"/>Ação </label>
+                                    <label><input className={`${styles['input-checkbox']}`} type="checkbox"/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star-void']}/><span>4+ Estrelas</span></label>
                                 </li>
-
                                 <li>
-                                    <label> <input type="checkbox"/>Aventura </label>
+                                    <label><input className={`${styles['input-checkbox']}`} type="checkbox"/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><span>3+ Estrelas</span></label>
+                                </li>
+                                <li>
+                                    <label><input className={`${styles['input-checkbox']}`} type="checkbox"/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><span>2+ Estrelas</span></label>
+                                </li>
+                                <li>
+                                    <label><input className={`${styles['input-checkbox']}`} type="checkbox"/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><span>1+ Estrelas</span></label>
                                 </li>
                             </ul>
                         </div>
@@ -185,14 +191,28 @@ export function Offer() {
 
                             <ul className={`${styles['dropdown-filter']} ${releaseOpen ? styles.openFilter : ''}`}>
                                 <li>
-                                    <label> <input type="checkbox"/>RPG </label>
+                                    <label>2018 - 2022</label>
                                 </li>
                                 <li>
-                                    <label> <input type="checkbox"/>Ação </label>
+                                    <label>2022 - 2026</label>
                                 </li>
-
                                 <li>
-                                    <label> <input type="checkbox"/>Aventura </label>
+                                    <label>2010 - 2014</label>
+                                </li>
+                                <li>
+                                    <label>2014 - 2018</label>
+                                </li>
+                                <li>
+                                    <label>2002 - 2006</label>
+                                </li>
+                                <li>
+                                    <label>2006 - 2010</label>
+                                </li>
+                                <li>
+                                    <label>1994 - 1998</label>
+                                </li>
+                                <li>
+                                    <label>1998 - 2002</label>
                                 </li>
                             </ul>
                         </div>
@@ -224,16 +244,210 @@ export function Offer() {
                     <div className={`${styles['offer-main']}`}>
                         <div className={`${styles['container-card']}`}>
                             <div className={`${styles['card-game']}`}>
-                                Teste
+                                <div className={`${styles['cards']}`}>
+                                    <div className={styles['card-top']}>
+                                        <p className={styles['porcent-discount']}>44%</p>
+                                        <img className={styles['image-game']} src="https://assets.isthereanydeal.com/018d937f-1212-7232-b23f-a046f6fd4a57/boxart.jpg?t=1768305010" alt="" />
+                                    </div>
+                                </div>
+                                <div className={`${styles['description']}`}>
+                                    <p className={`${styles['game-name']}`}>Nome jogo</p>
+                                    <span className={`${styles['tags']}`}>
+                                        <p>RPG Ação</p>
+                                        <p>Mundo aberto</p>
+                                    </span>
+                                    <span className={`${styles['stores']}`}>
+                                        <p><FaSteam className={styles['steam-icon']}/></p>
+                                    </span>
+                                    <span className={`${styles['ratings']}`}>
+                                        <p><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span> 5.0</span></p>
+                                    </span>
+                                </div>
+                                <div className={`${styles['detail-price']}`}>
+                                    <span>
+                                        <p className={`${styles['real-price']}`}>R$69.99</p>
+                                        <p className={`${styles['discount-price']}`}>R$48.99</p>
+                                    </span>
+                                    <button>Ver oferta</button>
+                                </div>
                             </div>
                             <div className={`${styles['card-game']}`}>
-                                Teste
+                                <div className={`${styles['description']}`}>
+                                    <p className={`${styles['game-name']}`}>Nome jogo</p>
+                                    <span className={`${styles['tags']}`}>
+                                        <p>RPG Ação</p>
+                                        <p>Mundo aberto</p>
+                                    </span>
+                                    <span className={`${styles['stores']}`}>
+                                        <p><FaSteam className={styles['steam-icon']}/></p>
+                                    </span>
+                                    <span className={`${styles['ratings']}`}>
+                                        <p><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span> 5.0</span></p>
+                                    </span>
+                                </div>
+                                <div className={`${styles['detail-price']}`}>
+                                    <span>
+                                        <p className={`${styles['real-price']}`}>R$69.99</p>
+                                        <p className={`${styles['discount-price']}`}>R$48.99</p>
+                                    </span>
+                                    <button>Ver oferta</button>
+                                </div>
                             </div>
                             <div className={`${styles['card-game']}`}>
-                                Teste
+                                <div className={`${styles['description']}`}>
+                                    <p className={`${styles['game-name']}`}>Nome jogo</p>
+                                    <span className={`${styles['tags']}`}>
+                                        <p>RPG Ação</p>
+                                        <p>Mundo aberto</p>
+                                    </span>
+                                    <span className={`${styles['stores']}`}>
+                                        <p><FaSteam className={styles['steam-icon']}/></p>
+                                    </span>
+                                    <span className={`${styles['ratings']}`}>
+                                        <p><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span> 5.0</span></p>
+                                    </span>
+                                </div>
+                                <div className={`${styles['detail-price']}`}>
+                                    <span>
+                                        <p className={`${styles['real-price']}`}>R$69.99</p>
+                                        <p className={`${styles['discount-price']}`}>R$48.99</p>
+                                    </span>
+                                    <button>Ver oferta</button>
+                                </div>
+                            </div>
+                            <div className={`${styles['card-game']}`}>
+                                <div className={`${styles['description']}`}>
+                                    <p className={`${styles['game-name']}`}>Nome jogo</p>
+                                    <span className={`${styles['tags']}`}>
+                                        <p>RPG Ação</p>
+                                        <p>Mundo aberto</p>
+                                    </span>
+                                    <span className={`${styles['stores']}`}>
+                                        <p><FaSteam className={styles['steam-icon']}/></p>
+                                    </span>
+                                    <span className={`${styles['ratings']}`}>
+                                        <p><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span> 5.0</span></p>
+                                    </span>
+                                </div>
+                                <div className={`${styles['detail-price']}`}>
+                                    <span>
+                                        <p className={`${styles['real-price']}`}>R$69.99</p>
+                                        <p className={`${styles['discount-price']}`}>R$48.99</p>
+                                    </span>
+                                    <button>Ver oferta</button>
+                                </div>
+                            </div>
+                            <div className={`${styles['card-game']}`}>
+                                <div className={`${styles['description']}`}>
+                                    <p className={`${styles['game-name']}`}>Nome jogo</p>
+                                    <span className={`${styles['tags']}`}>
+                                        <p>RPG Ação</p>
+                                        <p>Mundo aberto</p>
+                                    </span>
+                                    <span className={`${styles['stores']}`}>
+                                        <p><FaSteam className={styles['steam-icon']}/></p>
+                                    </span>
+                                    <span className={`${styles['ratings']}`}>
+                                        <p><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span> 5.0</span></p>
+                                    </span>
+                                </div>
+                                <div className={`${styles['detail-price']}`}>
+                                    <span>
+                                        <p className={`${styles['real-price']}`}>R$69.99</p>
+                                        <p className={`${styles['discount-price']}`}>R$48.99</p>
+                                    </span>
+                                    <button>Ver oferta</button>
+                                </div>
+                            </div>
+                            <div className={`${styles['card-game']}`}>
+                                <div className={`${styles['description']}`}>
+                                    <p className={`${styles['game-name']}`}>Nome jogo</p>
+                                    <span className={`${styles['tags']}`}>
+                                        <p>RPG Ação</p>
+                                        <p>Mundo aberto</p>
+                                    </span>
+                                    <span className={`${styles['stores']}`}>
+                                        <p><FaSteam className={styles['steam-icon']}/></p>
+                                    </span>
+                                    <span className={`${styles['ratings']}`}>
+                                        <p><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span> 5.0</span></p>
+                                    </span>
+                                </div>
+                                <div className={`${styles['detail-price']}`}>
+                                    <span>
+                                        <p className={`${styles['real-price']}`}>R$69.99</p>
+                                        <p className={`${styles['discount-price']}`}>R$48.99</p>
+                                    </span>
+                                    <button>Ver oferta</button>
+                                </div>
+                            </div>
+                            <div className={`${styles['card-game']}`}>
+                                <div className={`${styles['description']}`}>
+                                    <p className={`${styles['game-name']}`}>Nome jogo</p>
+                                    <span className={`${styles['tags']}`}>
+                                        <p>RPG Ação</p>
+                                        <p>Mundo aberto</p>
+                                    </span>
+                                    <span className={`${styles['stores']}`}>
+                                        <p><FaSteam className={styles['steam-icon']}/></p>
+                                    </span>
+                                    <span className={`${styles['ratings']}`}>
+                                        <p><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span> 5.0</span></p>
+                                    </span>
+                                </div>
+                                <div className={`${styles['detail-price']}`}>
+                                    <span>
+                                        <p className={`${styles['real-price']}`}>R$69.99</p>
+                                        <p className={`${styles['discount-price']}`}>R$48.99</p>
+                                    </span>
+                                    <button>Ver oferta</button>
+                                </div>
+                            </div>
+                            <div className={`${styles['card-game']}`}>
+                                <div className={`${styles['description']}`}>
+                                    <p className={`${styles['game-name']}`}>Nome jogo</p>
+                                    <span className={`${styles['tags']}`}>
+                                        <p>RPG Ação</p>
+                                        <p>Mundo aberto</p>
+                                    </span>
+                                    <span className={`${styles['stores']}`}>
+                                        <p><FaSteam className={styles['steam-icon']}/></p>
+                                    </span>
+                                    <span className={`${styles['ratings']}`}>
+                                        <p><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span> 5.0</span></p>
+                                    </span>
+                                </div>
+                                <div className={`${styles['detail-price']}`}>
+                                    <span>
+                                        <p className={`${styles['real-price']}`}>R$69.99</p>
+                                        <p className={`${styles['discount-price']}`}>R$48.99</p>
+                                    </span>
+                                    <button>Ver oferta</button>
+                                </div>
+                            </div>
+                            <div className={`${styles['card-game']}`}>
+                                <div className={`${styles['description']}`}>
+                                    <p className={`${styles['game-name']}`}>Nome jogo</p>
+                                    <span className={`${styles['tags']}`}>
+                                        <p>RPG Ação</p>
+                                        <p>Mundo aberto</p>
+                                    </span>
+                                    <span className={`${styles['stores']}`}>
+                                        <p><FaSteam className={styles['steam-icon']}/></p>
+                                    </span>
+                                    <span className={`${styles['ratings']}`}>
+                                        <p><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span> 5.0</span></p>
+                                    </span>
+                                </div>
+                                <div className={`${styles['detail-price']}`}>
+                                    <span>
+                                        <p className={`${styles['real-price']}`}>R$69.99</p>
+                                        <p className={`${styles['discount-price']}`}>R$48.99</p>
+                                    </span>
+                                    <button>Ver oferta</button>
+                                </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
