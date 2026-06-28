@@ -129,4 +129,186 @@ export const gamesMock = [
             },
         },
     },
+    {
+        id: 1,
+        title: 'Batman Arkham City',
+        tags: [
+            'Aventura',
+            'Acao',
+            'Estrategia',
+        ],
+        deal: {
+            shop: {
+                id: 50,
+                name: 'Steam',
+            },
+            price: {
+                amount: 69.9,
+                currency: 'BRL'
+            },
+            regular: {
+                amount: 84.9,
+                currency: 'BRL'
+            },
+            assets: {
+                boxart: 'https://assets.isthereanydeal.com/018d937f-2077-7336-b125-3cd96189f579/boxart.jpg?t=1760635846',
+            },
+        },
+    },
+    {
+        id: 1,
+        title: 'Batman Arkham City',
+        tags: [
+            'Aventura',
+            'Acao',
+            'Estrategia',
+        ],
+        deal: {
+            shop: {
+                id: 50,
+                name: 'Steam',
+            },
+            price: {
+                amount: 69.9,
+                currency: 'BRL'
+            },
+            regular: {
+                amount: 84.9,
+                currency: 'BRL'
+            },
+            assets: {
+                boxart: 'https://assets.isthereanydeal.com/018d937f-2077-7336-b125-3cd96189f579/boxart.jpg?t=1760635846',
+            },
+        },
+    },
+    {
+        id: 1,
+        title: 'Batman Arkham City',
+        tags: [
+            'Aventura',
+            'Acao',
+            'Estrategia',
+        ],
+        deal: {
+            shop: {
+                id: 50,
+                name: 'Steam',
+            },
+            price: {
+                amount: 69.9,
+                currency: 'BRL'
+            },
+            regular: {
+                amount: 84.9,
+                currency: 'BRL'
+            },
+            assets: {
+                boxart: 'https://assets.isthereanydeal.com/018d937f-2077-7336-b125-3cd96189f579/boxart.jpg?t=1760635846',
+            },
+        },
+    },
+    {
+        id: 1,
+        title: 'Batman Arkham City',
+        tags: [
+            'Aventura',
+            'Acao',
+            'Estrategia',
+        ],
+        deal: {
+            shop: {
+                id: 50,
+                name: 'Steam',
+            },
+            price: {
+                amount: 69.9,
+                currency: 'BRL'
+            },
+            regular: {
+                amount: 84.9,
+                currency: 'BRL'
+            },
+            assets: {
+                boxart: 'https://assets.isthereanydeal.com/018d937f-2077-7336-b125-3cd96189f579/boxart.jpg?t=1760635846',
+            },
+        },
+    },
+    {
+        id: 1,
+        title: 'Batman Arkham City',
+        tags: [
+            'Aventura',
+            'Acao',
+            'Estrategia',
+        ],
+        deal: {
+            shop: {
+                id: 50,
+                name: 'Steam',
+            },
+            price: {
+                amount: 69.9,
+                currency: 'BRL'
+            },
+            regular: {
+                amount: 84.9,
+                currency: 'BRL'
+            },
+            assets: {
+                boxart: 'https://assets.isthereanydeal.com/018d937f-2077-7336-b125-3cd96189f579/boxart.jpg?t=1760635846',
+            },
+        },
+    },
+    {
+        id: 1,
+        title: 'Batman Arkham City',
+        tags: [
+            'Aventura',
+            'Acao',
+            'Estrategia',
+        ],
+        deal: {
+            shop: {
+                id: 50,
+                name: 'Steam',
+            },
+            price: {
+                amount: 69.9,
+                currency: 'BRL'
+            },
+            regular: {
+                amount: 84.9,
+                currency: 'BRL'
+            },
+            assets: {
+                boxart: 'https://assets.isthereanydeal.com/018d937f-2077-7336-b125-3cd96189f579/boxart.jpg?t=1760635846',
+            },
+        },
+    },
+    {
+        id: 1,
+        title: 'Batman Arkham City',
+        tags: [
+            'Aventura',
+            'Acao',
+            'Estrategia',
+        ],
+        deal: {
+            shop: {
+                id: 50,
+                name: 'Steam',
+            },
+            price: {
+                amount: 69.9,
+                currency: 'BRL'
+            },
+            regular: {
+                amount: 84.9,
+                currency: 'BRL'
+            },
+            assets: {
+                boxart: 'https://assets.isthereanydeal.com/018d937f-2077-7336-b125-3cd96189f579/boxart.jpg?t=1760635846',
+            },
+        },
+    },
 ];

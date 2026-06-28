@@ -15,13 +15,13 @@ export function Home() {
             </section>
 
             <section className={styles.preferences}>
-                <div className={`container ${styles.container}`}>
+                <div className={`${styles.container}`}>
                     <div className={styles['preference-subtitle']}>
                         <h2>Suas preferâncias</h2>
                         <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
                     <div className={styles['card-games']}>
-                        {gamesMock.map((game, index) => (
+                        {gamesMock.slice(0,5).map((game, index) => (
                             <div className={styles.cards} key={index}>
                                 <div className={styles['card-top']}>
                                     <p className={styles['porcent-discount']}>44%</p>
@@ -42,13 +42,13 @@ export function Home() {
             </section>
 
             <section className={styles.deals}>
-                <div className={`container ${styles.container}`}>
+                <div className={`${styles.container}`}>
                     <div className={styles['deals-subtitle']}>
                         <h2>Melhores ofertas</h2>
                         <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
                     <div className={styles['card-games']}>
-                        {gamesMock.map((game, index) => (
+                        {gamesMock.slice(0,5).map((game, index) => (
                             <div className={styles.cards} key={index}>
                                 <div className={styles['card-top']}>
                                     <p className={styles['porcent-discount']}>44%</p>
@@ -69,13 +69,13 @@ export function Home() {
             </section>
 
             <section className={styles['best-prices']}>
-                <div className={`container ${styles.container}`}>
+                <div className={`${styles.container}`}>
                     <div className={styles['best-subtitle']}>
                         <h2>Melhores preços</h2>
                         <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
                     <div className={styles['card-games']}>
-                        {gamesMock.map((game, index) => (
+                        {gamesMock.slice(0,5).map((game, index) => (
                             <div className={styles.cards} key={index}>
                                 <div className={styles['card-top']}>
                                     <p className={styles['porcent-discount']}>44%</p>

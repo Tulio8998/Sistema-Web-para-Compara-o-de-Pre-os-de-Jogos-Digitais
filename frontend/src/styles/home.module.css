@@ -10,8 +10,7 @@
 .best-prices,
 .preferences,
 .create-account {
-    margin: 3rem 0;
-    padding: 5rem 0;
+    padding: 8rem 0;
 }
 
 .start {
@@ -31,6 +30,7 @@
     width: 50rem;
     text-align: center;
     margin: 5rem;
+    margin-top: 0rem;
     margin-bottom: 2rem;
     font-weight: 700;
 }
@@ -57,7 +57,7 @@
 
 
 .preferences {
-    display: flex;
+    width: 100%;
     background: #0F1117;
 }
 
@@ -67,6 +67,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding-left: var(--spacing-xm);
+    padding-right: var(--spacing-xm);
 }
 
 .preference-subtitle {
@@ -120,6 +122,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding-left: var(--spacing-xm);
+    padding-right: var(--spacing-xm);
 }
 
 .deals-subtitle {
@@ -173,6 +177,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding-left: var(--spacing-xm);
+    padding-right: var(--spacing-xm);
 }
 
 .best-subtitle {
@@ -236,7 +242,7 @@
 
 .card-games .cards:hover {
     transition: 0.8s;
-    transform: scale(1.1);
+    transform: scale(1.06);
     filter:
         drop-shadow(0 0 5px rgb(79, 79, 79));
 }
@@ -297,6 +303,7 @@
 
 .cards .store-game {
     display: flex;
+    justify-content: flex-start;
     gap: 5px;
     color: #9CA3AF;
     padding: 5px 0;
@@ -342,6 +349,7 @@
     width: 60rem;
     text-align: center;
     margin: 5rem;
+    margin-top: 0rem;
     margin-bottom: 2rem;
     font-weight: 700;
 }
@@ -363,6 +371,7 @@
     margin-bottom: 0.5rem;
     color: var(--color-text-gray);
     font-size: 1.3rem;
+    font-weight: 100;
 }
 
 .create-account .button-area {
