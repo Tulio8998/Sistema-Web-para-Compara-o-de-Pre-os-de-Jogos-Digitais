@@ -9,7 +9,7 @@
   --color-top-a: #6B7280;
   --color-top-nav: #4B5563;
   --bg-top-bar: #0F1117;
-  --bg-top-search: #6B7280;
+  --bg-top-search: #252936;
   --bg-top-search-button: #8B5CF6;
   --color-top-search-icon: #6B7280;
   --color-top-border: #2D3243;
@@ -35,6 +35,8 @@
   --spacing-xm: 8rem;     /* 104px */
   --spacing-xy: 10rem;     /* 112px */
   --spacing-xx: 12rem;     /* 120px */
+  --spacing-xw: 15rem;     /* 120px */
+  --spacing-xa: 13rem;     /* 120px */
 
 }
 

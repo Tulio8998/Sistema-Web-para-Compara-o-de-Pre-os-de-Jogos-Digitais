@@ -94,6 +94,7 @@
     justify-content: center;
     flex-direction: row;
     gap: 10px;
+    font-weight: 800;
 }
 
 .preference-subtitle a:hover {
@@ -149,6 +150,7 @@
     justify-content: center;
     flex-direction: row;
     gap: 10px;
+    font-weight: 800;
 }
 
 .deals-subtitle a:hover {
@@ -204,6 +206,7 @@
     justify-content: center;
     flex-direction: row;
     gap: 10px;
+    font-weight: 800;
 }
 
 .best-subtitle a:hover {

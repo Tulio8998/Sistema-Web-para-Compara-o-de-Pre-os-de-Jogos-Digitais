@@ -1,0 +1,293 @@
+.detail-page {
+    width: 100%;
+}
+
+.detail-page .container {
+    margin: 5rem var(--spacing-xy);
+}
+
+.detail-page .detail-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 0 var(--spacing-xm);
+}
+
+.detail-page .across-store{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.across-store .title {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.across-store .title .price-store {
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding-left: 1rem;
+    border-left: 5px solid #8B5CF6;
+}
+
+.across-store .title .price-history {
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding-left: 1rem;
+    border-left: 5px solid #8B5CF6;
+}
+
+.across-store .title .last-update{
+    font-weight: 100;
+    font-size: 0.9rem;
+    color: #9CA3AF;
+    padding: 0.7rem;
+    border: 1px solid #252936;
+    border-radius: 10px;
+    background: #1A1D27;
+}
+
+.across-store .title p span{
+    color: #4ADE80;
+}
+
+.across-store .table{
+    border: 1px solid #252936;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1A1D27;
+    margin-bottom: 4rem;
+}
+
+.across-store .table table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.across-store .table table .title-table{
+    color: #9CA3AF;
+}
+
+.across-store .table table tr .title-table {
+    font-size: 0.9rem;
+}
+
+.across-store .table table tbody td{
+    padding: 1.5rem;   
+}
+
+.across-store .table table tbody tr:hover {
+    border-left: 5px solid #4ADE80;
+    background: rgba(16, 185, 129, 0.055);
+}
+
+.across-store .table table tr {
+    text-align: center;
+}
+
+.across-store .table table .tr-table {
+    border-bottom: 1px solid #252936;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.across-store .table table th, td{
+    padding: 1rem;
+}
+
+.across-store .table table tr .real-price{
+    color: #6B7280;
+    font-weight: 100;
+    text-decoration: line-through;
+    font-size: 1rem;
+}
+
+.across-store .table table tr .discount-price{
+    color: #10B981;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.across-store .table table tr .discount-price span{
+    color: #10B981;
+    padding: 0.5rem 0.8rem;
+    background: #10b9811f;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 550;
+    margin-left: 1.5rem;
+}
+
+.across-store .table table tr .buy-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.across-store .table table tr .buy-link span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    color: var(--white);
+    padding: 0.7rem 0.8rem;
+    background: #3B82F6;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 550;
+    cursor: pointer;
+}
+
+.across-store .table table tr .buy-link span:hover {
+    transition: 0.5s;
+    background: #5ea4ff;
+}
+
+.across-store .table table tr .buy-link .icon-link{
+    font-size: 0.8rem;
+}
+rgb(123, 167, 236)
+
+
+
+
+
+.detail-page .container-card{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.detail-page .card-game{
+    display: flex;
+    flex-direction: column;
+    margin: 0 0.5rem 2rem 0.5rem;
+    border: 1px solid #2D3243;
+    border-radius: 15px;
+    background: #1A1D27;
+    overflow: hidden;
+}
+
+.card-game .description,
+.card-game .detail-price {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.card-game .description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #2D3243;
+}
+
+.card-game .description .tags, .stores, .rating{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-game .description .tags p {
+    color: #9CA3AF;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background: #252936;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.card-game .description .stores p{
+    color: #9CA3AF;
+}
+
+.card-game .description .ratings .icon-star{
+    margin-right: 0.3rem;
+}
+
+.card-game .description .ratings p, span{
+    color: #9CA3AF;
+}
+
+
+.card-game .detail-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.card-game .detail-price span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-game .detail-price .real-price{
+    color: #6B7280;
+    font-weight: 100;
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+
+.card-game .detail-price .discount-price{
+    color: #10B981;
+    font-size: 1.4rem;
+}
+
+.card-game .detail-price button{
+    color: #8B5CF6;
+    border: 2px solid #8B5CF6;
+    border-radius: 13px;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.card-game .card-top {
+    position: relative;
+    width: 100%;
+}
+
+.card-game .card-bottom {
+    padding: 1rem;
+}
+
+.cards .image-game {
+    width: 100%;
+    height: 15rem;
+    object-fit: cover; 
+    object-position: center;
+    display: block;
+}
+
+.card-top .porcent-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #8B5CF6;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 700;
+    z-index: 10;
+    margin: 0;
+}
+
+.icon-star{
+    font-size: 1rem;
+    color: #FACC15;
+}
+
+.icon-star-void{
+   font-size: 1rem;
+   color: #cfd1d4;
+}

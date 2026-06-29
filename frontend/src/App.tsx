@@ -5,6 +5,7 @@ import { SignIn } from "./pages/login/signIn";
 import { DarkLayout, MainLayout } from "./components/layout";
 import { AuthLayout } from "./components/auth-layout";
 import { Offer } from "./pages/offer/offer";
+import { GameDetail } from "./pages/gameDetail/gameDetail";
 
 export function App() {
   return (
@@ -17,6 +18,7 @@ export function App() {
 
         <Route element={<DarkLayout />}>
           <Route path="/offers" element={<Offer />} />
+          <Route path="/gameDetail" element={<GameDetail />} />
         </Route>
 
         <Route element={<AuthLayout />}>
