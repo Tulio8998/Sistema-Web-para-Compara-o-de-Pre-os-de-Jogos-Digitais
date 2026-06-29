@@ -48,15 +48,17 @@
 }
 
 .horizontal-border .show-border .show-result{
+    display: flex;
+    flex-direction: row;
     width: 100%;
     color: #D1D5DB;
-
 }
 
 .horizontal-border .show-border .show-result span{
     width: 100%;
     color: var(--white);
     font-weight: 600;
+    margin: 0 0.5rem;
 }
 
 .horizontal-border .show-border .show-tags{
@@ -422,13 +424,25 @@
 .card-game .description {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
     margin: 1rem 0;
     padding-bottom: 1rem;
     border-bottom: 1px solid #2D3243;
 }
 
-.card-game .description .tags, .stores, .rating{
+.card-game .description .game-name{
+    width: 100%;
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.card-game .description .tags,
+.card-game .description .stores,
+.card-game .description .ratings{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -452,7 +466,8 @@
     margin-right: 0.3rem;
 }
 
-.card-game .description .ratings p, span{
+.card-game .description .ratings p,
+.card-game .description .ratings span{
     color: #9CA3AF;
 }
 
@@ -482,6 +497,7 @@
 .card-game .detail-price .discount-price{
     color: #10B981;
     font-size: 1.4rem;
+    font-weight: 600;
 }
 
 .card-game .detail-price button{

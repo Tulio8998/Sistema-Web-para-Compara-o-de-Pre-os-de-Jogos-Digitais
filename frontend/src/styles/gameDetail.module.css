@@ -3,23 +3,29 @@
 }
 
 .detail-page .container {
-    margin: 5rem var(--spacing-xy);
+    margin: 5rem var(--spacing-xs);
 }
 
 .detail-page .detail-container {
     display: grid;
     grid-template-columns: auto auto;
-    margin: 0 var(--spacing-xm);
+    margin: 0 var(--spacing-xp);
 }
 
-.detail-page .across-store{
+.detail-page .div-detail {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
 }
 
-.across-store .title {
+.detail-page .div-detail .across-store{
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.title {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -28,13 +34,6 @@
 }
 
 .across-store .title .price-store {
-    font-weight: 600;
-    font-size: 1.3rem;
-    padding-left: 1rem;
-    border-left: 5px solid #8B5CF6;
-}
-
-.across-store .title .price-history {
     font-weight: 600;
     font-size: 1.3rem;
     padding-left: 1rem;
@@ -95,6 +94,19 @@
     text-align: center;
 }
 
+.across-store .table table .tr-table td:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-weight: 600;
+}
+
+.across-store .table table .tr-table p{
+    color: #6B7280;
+    font-weight: 100;
+    font-size: 0.8rem;
+}
+
 .across-store .table table th, td{
     padding: 1rem;
 }
@@ -135,7 +147,8 @@
     gap: 0.3rem;
     color: var(--white);
     padding: 0.7rem 0.8rem;
-    background: #3B82F6;
+    background: #2D3243;
+    border: 1px solid #3A4255;
     border-radius: 10px;
     font-size: 0.9rem;
     font-weight: 550;
@@ -144,13 +157,164 @@
 
 .across-store .table table tr .buy-link span:hover {
     transition: 0.5s;
-    background: #5ea4ff;
+    background: #3B82F6;
 }
 
 .across-store .table table tr .buy-link .icon-link{
     font-size: 0.8rem;
 }
-rgb(123, 167, 236)
+
+
+
+
+
+.detail-page .div-detail .price-history {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.price-history .title .history {
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding-left: 1rem;
+    border-left: 5px solid #a02de2;
+}
+
+.price-history .graphic .data-graphic {
+    width: 100%;
+    height: 350px;
+    margin-bottom: 2rem;
+}
+
+.price-history .title ul{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    border: 1px solid #252936;
+    background: #1A1D27;
+    padding: 0.2rem 0.3rem;
+    border-radius: 10px;
+}
+
+.price-history .title ul li{
+    border-radius: 10px;
+    padding: 0.5rem 0.8rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.price-history .title ul li:hover{
+    background: #8B5CF6;
+    
+}
+
+.price-history .graphic{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #252936;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1A1D27;
+    margin-bottom: 4rem;
+    padding: 2rem;
+}
+
+.price-history .status-graphic{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    border-top: 1.5px solid #252936;
+    padding-top: 2rem;
+}
+
+.price-history .status-graphic .status{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.price-history .history .icon-graph{
+    color: #a02de2;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.price-history .status-graphic .history, .average, .versus, p:first-child{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: #6B7280;
+}
+
+.price-history .status-graphic .history, .average, .versus, p:last-child{
+    color: #6B7280;
+    font-weight: 100;
+}
+
+.price-history .status-graphic .history{
+    border: 1px solid #163a2c;
+    border-radius: 15px;
+    padding: 1rem;
+    background: #0D1F18;
+}
+
+.price-history .status-graphic .history .price{
+    color: #10B981;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.price-history .status-graphic .average{
+    border: 1px solid #1c2e47;
+    border-radius: 15px;
+    padding: 1rem;
+    background: #0D1520;
+}
+
+.price-history .status-graphic .average .price{
+    color: #60A5FA;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.price-history .status-graphic .versus{
+    border: 1px solid #412912;
+    border-radius: 15px;
+    padding: 1rem;
+    background: #1F1308;
+}
+
+.price-history .status-graphic .versus .discount{
+    color: #FB923C;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.price-history .status-graphic .status .icon{
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.price-history .status-graphic .status .icon-history{
+    color: #10B981;
+}
+
+.price-history .status-graphic .status .icon-average{
+    color: #60A5FA;
+}
+
+.price-history .status-graphic .status .icon-versus{
+    color: #FB923C;
+}
+
+
+
 
 
 
@@ -158,17 +322,37 @@ rgb(123, 167, 236)
 
 .detail-page .container-card{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
+}
+
+.detail-page .div-detail .also-like {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.also-like .title .like {
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding-left: 1rem;
+    border-left: 5px solid #a02de2;
 }
 
 .detail-page .card-game{
     display: flex;
     flex-direction: column;
-    margin: 0 0.5rem 2rem 0.5rem;
+    margin: 0 0.3rem 0rem 0.3rem;
     border: 1px solid #2D3243;
     border-radius: 15px;
     background: #1A1D27;
     overflow: hidden;
+}
+
+.detail-page .card-game:hover{
+    transition: 0.8s;
+    transform: scale(1.01);
+    filter:
+        drop-shadow(0 0 5px rgb(79, 79, 79));
 }
 
 .card-game .description,
@@ -186,41 +370,21 @@ rgb(123, 167, 236)
     border-bottom: 1px solid #2D3243;
 }
 
-.card-game .description .tags, .stores, .rating{
+.card-game .description .game-name {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}
-
-.card-game .description .tags p {
+    justify-content: center;
+    width: 100%;
     color: #9CA3AF;
-    padding: 0.5rem;
-    border-radius: 10px;
-    background: #252936;
-    font-weight: 500;
-    font-size: 0.8rem;
+    font-weight: 600;
 }
-
-.card-game .description .stores p{
-    color: #9CA3AF;
-}
-
-.card-game .description .ratings .icon-star{
-    margin-right: 0.3rem;
-}
-
-.card-game .description .ratings p, span{
-    color: #9CA3AF;
-}
-
 
 .card-game .detail-price {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 1rem;
+    gap: 10px;
 }
 
 .card-game .detail-price span{
@@ -240,6 +404,7 @@ rgb(123, 167, 236)
 .card-game .detail-price .discount-price{
     color: #10B981;
     font-size: 1.4rem;
+    font-weight: 600;
 }
 
 .card-game .detail-price button{
@@ -247,8 +412,8 @@ rgb(123, 167, 236)
     border: 2px solid #8B5CF6;
     border-radius: 13px;
     padding: 0.5rem 1rem;
-    font-size: 1.2rem;
-    font-weight: 800;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
 }
 
@@ -290,4 +455,159 @@ rgb(123, 167, 236)
 .icon-star-void{
    font-size: 1rem;
    color: #cfd1d4;
+}
+
+
+
+
+
+
+
+.detail-container .aside-status {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 2rem;
+    gap: 3rem;
+}
+
+.aside-status .game-status{
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    width: 100%;
+    padding: 1.5rem;
+    border: 1px solid #252936;
+    border-radius: 10px;
+    background: #1A1D27;
+}
+
+.game-status .title-status{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.game-status span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.game-status span p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.game-status span .data-calor {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.game-status span .rating-color{
+    color: #10B981;
+    font-weight: 600;
+}
+
+.game-status span .awards-color{
+    color: #FACC15;
+    font-weight: 600;
+}
+
+.game-status span .icon-status{
+    color: var(--white);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.aside-status .game-dlc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    padding: 1.5rem;
+    border: 1px solid #252936;
+    border-radius: 10px;
+    background: #1A1D27;
+}
+
+.game-dlc p {
+    display: flex;
+    justify-content: flex-start;
+    color: #8B5CF6;
+    font-weight: 600;
+}
+
+.game-dlc .dlc{
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    width: 100%;
+    padding: 1.5rem;
+    border: 1px solid #2D3243;
+    border-radius: 10px;
+    background: #0F1117;
+}
+
+.game-dlc .dlc .cover{
+    width: 60px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.game-dlc .dlc .dlc-data{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.game-dlc .dlc .dlc-data .title{
+    color: var(--white);
+    font-weight: 600;
+}
+
+.game-dlc .dlc .dlc-data .subtitle{
+    color: #6B7280;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.game-dlc .dlc .dlc-data span{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-dlc .dlc .dlc-data span .real-price{
+    color: #6B7280;
+    text-decoration: line-through;
+    font-weight: 100;
+}
+
+.game-dlc .dlc .dlc-data span .discount-price{
+    color: #10B981;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.game-dlc .dlc .dlc-data span .porcent-discount{
+    color: #10B981;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 10px;
+    background: #10b98127;
 }

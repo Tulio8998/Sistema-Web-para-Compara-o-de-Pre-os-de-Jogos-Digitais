@@ -1,5 +1,13 @@
 import styles  from '../../styles/gameDetail.module.css'
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt, FaStar, FaSteam } from "react-icons/fa";
+import { PriceHistory } from '../../utils/details';
+import { GoGraph } from "react-icons/go";
+import { gamesMock } from '../../mocks/game';
+import { IoPerson } from "react-icons/io5";
+import { MdAccessTime, MdStorage } from 'react-icons/md';
+import { BiLike } from 'react-icons/bi';
+import { LiaAwardSolid } from 'react-icons/lia';
+
 
 export function GameDetail() {
     return (
@@ -11,7 +19,7 @@ export function GameDetail() {
                 </div>
             <div className={`${styles.container}`}>
                 <div className={`${styles['detail-container']}`}>
-                    <div>
+                    <div className={`${styles['div-detail']}`}>
                         <div className={`${styles['across-store']}`}>
                             <div className={`${styles['title']}`}>
                                 <p className={`${styles['price-store']}`}>Preço de Todas as Loja</p>
@@ -31,7 +39,7 @@ export function GameDetail() {
                                     </thead>
                                     <tbody>
                                         <tr className={`${styles['tr-table']}`}>
-                                            <td>Steam</td>
+                                            <td>Steam <p>PC Digital</p></td>
                                             <td>Edição Padrão</td>
                                             <td className={`${styles['real-price']}`}>R$59.90</td>
                                             <td className={`${styles['discount-price']}`}>R$23.99 <span>-60%</span></td>
@@ -39,7 +47,7 @@ export function GameDetail() {
                                         </tr>
 
                                         <tr className={`${styles['tr-table']}`}>
-                                            <td>GOG</td>
+                                            <td>GOG <p>DRM-Free</p></td>
                                             <td>Edição Padrão</td>
                                             <td className={`${styles['real-price']}`}>R$59.90</td>
                                             <td className={`${styles['discount-price']}`}>R$23.99 <span>-60%</span></td>
@@ -47,7 +55,7 @@ export function GameDetail() {
                                         </tr>
                                     
                                         <tr className={`${styles['tr-table']}`}>
-                                            <td>Epic</td>
+                                            <td>Epic <p>PC Digital</p></td>
                                             <td>Edição Padrão</td>
                                             <td className={`${styles['real-price']}`}>R$59.90</td>
                                             <td className={`${styles['discount-price']}`}>R$23.99 <span>-60%</span></td>
@@ -55,7 +63,7 @@ export function GameDetail() {
                                         </tr>
                                     
                                         <tr className={`${styles['tr-table']}`}>
-                                            <td>Nuuvem</td>
+                                            <td>Nuuvem <p>PC Digital</p></td>
                                             <td>Edição Padrão</td>
                                             <td className={`${styles['real-price']}`}>R$59.90</td>
                                             <td className={`${styles['discount-price']}`}>R$23.99 <span>-60%</span></td>
@@ -63,7 +71,7 @@ export function GameDetail() {
                                         </tr>
                                     
                                         <tr>
-                                            <td>Huble</td>
+                                            <td>Huble <p>PC Digital</p></td>
                                             <td>Edição Padrão</td>
                                             <td className={`${styles['real-price']}`}>R$59.90</td>
                                             <td className={`${styles['discount-price']}`}>R$23.99 <span>-60%</span></td>
@@ -73,22 +81,110 @@ export function GameDetail() {
                                 </table>
                             </div>
                             
-                            <div className={`${styles['title']}`}>
-                                <p className={`${styles['price-history']}`}>Historíco de Preço</p>
-                            </div>
                         </div>
 
                         <div className={`${styles['price-history']}`}>
-                        
+                            <div className={`${styles['title']}`}>
+                                <p className={`${styles['history']}`}><GoGraph className={`${styles['icon']} ${styles['icon-graph']}`}/> Histórico de Preço</p>
+                                <ul>
+                                    <li>1m</li>
+                                    <li>3m</li>
+                                    <li>6m</li>
+                                    <li>1a</li>
+                                    <li>Todos</li>
+                                </ul>
+                            </div>
+
+                            <PriceHistory></PriceHistory>
                         </div>
 
-                        <div className={`${styles['discount-analysis']}`}>
-                        
+                        <div className={`${styles['also-like']}`}>
+                            <div className={`${styles['title']}`}>
+                                <p className={`${styles['like']}`}>Você tambem pode gostar</p>
+                            </div>
+
+                            <div className={`${styles['container-card']}`}>
+                                {gamesMock.slice(0,5).map((game, index) => {
+                                    const discountPercent = Math.round(
+                                        ((game.deal.regular.amount - game.deal.price.amount) / game.deal.regular.amount) * 100
+                                    );
+                                    return (
+                                        <div key={index} className={`${styles['card-game']}`}>
+                                            <div className={`${styles['cards']}`}>
+                                                <div className={styles['card-top']}>
+                                                    <p className={styles['porcent-discount']}>-{discountPercent}%</p>
+                                                    
+                                                    <img 
+                                                        className={styles['image-game']} 
+                                                        src={game.deal.assets.boxart} 
+                                                        alt={`Capa do jogo ${game.title}`} 
+                                                    />
+                                                </div>
+                                            </div>
+                                            
+                                            <div className={`${styles['description']}`}>
+                                                <p className={`${styles['game-name']}`}>{game.title}</p>
+                                            </div>
+                                            
+                                            <div className={`${styles['detail-price']}`}>
+                                                <span>
+                                                    <p className={`${styles['real-price']}`}>
+                                                        R${game.deal.regular.amount.toFixed(2).replace('.', ',')}
+                                                    </p>
+                                                    <p className={`${styles['discount-price']}`}>
+                                                        R${game.deal.price.amount.toFixed(2).replace('.', ',')}
+                                                    </p>
+                                                </span>
+                                                <button>Ver oferta</button>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
 
-                    <div>
-                        Teste
+                    <div className={`${styles['aside-status']}`}>
+                        <div className={`${styles['game-status']}`}>
+                            <p className={`${styles['title-status']}`}>Status de Jogo</p>
+                            <span>
+                                <p className={`${styles['']}`}><IoPerson className={`${styles['icon-status']}`}/>Pico de Jogadores</p>
+                                <p className={`${styles['data-calor']}`}>900.000</p>
+                            </span>  
+                            <span>
+                                <p className={`${styles['']}`}><MdAccessTime className={`${styles['icon-status']}`}/>Média Tempo de Jogo</p>
+                                <p className={`${styles['data-calor']}`}>83 horas</p>
+                            </span>
+                            <span>
+                                <p className={`${styles['']}`}><BiLike className={`${styles['icon-status']}`}/>Avaliações</p>
+                                <p className={`${styles['rating-color']}`}>Muito Positiva</p>
+                            </span>
+                            <span>
+                                <p className={`${styles['']}`}><LiaAwardSolid className={`${styles['icon-status']}`}/>Prêmios GOTY</p>
+                                <p className={`${styles['awards-color']}`}>6 Prêmios</p>
+                            </span>
+                            <span>
+                                <p className={`${styles['']}`}><MdStorage className={`${styles['icon-status']}`}/>Armazenamento</p>
+                                <p className={`${styles['data-calor']}`}>60 GB</p>
+                            </span>
+                        </div>
+
+                        <div className={`${styles['game-dlc']}`}>                     
+                            <p className={`${styles['']}`}>DLC Disponível</p>
+                            <div className={`${styles['dlc']}`}>
+                                <img className={`${styles['cover']}`} src="https://assets.isthereanydeal.com/018d937f-2077-7336-b125-3cd96189f579/boxart.jpg?t=1760635846" alt="" />
+                                
+                                <div className={`${styles['dlc-data']}`}>
+                                    <p className={`${styles['title']}`}>Nome jogo</p>
+                                    <p className={`${styles['subtitle']}`}>Tipo de DLC</p>
+                                    <span>
+                                        <p className={`${styles['real-price']}`}>R$39.90</p>
+                                        <p className={`${styles['discount-price']}`}>R$31.99</p>
+                                        <p className={`${styles['porcent-discount']}`}>-20%</p>
+                                    </span>
+                                </div>
+                            </div>         
+                        </div>
                     </div>
                     
                 </div>               
