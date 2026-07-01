@@ -1,5 +1,5 @@
 import styles from '../../styles/home.module.css';
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaStar } from "react-icons/fa";
 import { FaSteam } from "react-icons/fa";
 import { gamesMock } from '../../mocks/game';
 
@@ -21,22 +21,63 @@ export function Home() {
                         <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
                     <div className={styles['card-games']}>
-                        {gamesMock.slice(0,5).map((game, index) => (
-                            <div className={styles.cards} key={index}>
-                                <div className={styles['card-top']}>
-                                    <p className={styles['porcent-discount']}>44%</p>
-                                    <img className={styles['image-game']} src={game.deal.assets.boxart} alt="" />
-                                </div>
-                                <div className={styles['card-bottom']}>
-                                    <p className={styles['title-game']}>{game.title}</p>
-                                    <p className={styles['store-game']}><FaSteam className={styles['store-icon']}/>{game.deal.shop.name}</p>
-                                    <div className={styles['prices-game']}>
-                                        <p className={styles['descount-game']}>R${game.deal.price.amount}</p>
-                                        <p className={styles['price-game']}>R${game.deal.regular.amount}</p>
+                        {gamesMock.slice(0,5).map((game, index) => {
+                            const discountPercent = Math.round(
+                                ((game.deal.regular.amount - game.deal.price.amount) / game.deal.regular.amount) * 100
+                            );
+                            return (
+                                <div key={index} className={`${styles['card-game']}`}>
+                                    <div className={`${styles['cards']}`}>
+                                        <div className={styles['card-top']}>
+                                            <p className={styles['porcent-discount']}>-{discountPercent}%</p>
+                                            
+                                            <img 
+                                                className={styles['image-game']} 
+                                                src={game.deal.assets.boxart} 
+                                                alt={`Capa do jogo ${game.title}`} 
+                                            />
+                                        </div>
                                     </div>
-                                </div> 
-                            </div>
-                        ))}
+                                    
+                                    <div className={`${styles['description']}`}>
+                                        <p className={`${styles['game-name']}`}>{game.title}</p>
+                                        
+                                        <span className={`${styles['tags']}`}>
+                                            {game.tags.slice(0, 2).map((tag, tagIndex) => (
+                                                <p key={tagIndex}>{tag}</p>
+                                            ))}
+                                        </span>
+                                        
+                                        <span className={`${styles['stores']}`}>
+                                            <p><FaSteam className={styles['steam-icon']}/></p>
+                                        </span>
+                                        
+                                        <span className={`${styles['ratings']}`}>
+                                            <p>
+                                                <FaStar className={styles['icon-star']}/>
+                                                <FaStar className={styles['icon-star']}/>
+                                                <FaStar className={styles['icon-star']}/>
+                                                <FaStar className={styles['icon-star']}/>
+                                                <FaStar className={styles['icon-star']}/>
+                                                <span> 5.0</span>
+                                            </p>
+                                        </span>
+                                    </div>
+                                    
+                                    <div className={`${styles['detail-price']}`}>
+                                        <span>
+                                            <p className={`${styles['real-price']}`}>
+                                                R${game.deal.regular.amount.toFixed(2).replace('.', ',')}
+                                            </p>
+                                            <p className={`${styles['discount-price']}`}>
+                                                R${game.deal.price.amount.toFixed(2).replace('.', ',')}
+                                            </p>
+                                        </span>
+                                        <button>Ver oferta</button>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>  
             </section>
@@ -48,49 +89,63 @@ export function Home() {
                         <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
                     <div className={styles['card-games']}>
-                        {gamesMock.slice(0,5).map((game, index) => (
-                            <div className={styles.cards} key={index}>
-                                <div className={styles['card-top']}>
-                                    <p className={styles['porcent-discount']}>44%</p>
-                                    <img className={styles['image-game']} src={game.deal.assets.boxart} alt="" />
-                                </div>
-                                <div className={styles['card-bottom']}>
-                                    <p className={styles['title-game']}>{game.title}</p>
-                                    <p className={styles['store-game']}><FaSteam className={styles['store-icon']}/>{game.deal.shop.name}</p>
-                                    <div className={styles['prices-game']}>
-                                        <p className={styles['descount-game']}>R${game.deal.price.amount}</p>
-                                        <p className={styles['price-game']}>R${game.deal.regular.amount}</p>
+                        {gamesMock.slice(0,5).map((game, index) => {
+                            const discountPercent = Math.round(
+                                ((game.deal.regular.amount - game.deal.price.amount) / game.deal.regular.amount) * 100
+                            );
+                            return (
+                                <div key={index} className={`${styles['card-game']}`}>
+                                    <div className={`${styles['cards']}`}>
+                                        <div className={styles['card-top']}>
+                                            <p className={styles['porcent-discount']}>-{discountPercent}%</p>
+                                            
+                                            <img 
+                                                className={styles['image-game']} 
+                                                src={game.deal.assets.boxart} 
+                                                alt={`Capa do jogo ${game.title}`} 
+                                            />
+                                        </div>
                                     </div>
-                                </div> 
-                            </div>
-                        ))}
-                    </div>
-                </div>  
-            </section>
-
-            <section className={styles['best-prices']}>
-                <div className={`${styles.container}`}>
-                    <div className={styles['best-subtitle']}>
-                        <h2>Melhores preços</h2>
-                        <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
-                    </div>
-                    <div className={styles['card-games']}>
-                        {gamesMock.slice(0,5).map((game, index) => (
-                            <div className={styles.cards} key={index}>
-                                <div className={styles['card-top']}>
-                                    <p className={styles['porcent-discount']}>44%</p>
-                                    <img className={styles['image-game']} src={game.deal.assets.boxart} alt="" />
-                                </div>
-                                <div className={styles['card-bottom']}>
-                                    <p className={styles['title-game']}>{game.title}</p>
-                                    <p className={styles['store-game']}><FaSteam className={styles['store-icon']}/>{game.deal.shop.name}</p>
-                                    <div className={styles['prices-game']}>
-                                        <p className={styles['descount-game']}>R${game.deal.price.amount}</p>
-                                        <p className={styles['price-game']}>R${game.deal.regular.amount}</p>
+                                    
+                                    <div className={`${styles['description']}`}>
+                                        <p className={`${styles['game-name']}`}>{game.title}</p>
+                                        
+                                        <span className={`${styles['tags']}`}>
+                                            {game.tags.slice(0, 2).map((tag, tagIndex) => (
+                                                <p key={tagIndex}>{tag}</p>
+                                            ))}
+                                        </span>
+                                        
+                                        <span className={`${styles['stores']}`}>
+                                            <p><FaSteam className={styles['steam-icon']}/></p>
+                                        </span>
+                                        
+                                        <span className={`${styles['ratings']}`}>
+                                            <p>
+                                                <FaStar className={styles['icon-star']}/>
+                                                <FaStar className={styles['icon-star']}/>
+                                                <FaStar className={styles['icon-star']}/>
+                                                <FaStar className={styles['icon-star']}/>
+                                                <FaStar className={styles['icon-star']}/>
+                                                <span> 5.0</span>
+                                            </p>
+                                        </span>
                                     </div>
-                                </div> 
-                            </div>
-                        ))}
+                                    
+                                    <div className={`${styles['detail-price']}`}>
+                                        <span>
+                                            <p className={`${styles['real-price']}`}>
+                                                R${game.deal.regular.amount.toFixed(2).replace('.', ',')}
+                                            </p>
+                                            <p className={`${styles['discount-price']}`}>
+                                                R${game.deal.price.amount.toFixed(2).replace('.', ',')}
+                                            </p>
+                                        </span>
+                                        <button>Ver oferta</button>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>  
             </section>
