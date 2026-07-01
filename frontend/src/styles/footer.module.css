@@ -46,6 +46,8 @@
 }
 
 .footerbar .title {
+    display: flex;
+    justify-content: flex-start;
     color: var(--white);
     font-weight: 800;
     font-size: 1.1rem;
