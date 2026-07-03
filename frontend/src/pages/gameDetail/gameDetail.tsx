@@ -1,23 +1,76 @@
 import styles  from '../../styles/gameDetail.module.css'
-import { FaExternalLinkAlt, FaStar, FaSteam } from "react-icons/fa";
+import { FaExternalLinkAlt, FaStar, FaSteam, FaTrophy } from "react-icons/fa";
 import { PriceHistory } from '../../utils/details';
 import { GoGraph } from "react-icons/go";
 import { gamesMock } from '../../mocks/game';
 import { IoPerson } from "react-icons/io5";
-import { MdAccessTime, MdStorage } from 'react-icons/md';
+import { MdAccessTime, MdFavorite, MdStorage } from 'react-icons/md';
 import { BiLike } from 'react-icons/bi';
 import { LiaAwardSolid } from 'react-icons/lia';
+import { MdFavoriteBorder } from "react-icons/md";
+import { RiShareBoxLine } from 'react-icons/ri';
 
 
 export function GameDetail() {
     return (
         <>
         <section className={styles['detail-page']}>
-                <div className={`${styles['game-detail']}`}>
-                    <div></div>
-                    <div></div>
-                </div>
             <div className={`${styles.container}`}>
+                <div className={`${styles['start-container']}`}>
+                    <div className={`${styles['game-detail']}`}> 
+                        <div className={`${styles['game-cover']}`}>
+                            <img src="https://assets.isthereanydeal.com/018d937f-1212-7232-b23f-a046f6fd4a57/boxart.jpg?t=1768305010" alt="" />
+                        </div> 
+
+                        <div className={`${styles['game-description']}`}>
+                            <p className={`${styles['owner-game']}`}>De - CD Project - Lançando: Fev 25, 2015 - <span> PC/Windows</span></p>
+                            <h2>The Witcher 3</h2>
+                            <div className={styles['rating-game']}>
+                                <span className={styles['critic-game']}>
+                                    <p className={styles['color-note']}>96</p>
+                                    <span className={styles['critic-color']}>
+                                        <p>Metacritic</p>
+                                        <p>Aclamado</p>
+                                    </span>
+                                </span>
+                                <span className={styles['line-separate']}></span>
+                                <p className={styles['avaliation-game']}>
+                                    <FaStar className={styles['icon-star']}></FaStar>
+                                    <FaStar className={styles['icon-star']}></FaStar>
+                                    <FaStar className={styles['icon-star']}></FaStar>
+                                    <FaStar className={styles['icon-star']}></FaStar>
+                                    <FaStar className={styles['icon-star']}></FaStar> <span className={styles['span1']}>4.9</span> <span className={styles['span2']}> (144,122 reviews)</span></p>
+                                <span className={styles['line-separate']}></span>
+                                <p className={styles['awards']}> <FaTrophy className={styles['icon-trophy']}/> Jogo do ano 2015</p>
+                            </div>
+                            <ul className={styles['tags-game']}>
+                                <li className={styles['tag']}>Ação RPG</li>
+                                <li className={styles['tag']}>Ação RPG</li>
+                                <li className={styles['tag']}>Ação RPG</li>
+                                <li className={styles['tag']}>Ação RPG</li>
+                                <li className={styles['tag']}>Ação RPG</li>
+                            </ul>
+                            <p className={styles['text-description']}>És Geralt of Rivia, um mercenário caçador de monstros. Perante ti, 
+                                encontras um continente destruído e infestado por monstros, que podes explorar como quiseres. 
+                                O teu contrato: encontrar Ciri, a Criança da Profecia, uma arma viva capaz de alterar a forma do mundo.</p>
+                            <span className={styles['button-options']}>
+                                <button> <MdFavorite className={styles['icon-favorite']}/>Adicionar aos Favoritos</button>
+                                <button> <RiShareBoxLine className={styles['icon-share']}/>Compartilhar</button>
+                            </span>
+                            <div className={styles['prices']}>
+                                <span className={styles['span1']}>
+                                    <p>MELHOR PREÇO HOJE</p>
+                                    <p>R$23.99</p>
+                                </span>
+                                <span className={styles['line-separate']}></span>
+                                <span className={styles['span2']}>
+                                    <p>60% OFF</p>
+                                    <p>De R$59.99</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className={`${styles['detail-container']}`}>
                     <div className={`${styles['div-detail']}`}>
                         <div className={`${styles['across-store']}`}>
