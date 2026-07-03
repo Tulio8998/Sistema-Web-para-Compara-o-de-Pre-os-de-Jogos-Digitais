@@ -2,11 +2,24 @@ import { Outlet } from "react-router-dom";
 import { Topbar } from "../components/topbar";
 import { Footer } from "./footer";
 import { useEffect } from "react";
+import { TopbarMy } from "./topbarMy";
 
 export function MainLayout() {
     return (
         <>
         <Topbar/>
+        <main>
+          <Outlet />
+        </main>
+        <Footer/>
+        </>
+    );
+}
+
+export function MainLayoutMy() {
+    return (
+        <>
+        <TopbarMy/>
         <main>
           <Outlet />
         </main>

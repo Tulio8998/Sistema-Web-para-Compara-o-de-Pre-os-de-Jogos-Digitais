@@ -30,7 +30,7 @@
 
 .top-bar a:hover {
     transition: 0.8s;
-    transform: scale(1.1);
+    transform: scale(1.05);
     filter:
         drop-shadow(0 0 5px rgb(79, 79, 79));
 }
@@ -39,18 +39,17 @@
     margin-right: auto;
 }
 
-.top-bar .login {
-    margin-left: auto;
-    border: 1px solid var(--color-top-border);
-    border-radius: 7px;
-    padding: 15px 20px;
-}
+.top-bar .myAccount {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    gap: 10px;
+} 
 
-.top-bar .signup {
-    border-radius: 7px;
-    padding: 15px 20px;
-    background: linear-gradient(100deg,rgba(103, 28, 133, 1) 0%, rgba(28, 52, 107, 1) 100%);
-}
+.top-bar .icon-account {
+    font-size: 2rem;
+} 
 
 .top-bar .searchbar {
     display: flex;
