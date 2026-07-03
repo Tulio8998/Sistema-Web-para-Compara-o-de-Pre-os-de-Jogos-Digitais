@@ -73,7 +73,7 @@ export function Home() {
                                                 R${game.deal.price.amount.toFixed(2).replace('.', ',')}
                                             </p>
                                         </span>
-                                        <button>Ver oferta</button>
+                                        <a href="/gameDetail"><button>Ver oferta</button></a>
                                     </div>
                                 </div>
                             );
@@ -86,7 +86,7 @@ export function Home() {
                 <div className={`${styles.container}`}>
                     <div className={styles['deals-subtitle']}>
                         <h2>Melhores ofertas</h2>
-                        <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
+                        <a href="/offers">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
                     <div className={styles['card-games']}>
                         {gamesMock.slice(0,5).map((game, index) => {
@@ -141,7 +141,7 @@ export function Home() {
                                                 R${game.deal.price.amount.toFixed(2).replace('.', ',')}
                                             </p>
                                         </span>
-                                        <button>Ver oferta</button>
+                                        <a href="/gameDetail"><button>Ver oferta</button></a>
                                     </div>
                                 </div>
                             );

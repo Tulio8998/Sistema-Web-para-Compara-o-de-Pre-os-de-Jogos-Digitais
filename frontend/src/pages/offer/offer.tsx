@@ -296,7 +296,7 @@ export function Offer() {
                                                     R${game.deal.price.amount.toFixed(2).replace('.', ',')}
                                                 </p>
                                             </span>
-                                            <button>Ver oferta</button>
+                                            <a href="/gameDetail"><button>Ver oferta</button></a>
                                         </div>
                                     </div>
                                 );

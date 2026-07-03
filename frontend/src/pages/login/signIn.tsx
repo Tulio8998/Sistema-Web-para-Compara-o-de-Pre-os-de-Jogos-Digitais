@@ -6,8 +6,38 @@ import { CiSquareCheck } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
+import { useState } from 'react';
+import { validateEmail } from '../../utils/login';
 
 export function SignIn() {
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [formError, setFormError] = useState('');
+
+    const emailValidation: any = validateEmail(email);
+    const validationEmailClass = email === '' 
+        ? '' 
+        : (emailValidation.valid ? styles.success : styles.error);
+        
+    function handleRegisterSubmit(event: React.FormEvent) {
+        event.preventDefault();
+        
+        const submitData = [email, password];
+        const allFieldsFilled = submitData.every(field => field.trim() !== '');
+
+        if (!allFieldsFilled) {
+            setFormError("Por favor, preencha todos os campos antes de cadastrar!");
+            return;
+        }
+
+        if (!emailValidation.valid || !password) {
+            setFormError("Existem campos com erros. Corrija-os antes de continuar.");
+            return;
+        }
+
+        setFormError('');
+    }
+
     return(
         <section className={styles['login-page']}>
             <div className={styles.slogan}>
@@ -43,24 +73,28 @@ export function SignIn() {
                         <p className={styles.description}>Entre em sua conta para continuar</p>
 
                         <div className={styles['input-data']}>
-                            <form action="">
+                            <form onSubmit={handleRegisterSubmit}>
                                 <div>
                                     <p>Endereço de email</p>
-                                    <div className={styles['icon-group']}>
-                                        <MdEmail className={styles['icon-email']}/>
-                                        <input type="email" placeholder='email@exemple.com'/>
+                                    <div className={`${styles['icon-group']} ${validationEmailClass}`}>
+                                        <MdEmail className={styles['icon-email']} />
+                                        <input type="email" placeholder="email@exemple.com" value={email} onChange={(e) => setEmail(e.target.value)}/>
                                     </div>
+                                    <p className={`${styles['email-label']} ${validationEmailClass}`}>
+                                        {emailValidation.message || '\u00A0'}
+                                    </p>
                                     
                                     <p>Senha</p>
-                                    <div className={styles['icon-group']}>
+                                    <div className={`${styles['icon-group']}`}>
                                         <FaLock className={styles['icon-password']}/>
-                                        <input type="password" placeholder='senha'/>
+                                        <input type="password" placeholder='senha' value={password} onChange={(e) => setPassword(e.target.value)}/>
                                     </div>
                                 </div>
 
                                 <div className={styles['forget-pass']}>
                                     <a href="">Esqueceu a senha?</a>
                                 </div>
+                                <p className={styles['form-submit-error']}>{formError || '\u00A0'}</p>
 
                                 <button>Entrar</button>
                             </form>

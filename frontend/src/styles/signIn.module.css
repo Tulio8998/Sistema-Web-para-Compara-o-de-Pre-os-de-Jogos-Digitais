@@ -215,6 +215,7 @@
 
 .login-account .input-data .forget-pass a {
     margin-top: 1rem;
+    margin-bottom: 0.5rem;
     color: #8B5CF6;
     font-weight: 800;
 }
@@ -229,7 +230,7 @@
 .login-account .input-data button {
     width: 100%;
     font-size: 1.2rem;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
     color: var(--white);
     font-weight: 800;
     border: 1px solid #8B5CF6;
@@ -318,4 +319,26 @@
 .login-account .terms-service a {
     color: #6B7280;
     border-bottom: 1px solid #6B7280;
+}
+
+.login-account .input-data .email-label {
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+}
+
+.login-account .input-data .email-label.success {
+    color: #22c55e;
+}
+.login-account .input-data .email-label.error {
+    color: #f65c5c;
+}
+
+.login-account .input-data .form-submit-error {
+    color: #f65c5c;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    width: 15rem; 
+    margin: auto; 
+    height: 2.5rem; 
 }

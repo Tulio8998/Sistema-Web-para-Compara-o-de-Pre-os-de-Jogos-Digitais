@@ -510,6 +510,13 @@
     cursor: pointer;
 }
 
+.card-game .detail-price button:hover{
+    color: var(--white);
+    background: #8B5CF6;
+    transition: 0.3s;
+
+}
+
 .card-game .card-top {
     position: relative;
     width: 100%;
