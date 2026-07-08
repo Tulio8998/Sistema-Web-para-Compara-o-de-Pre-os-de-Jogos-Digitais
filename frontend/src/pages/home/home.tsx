@@ -21,7 +21,7 @@ export function Home() {
                         <a href="">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
                     <div className={styles['card-games']}>
-                        {gamesMock.slice(0,5).map((game, index) => {
+                        {gamesMock.slice(0,4).map((game, index) => {
                             const discountPercent = Math.round(
                                 ((game.deal.regular.amount - game.deal.price.amount) / game.deal.regular.amount) * 100
                             );
@@ -89,7 +89,7 @@ export function Home() {
                         <a href="/offers">Ver todos <FaArrowRight className={styles['right-icon']}/> </a>
                     </div>
                     <div className={styles['card-games']}>
-                        {gamesMock.slice(0,5).map((game, index) => {
+                        {gamesMock.slice(0,4).map((game, index) => {
                             const discountPercent = Math.round(
                                 ((game.deal.regular.amount - game.deal.price.amount) / game.deal.regular.amount) * 100
                             );

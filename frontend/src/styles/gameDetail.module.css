@@ -627,7 +627,7 @@
 
 .card-game .description .game-name {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     color: #9CA3AF;
     font-weight: 600;
@@ -670,6 +670,13 @@
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
+}
+
+.card-game .detail-price button:hover{
+    color: var(--white);
+    background: #8B5CF6;
+    transition: 0.3s;
+
 }
 
 .card-game .card-top {
