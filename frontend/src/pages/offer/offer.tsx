@@ -3,7 +3,7 @@ import styles from '../../styles/offer.module.css'
 import { FaChevronRight } from "react-icons/fa6";
 import { FaAngleDown } from "react-icons/fa6";
 import { FaAngleUp } from "react-icons/fa6";
-import { FaFilter } from "react-icons/fa";
+import { FaFilter, FaRegHeart } from "react-icons/fa";
 import { PriceFilter } from '../../utils/offer';
 import { FaStar } from "react-icons/fa";
 import { FaSteam } from "react-icons/fa";
@@ -253,7 +253,7 @@ export function Offer() {
                                         <div className={`${styles['cards']}`}>
                                             <div className={styles['card-top']}>
                                                 <p className={styles['porcent-discount']}>-{discountPercent}%</p>
-                                                
+                                                <p ><FaRegHeart className={styles['icon-heart']}/></p>
                                                 <img 
                                                     className={styles['image-game']} 
                                                     src={game.deal.assets.boxart} 

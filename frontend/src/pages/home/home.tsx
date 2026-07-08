@@ -1,5 +1,5 @@
 import styles from '../../styles/home.module.css';
-import { FaArrowRight, FaStar } from "react-icons/fa";
+import { FaArrowRight, FaRegHeart, FaStar } from "react-icons/fa";
 import { FaSteam } from "react-icons/fa";
 import { gamesMock } from '../../mocks/game';
 
@@ -30,7 +30,7 @@ export function Home() {
                                     <div className={`${styles['cards']}`}>
                                         <div className={styles['card-top']}>
                                             <p className={styles['porcent-discount']}>-{discountPercent}%</p>
-                                            
+                                            <p ><FaRegHeart className={styles['icon-heart']}/></p>
                                             <img 
                                                 className={styles['image-game']} 
                                                 src={game.deal.assets.boxart} 
@@ -98,7 +98,7 @@ export function Home() {
                                     <div className={`${styles['cards']}`}>
                                         <div className={styles['card-top']}>
                                             <p className={styles['porcent-discount']}>-{discountPercent}%</p>
-                                            
+                                            <p ><FaRegHeart className={styles['icon-heart']}/></p>
                                             <img 
                                                 className={styles['image-game']} 
                                                 src={game.deal.assets.boxart} 

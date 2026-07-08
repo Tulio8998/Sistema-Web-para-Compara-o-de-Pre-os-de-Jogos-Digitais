@@ -17,7 +17,7 @@ export function App() {
           <Route index element={<Home/>}/>
         </Route>
         
-        <Route element={<MainLayout />}>
+        <Route element={<MainLayoutMy />}>
           <Route path="/myAccount" element={<MyAccount />} />
         </Route>
 
