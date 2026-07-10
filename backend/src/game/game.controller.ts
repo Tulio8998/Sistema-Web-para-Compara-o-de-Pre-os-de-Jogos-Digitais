@@ -1,20 +1,47 @@
-import { Controller, Get, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
-import { GameService } from '../game/game.service';
-import { UpdateGameDto } from '../game/dto/update-game.dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  Req,
+  Query,
+} from '@nestjs/common';
+import { GameService } from './game.service';
+import { UpdateGameDto } from './dto/update-game.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Role } from '@prisma/client';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 
 @Controller('game')
-@UseGuards(AuthGuard('jwt'), RolesGuard)
+//@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class GameController {
   constructor(private readonly gameService: GameService) {}
 
+  @Post('sync')
+  @Roles(Role.ADMIN)
+  create(@Query('limit') limit?: string, @Query('offset') offset?: string) {
+    const limitNumber = limit ? parseInt(limit, 10) : 100;
+    const offsetNumber = offset ? parseInt(offset, 10) : 0;
+
+    return this.gameService.create(limitNumber, offsetNumber);
+  }
+
   @Get()
-  @Roles(Role.ADMIN, Role.CLIENT)
-  findAll(@Req() req: any) {
-    return this.gameService.findAll(req.user);
+  //@Roles(Role.ADMIN, Role.CLIENT)
+  findAll(
+    @Req() req: any,
+    @Query('limit') limit?: string,
+    @Query('offset') offset?: string,
+  ) {
+    const take = limit ? parseInt(limit, 10) : 12;
+    const skip = offset ? parseInt(offset, 10) : 0;
+
+    return this.gameService.findAll(take, skip, req.user);
   }
 
   @Get(':id')
