@@ -49,56 +49,91 @@ model Comments {
   @@map("comments")
 }
 
+type Assets {
+  boxart    String?
+  banner200 String?
+  banner400 String?
+  banner600 String?
+}
+
+type Shop {
+  id   Int?    
+  name String?
+}
+
+type Price {
+  amount   Float
+  currency String
+}
+
+type Deal {
+  shop          Shop
+  price         Price
+  regular       Price
+  cut           Int?
+  voucher       String?
+  storeLow      Price?
+  historyLow    Price?
+  historyLow_1y Price?
+  historyLow_3m Price?
+}
+
+type Drm {
+  id   Int?
+  name String?
+}
+
+type DeveloperPublisher {
+  id   Int?
+  name String?
+}
+
+type Review {
+  score  Int?
+  source String?
+  count  Int?
+  url    String?
+}
+
+type PlayerStats {
+  recent Int?
+  day    Int?
+  week   Int?
+  peak   Int?
+}
+
+
 model Game {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  gameID      String     @unique
-  title       String
-  genre       String?    
-  developer   String?
-  publisher   String?
-  coverImage  String?
-  releaseDate DateTime?
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  
+  externalApiId String?  @unique 
+  title         String
+  genre         String?
+  assets        Assets?
+  deal          Deal?
+  flag          String? 
+  drm           Drm[]
+  timestamp     DateTime?
+  expiry        DateTime?
+  url           String?
 
-  price       Price[]
-  WishList   WishList[] @relation("Games")
-  gameComments Comments[] @relation("Games")
+  earlyAccess   Boolean?    
+  achievements  Boolean?    
+  tradingCards  Boolean?
+  tags          String[]
+  releaseDate   DateTime? 
+  developers    DeveloperPublisher[]
+  publishers    DeveloperPublisher[]
+  reviews       Review[]
+  player        PlayerStats?
 
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  WishList      WishList[] @relation("Games")
+  gameComments  Comments[] @relation("Games")
+
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 
   @@map("games")
-}
-
-model Store {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  storeID   String   @unique
-  name      String
-  logo      String
-  description String?
-  
-  prices    Price[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  @@map("store")
-}
-
-model Price {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  value     Float
-  discount  Float
-  currency  String
-  promotionTitle String?
-
-  gameId    String   @db.ObjectId
-  game      Game     @relation(fields: [gameId], references: [id])
-
-  storeId   String   @db.ObjectId
-  store     Store    @relation(fields: [storeId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  @@map("price")
 }
 
 model WishList {
