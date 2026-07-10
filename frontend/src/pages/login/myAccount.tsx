@@ -59,17 +59,6 @@ export function MyAccount() {
                                         <span className={`${styles['stores']}`}>
                                             <p><FaSteam className={styles['steam-icon']}/></p>
                                         </span>
-                                        
-                                        <span className={`${styles['ratings']}`}>
-                                            <p>
-                                                <FaStar className={styles['icon-star']}/>
-                                                <FaStar className={styles['icon-star']}/>
-                                                <FaStar className={styles['icon-star']}/>
-                                                <FaStar className={styles['icon-star']}/>
-                                                <FaStar className={styles['icon-star']}/>
-                                                <span> 5.0</span>
-                                            </p>
-                                        </span>
                                     </div>
                                     
                                     <div className={`${styles['detail-price']}`}>

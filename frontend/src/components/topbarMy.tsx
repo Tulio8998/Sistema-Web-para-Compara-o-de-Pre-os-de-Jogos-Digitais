@@ -2,9 +2,11 @@ import { useState } from 'react';
 import styles from '../styles/topbar.module.css';
 import { IoSearchOutline } from "react-icons/io5";
 import { MdAccountCircle } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 export function TopbarMy() {
     const [ search, setSearch ] = useState("");
+    const navigate = useNavigate();
 
     function handleClearSearch() {
         setSearch("");
@@ -12,14 +14,16 @@ export function TopbarMy() {
 
     function handleSubmitSearch(event: React.FormEvent) {
         event.preventDefault();
-        console.log(search)
+        if (search.trim()) {
+            navigate(`/search/${encodeURIComponent(search.trim())}`);
+        }
     }
 
     return (
         <aside className={styles['top-bar']}>
             <div className={`container ${styles.container}`}>
                 <nav>
-                    <a className={styles.logo} href="">Logo</a>
+                    <a className={styles.logo} href="/">Logo</a>
                     <a href="/">Início</a>
                     <a href="/offers">Ofertas</a>
                     <form className={styles.searchbar} onSubmit={handleSubmitSearch}>
@@ -28,8 +32,7 @@ export function TopbarMy() {
                         <button type="button" className={styles.clearbutton} onClick={handleClearSearch}>Limpar</button>
                         <button type="submit" className={styles.searchbutton}>Buscar</button>
                     </form>
-
-                    <a className={styles.myAccount} href="/myAccount"><MdAccountCircle className={styles['icon-account']} />Minha Conta</a>
+                    <a className={styles.myAccount} href="/wishList"><MdAccountCircle className={styles['icon-account']} />Minha Conta</a>
                 </nav>
             </div>
         </aside>

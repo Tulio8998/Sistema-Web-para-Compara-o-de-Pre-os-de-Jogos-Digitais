@@ -7,6 +7,8 @@ import { AuthLayout } from "./components/auth-layout";
 import { Offer } from "./pages/offer/offer";
 import { GameDetail } from "./pages/gameDetail/gameDetail";
 import { MyAccount } from "./pages/login/myAccount";
+import { Search } from "./pages/search/search";
+import { WishList } from "./pages/wishList/wishList";
 
 export function App() {
   return (
@@ -19,12 +21,14 @@ export function App() {
         
         <Route element={<MainLayoutMy />}>
           <Route path="/myAccount" element={<MyAccount />} />
+          <Route path="/wishList" element={<WishList />} />
         </Route>
 
 
         <Route element={<DarkLayout />}>
           <Route path="/offers" element={<Offer />} />
           <Route path="/gameDetail/:id" element={<GameDetail />} />
+          <Route path="/search/:query" element={<Search />} />
         </Route>
 
         <Route element={<AuthLayout />}>

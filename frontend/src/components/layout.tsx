@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import { Topbar } from "../components/topbar";
 import { Footer } from "./footer";
 import { useEffect } from "react";
-import { TopbarMy } from "./topbarMy";
 
 export function MainLayout() {
     return (
@@ -19,7 +18,7 @@ export function MainLayout() {
 export function MainLayoutMy() {
     return (
         <>
-        <TopbarMy/>
+        <Topbar/> 
         <main>
           <Outlet />
         </main>
@@ -31,12 +30,10 @@ export function MainLayoutMy() {
 export function DarkLayout() {
     useEffect(() => {
         document.body.classList.add("offer-body");
-
         return () => {
             document.body.classList.remove("offer-body");
         };
     }, []);
-
     return (
         <>
             <Topbar />

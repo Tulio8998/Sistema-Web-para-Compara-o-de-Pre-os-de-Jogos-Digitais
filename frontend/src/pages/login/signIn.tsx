@@ -9,17 +9,18 @@ import { FaLock } from "react-icons/fa6";
 import { useState } from 'react';
 import { validateEmail } from '../../utils/login';
 import { login } from '../../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 export function SignIn() {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [formError, setFormError] = useState('');
+    
+    const navigate = useNavigate();
 
     const emailValidation: any = validateEmail(email);
-    const validationEmailClass = email === '' 
-        ? '' 
-        : (emailValidation.valid ? styles.success : styles.error);
-        
+    const validationEmailClass = email === '' ? '' : (emailValidation.valid ? styles.success : styles.error);
+
     async function handleRegisterSubmit(event: React.FormEvent) {
         event.preventDefault();
         
@@ -27,7 +28,7 @@ export function SignIn() {
         const allFieldsFilled = submitData.every(field => field.trim() !== '');
 
         if (!allFieldsFilled) {
-            setFormError("Por favor, preencha todos os campos antes de cadastrar!");
+            setFormError("Por favor, preencha todos os campos antes de entrar!");
             return;
         }
 
@@ -40,12 +41,17 @@ export function SignIn() {
 
         try {
             const data = await login(email, password);
-
-            console.log(data);
-        } catch (error) {
-            if (error instanceof Error) {
-                setFormError('Email ou senha inválidos.');
+            
+            const token = data.access_token || data.token; 
+            
+            if (token) {
+                localStorage.setItem('token', token);
+                navigate('/');
+            } else {
+                setFormError("Token de acesso não recebido.");
             }
+        } catch (error) {
+            setFormError('Email ou senha inválidos.');
         }
     }
 

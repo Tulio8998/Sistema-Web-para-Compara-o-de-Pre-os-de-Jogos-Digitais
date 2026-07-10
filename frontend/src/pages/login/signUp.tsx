@@ -8,32 +8,26 @@ import { MdAlternateEmail } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa6";
 import { useState } from 'react';
 import { calculatePasswordStrength, validateUsername, validateEmail, passwordsMatch } from '../../utils/login';
-import { createAccount, login } from '../../services/authService';
+import { createAccount } from '../../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 export function SignUp() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
     const [formError, setFormError] = useState('');
+    
+    const navigate = useNavigate();
 
     const usernameValidation: any = validateUsername(username);
     const emailValidation: any = validateEmail(email);
     const passwordStrength: any = calculatePasswordStrength(password);
     const passwordIsEqual: any = passwordsMatch(password, confirmPassword);
 
-    const validationUsernameClass = username === '' 
-        ? '' 
-        : (usernameValidation.valid ? styles.success : styles.error);
-
-    const validationEmailClass = email === '' 
-        ? '' 
-        : (emailValidation.valid ? styles.success : styles.error);
-
-    const validationPasswordClass = confirmPassword === ''
-        ? ''
-        : (passwordIsEqual.valid ? styles.success : styles.error);
+    const validationUsernameClass = username === '' ? '' : (usernameValidation.valid ? styles.success : styles.error);
+    const validationEmailClass = email === '' ? '' : (emailValidation.valid ? styles.success : styles.error);
+    const validationPasswordClass = confirmPassword === '' ? '' : (passwordIsEqual.valid ? styles.success : styles.error);
 
     async function handleRegisterSubmit(event: React.FormEvent) {
         event.preventDefault();
@@ -54,15 +48,13 @@ export function SignUp() {
         setFormError('');
 
         try {
-            const data = await createAccount(username, email, password);
-
-            console.log('Usuário criado!');
-            console.log(data);
+            await createAccount(username, email, password);
+            navigate('/signIn');
         } catch (error) {
             if (error instanceof Error) {
                 setFormError(error.message);
             } else {
-                setFormError('Erro ao criar usuario.');
+                setFormError('Erro ao criar usuário.');
             }
         }
     }
