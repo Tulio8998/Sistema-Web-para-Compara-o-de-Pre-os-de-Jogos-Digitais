@@ -24,7 +24,7 @@ export function App() {
 
         <Route element={<DarkLayout />}>
           <Route path="/offers" element={<Offer />} />
-          <Route path="/gameDetail" element={<GameDetail />} />
+          <Route path="/gameDetail/:id" element={<GameDetail />} />
         </Route>
 
         <Route element={<AuthLayout />}>
