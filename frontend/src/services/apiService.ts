@@ -37,3 +37,36 @@ export async function getGameById(id: string) {
     
     return response.json();
 }
+
+export async function searchGamesByTitle(title: string) {
+    const url = `${import.meta.env.VITE_API_URL}/game/search/${encodeURIComponent(title)}`;
+    const token = localStorage.getItem('token') || '';
+
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    if (!response.ok) return [];
+    return response.json();
+}
+
+export async function getGamePrices(gameIds: string[]) {
+    const url = `${import.meta.env.VITE_API_URL}/game/prices`;
+    const token = localStorage.getItem('token') || '';
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(gameIds)
+    });
+
+    if (!response.ok) return [];
+    return response.json();
+}

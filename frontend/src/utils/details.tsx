@@ -41,7 +41,7 @@ export function PriceHistory({ deal }: { deal: any }) {
                 <div className={`${styles['status']} ${styles['history']}`}>
                     <p><FaArrowTrendDown className={`${styles['icon']} ${styles['icon-history']}`}/> MÍNIMO HISTÓRICO</p>
                     <p className={`${styles['price']}`}>R${historyLow.toFixed(2).replace('.', ',')}</p>
-                    <p>Qualquer Loja</p>
+                    <p>{deal?.historyLow?.shopName || 'Loja Desconhecida'}</p>
                 </div>
                 <div className={`${styles['status']} ${styles['average']}`}>
                     <p><PiWaveTriangleBold className={`${styles['icon']} ${styles['icon-average']}`}/>PREÇO BASE</p>
@@ -53,7 +53,7 @@ export function PriceHistory({ deal }: { deal: any }) {
                     <p className={`${styles['discount']}`}>+{diffPercent}%</p>
                     <p>R${currentPrice.toFixed(2).replace('.', ',')} vs histórico</p>
                 </div>
-            </div>       
+            </div>     
         </div>
     );
 }
