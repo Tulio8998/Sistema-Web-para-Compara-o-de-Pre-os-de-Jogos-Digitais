@@ -820,11 +820,13 @@
     background: #0F1117;
 }
 
-.game-dlc .dlc .cover{
-    width: 60px;
-    height: auto;
-    display: block;
+.start-container .game-cover img {
+    width: 100%;
+    max-width: 460px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
     border-radius: 10px;
+    filter: drop-shadow(0 0 5px #ccccccc0);
 }
 
 .game-dlc .dlc .dlc-data{

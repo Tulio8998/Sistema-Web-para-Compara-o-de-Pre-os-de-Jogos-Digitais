@@ -350,7 +350,7 @@
 }
 
 .dropdown-filter {
-    overflow: hidden;
+    overflow-y: hidden;
     max-height: 0;
     opacity: 0;
     transition:
@@ -361,12 +361,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-}
-
-.openFilter {
-    max-height: 300px;
-    opacity: 1;
-    margin-top: 1rem;
 }
 
 .dropdown-filter li {
@@ -382,11 +376,27 @@
     cursor: pointer;
 }
 
-.dropdown-filter input[type="checkbox"] {
-    accent-color: #8B5CF6;
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
+.openFilter {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 1rem;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.openFilter::-webkit-scrollbar {
+    width: 6px;
+}
+.openFilter::-webkit-scrollbar-track {
+    background: #1A1D27; 
+    border-radius: 8px;
+}
+.openFilter::-webkit-scrollbar-thumb {
+    background: #2D3243; 
+    border-radius: 8px;
+}
+.openFilter::-webkit-scrollbar-thumb:hover {
+    background: #8B5CF6; 
 }
 
 
@@ -545,7 +555,7 @@
 
 .cards .image-game {
     width: 100%;
-    height: 15rem;
+    aspect-ratio: 16 / 9; 
     object-fit: cover; 
     object-position: center;
     display: block;
@@ -605,4 +615,10 @@
 .steam-icon {
     font-size: 1.3rem;
     color: #385588;
+}
+
+.activePage {
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
 }
