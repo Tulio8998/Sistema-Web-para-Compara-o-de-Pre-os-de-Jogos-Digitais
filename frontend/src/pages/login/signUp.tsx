@@ -8,6 +8,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa6";
 import { useState } from 'react';
 import { calculatePasswordStrength, validateUsername, validateEmail, passwordsMatch } from '../../utils/login';
+import { createAccount, login } from '../../services/authService';
 
 export function SignUp() {
     const [username, setUsername] = useState('');
@@ -34,7 +35,7 @@ export function SignUp() {
         ? ''
         : (passwordIsEqual.valid ? styles.success : styles.error);
 
-    function handleRegisterSubmit(event: React.FormEvent) {
+    async function handleRegisterSubmit(event: React.FormEvent) {
         event.preventDefault();
         
         const submitData = [username, email, password, confirmPassword];
@@ -51,6 +52,19 @@ export function SignUp() {
         }
 
         setFormError('');
+
+        try {
+            const data = await createAccount(username, email, password);
+
+            console.log('Usuário criado!');
+            console.log(data);
+        } catch (error) {
+            if (error instanceof Error) {
+                setFormError(error.message);
+            } else {
+                setFormError('Erro ao criar usuario.');
+            }
+        }
     }
 
     return(

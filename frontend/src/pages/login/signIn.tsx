@@ -8,6 +8,7 @@ import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
 import { useState } from 'react';
 import { validateEmail } from '../../utils/login';
+import { login } from '../../services/authService';
 
 export function SignIn() {
     const [password, setPassword] = useState('');
@@ -19,7 +20,7 @@ export function SignIn() {
         ? '' 
         : (emailValidation.valid ? styles.success : styles.error);
         
-    function handleRegisterSubmit(event: React.FormEvent) {
+    async function handleRegisterSubmit(event: React.FormEvent) {
         event.preventDefault();
         
         const submitData = [email, password];
@@ -36,6 +37,16 @@ export function SignIn() {
         }
 
         setFormError('');
+
+        try {
+            const data = await login(email, password);
+
+            console.log(data);
+        } catch (error) {
+            if (error instanceof Error) {
+                setFormError('Email ou senha inválidos.');
+            }
+        }
     }
 
     return(
