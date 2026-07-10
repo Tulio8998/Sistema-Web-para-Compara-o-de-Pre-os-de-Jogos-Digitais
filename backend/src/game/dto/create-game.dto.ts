@@ -1,35 +1,88 @@
-import { IsString, IsNotEmpty, IsUrl, IsOptional } from "class-validator";
+import {
+  IsString,
+  IsNotEmpty,
+  IsUrl,
+  IsOptional,
+  IsBoolean,
+  IsArray,
+  IsObject,
+  IsDateString,
+} from 'class-validator';
 
 export class CreateGameDto {
   @IsString()
-  @IsNotEmpty()
-  gameID: string;
-  
+  @IsOptional()
+  externalApiId?: string;
+
   @IsString()
   @IsNotEmpty()
   title: string;
 
   @IsString()
-  @IsNotEmpty()
-  description: string;
+  @IsOptional()
+  genre?: string;
+
+  @IsObject()
+  @IsOptional()
+  assets?: any;
+
+  @IsObject()
+  @IsOptional()
+  deal?: any;
 
   @IsString()
-  @IsNotEmpty()
-  genre: string;
+  @IsOptional()
+  flag?: string;
 
-  @IsString()
-  @IsNotEmpty()
-  developer: string;
+  @IsArray()
+  @IsOptional()
+  drm?: any[];
 
-  @IsString()
-  @IsNotEmpty()
-  publisher: string;
+  @IsDateString()
+  @IsOptional()
+  timestamp?: Date;
+
+  @IsDateString()
+  @IsOptional()
+  expiry?: Date;
 
   @IsUrl()
   @IsOptional()
-  coverImage: string;
+  url?: string;
+
+  @IsBoolean()
+  @IsOptional()
+  earlyAccess?: boolean;
+
+  @IsBoolean()
+  @IsOptional()
+  achievements?: boolean;
+
+  @IsBoolean()
+  @IsOptional()
+  tradingCards?: boolean;
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  tags?: string[];
 
   @IsOptional()
-  @IsString()
   releaseDate?: Date;
+
+  @IsArray()
+  @IsOptional()
+  developers?: any[];
+
+  @IsArray()
+  @IsOptional()
+  publishers?: any[];
+
+  @IsArray()
+  @IsOptional()
+  reviews?: any[];
+
+  @IsObject()
+  @IsOptional()
+  player?: any;
 }
