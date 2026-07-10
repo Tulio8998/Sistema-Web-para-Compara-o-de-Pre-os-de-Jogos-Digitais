@@ -8,4 +8,8 @@ export class CreateWishListDto {
   @IsString()
   @IsNotEmpty()
   gameId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  userId: string;
 }

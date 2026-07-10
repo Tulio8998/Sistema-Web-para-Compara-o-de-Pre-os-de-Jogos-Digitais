@@ -12,48 +12,21 @@ import {
 import { CreateWishListDto } from './dto/create-wish-list.dto';
 import { User } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { GameApiService } from 'src/game-api/game-api.service';
 import { UpdateWishListDto } from './dto/update-wish-list.dto';
 
 @Injectable()
 export class WishListService {
-  constructor(
-    private prisma: PrismaService,
-    private gameApi: GameApiService,
-  ) {}
+  constructor(private prisma: PrismaService) {}
 
   async create(data: CreateWishListDto, user: User) {
-    let game = await this.prisma.game.findUnique({
-      where: { gameID: data.gameId },
+    const game = await this.prisma.game.findUnique({
+      where: { externalApiId: data.gameId },
     });
 
     if (!game) {
-      const gameFromApi = await this.gameApi.getGameInfo(data.gameId);
-
-      if (!gameFromApi) {
-        throw new NotFoundException(
-          'Jogo não encontrado na API do IsThereAnyDeal',
-        );
-      }
-
-      game = await this.prisma.game.create({
-        data: {
-          gameID: gameFromApi.id,
-          title: gameFromApi.title,
-          genre: gameFromApi.tags ? gameFromApi.tags.join(', ') : '',
-          developer: gameFromApi.developers
-            ? gameFromApi.developers.map((d: any) => d.name).join(', ')
-            : '',
-          publisher: gameFromApi.publishers
-            ? gameFromApi.publishers.map((p: any) => p.name).join(', ')
-            : '',
-          coverImage:
-            gameFromApi.assets?.boxart || gameFromApi.assets?.banner400 || null,
-          releaseDate: gameFromApi.releaseDate
-            ? new Date(gameFromApi.releaseDate)
-            : null,
-        },
-      });
+      throw new NotFoundException(
+        'Jogo não encontrado no sistema. Por favor, aguarde a sincronização do catálogo.',
+      );
     }
 
     const wishListExists = await this.prisma.wishList.findFirst({
@@ -93,19 +66,15 @@ export class WishListService {
 
   async findById(id: string, user: User) {
     const wish = await this.prisma.wishList.findFirst({
-      where: { userId: user.id },
+      where: { userId: user.id, id: id },
       include: { game: true },
     });
 
     if (!wish) {
-      throw new BadRequestException('Jogo não encontrado');
+      throw new NotFoundException('Jogo salvo não encontrado');
     }
 
-    try {
-      return wish;
-    } catch (error) {
-      throw new InternalServerErrorException('Erro inesperado');
-    }
+    return wish;
   }
 
   async findByTitle(title: string, user: User) {
@@ -123,14 +92,12 @@ export class WishListService {
     });
 
     if (wish.length === 0) {
-      throw new BadRequestException('Jogo não encontrado');
+      throw new NotFoundException(
+        'Nenhum jogo encontrado com esse título na sua lista',
+      );
     }
 
-    try {
-      return wish;
-    } catch (error) {
-      throw new InternalServerErrorException('Erro inesperado');
-    }
+    return wish;
   }
 
   update(id: string, updateWishListDto: UpdateWishListDto, user: User) {
