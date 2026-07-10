@@ -42,6 +42,7 @@ export function PriceHistory({ deal }: { deal: any }) {
                     <p><FaArrowTrendDown className={`${styles['icon']} ${styles['icon-history']}`}/> MÍNIMO HISTÓRICO</p>
                     <p className={`${styles['price']}`}>R${historyLow.toFixed(2).replace('.', ',')}</p>
                     <p>{deal?.historyLow?.shopName || 'Loja Desconhecida'}</p>
+                    <p>{deal?.historyLow?.timeStamp || 'Loja Desconhecida'}</p>
                 </div>
                 <div className={`${styles['status']} ${styles['average']}`}>
                     <p><PiWaveTriangleBold className={`${styles['icon']} ${styles['icon-average']}`}/>PREÇO BASE</p>

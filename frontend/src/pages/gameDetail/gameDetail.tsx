@@ -73,12 +73,6 @@ export function GameDetail() {
                                 </span>
                                 <span className={styles['line-separate']}></span>
                                 <p className={styles['avaliation-game']}>
-                                    <FaStar className={styles['icon-star']}/>
-                                    <FaStar className={styles['icon-star']}/>
-                                    <FaStar className={styles['icon-star']}/>
-                                    <FaStar className={styles['icon-star']}/>
-                                    <FaStar className={styles['icon-star']}/> 
-                                    <span className={styles['span1']}> 5.0</span> 
                                     <span className={styles['span2']}> ({game.player?.recent || 0} jogando)</span>
                                 </p>
                             </div>
