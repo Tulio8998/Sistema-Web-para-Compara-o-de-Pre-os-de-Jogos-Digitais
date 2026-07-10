@@ -22,6 +22,14 @@ export function GameDetail() {
                 if (id) {
                     const data = await getGameById(id);
                     setGame(data);
+
+                    const savedRecent = JSON.parse(localStorage.getItem('recentGames') || '[]');
+                    const filteredRecent = savedRecent.filter((g: any) => 
+                        (g.externalApiId || g.id) !== (data.externalApiId || data.id)
+                    );
+                    
+                    filteredRecent.unshift(data); 
+                    localStorage.setItem('recentGames', JSON.stringify(filteredRecent.slice(0, 10)));
                 }
             } catch (error) {
                 console.error("Erro ao carregar jogo:", error);
@@ -41,7 +49,7 @@ export function GameDetail() {
     const regularPrice = game.deal?.regular?.amount || 0;
     const discountPercent = regularPrice > 0 ? Math.round(((regularPrice - currentPrice) / regularPrice) * 100) : 0;
     
-    const coverImage = game.assets?.boxart || game.assets?.banner600  || game.assets?.banner400 || '/assets/NoCape.png';
+    const coverImage = game.assets?.banner600  || game.assets?.banner400 || '/assets/NoCape.png';
 
     return (
         <section className={styles['detail-page']}>
@@ -124,17 +132,36 @@ export function GameDetail() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr className={`${styles['tr-table']}`}>
-                                            <td>{game.deal?.shop?.name || 'Loja Desconhecida'} <p>PC Digital</p></td>
-                                            <td>Edição Padrão</td>
-                                            <td className={`${styles['real-price']}`}>R${regularPrice.toFixed(2).replace('.', ',')}</td>
-                                            <td className={`${styles['discount-price']}`}>R${currentPrice.toFixed(2).replace('.', ',')} <span>-{discountPercent}%</span></td>
-                                            <td className={`${styles['buy-link']}`}>
-                                                <a href={game.url || '#'} target="_blank" rel="noreferrer" style={{textDecoration: 'none'}}>
-                                                    <span>Compre Agora <FaExternalLinkAlt className={`${styles['icon-link']}`}/></span>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        {game.offers && game.offers.length > 0 ? (
+                                            game.offers.map((offer: any, index: number) => {
+                                                const offerCurrentPrice = offer.price?.amount || 0;
+                                                const offerRegularPrice = offer.regular?.amount || 0;
+                                                const offerDiscount = offerRegularPrice > 0 ? Math.round(((offerRegularPrice - offerCurrentPrice) / offerRegularPrice) * 100) : 0;
+
+                                                return (
+                                                    <tr key={index} className={`${styles['tr-table']}`}>
+                                                        <td>{offer.shop?.name || 'Loja Desconhecida'} <p>PC Digital</p></td>
+                                                        <td>Edição Padrão</td>
+                                                        <td className={`${styles['real-price']}`}>R${offerRegularPrice.toFixed(2).replace('.', ',')}</td>
+                                                        <td className={`${styles['discount-price']}`}>
+                                                            R${offerCurrentPrice.toFixed(2).replace('.', ',')} 
+                                                            {offerDiscount > 0 && <span>-{offerDiscount}%</span>}
+                                                        </td>
+                                                        <td className={`${styles['buy-link']}`}>
+                                                            <a href={offer.url || '#'} target="_blank" rel="noreferrer" style={{textDecoration: 'none'}}>
+                                                                <span>Compre Agora <FaExternalLinkAlt className={`${styles['icon-link']}`}/></span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })
+                                        ) : (
+                                            <tr className={`${styles['tr-table']}`}>
+                                                <td colSpan={5} style={{ padding: '2rem', color: '#9CA3AF' }}>
+                                                    Nenhuma oferta disponível no momento.
+                                                </td>
+                                            </tr>
+                                        )}
                                     </tbody>
                                 </table>
                             </div>                             

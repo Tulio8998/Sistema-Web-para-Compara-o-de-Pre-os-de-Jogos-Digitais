@@ -20,8 +20,8 @@ export function App() {
         </Route>
         
         <Route element={<MainLayoutMy />}>
-          <Route path="/myAccount" element={<MyAccount />} />
           <Route path="/wishList" element={<WishList />} />
+          <Route path="/myAccount" element={<MyAccount />} />
         </Route>
 
 

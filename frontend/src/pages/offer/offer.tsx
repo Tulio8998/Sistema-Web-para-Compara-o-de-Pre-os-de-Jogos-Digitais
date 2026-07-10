@@ -264,14 +264,14 @@ export function Offer() {
                                 ) || 0;
                                         
                                 return (
-                                    <a key={game.id || index} className={`${styles['card-game']}`}>
+                                    <div key={game.id || index} className={`${styles['card-game']}`}>
                                         <div className={`${styles['cards']}`}>
                                             <div className={styles['card-top']}>
                                                 <p className={styles['porcent-discount']}>-{discountPercent}%</p>
-                                                <p ><FaRegHeart className={styles['icon-heart']}/></p>
+                                                <p><FaRegHeart className={styles['icon-heart']}/></p>
                                                 <img 
                                                     className={styles['image-game']} 
-                                                    src={game.assets?.banner600 || game.assets?.banner400 || game.assets?.banner200 || '/assets/NoCape.png'}
+                                                    src={game.assets?.banner600 || game.assets?.banner400 || game.assets?.boxart || '/assets/NoCape.png'}
                                                     onError={(e) => { e.currentTarget.src = '/assets/NoCape.png'; }}
                                                     alt={`Capa do jogo ${game.title}`} 
                                                 />
@@ -299,11 +299,11 @@ export function Offer() {
                                                     R${game.deal.price.amount.toFixed(2).replace('.', ',')}
                                                 </p>
                                             </span>
-                                            <Link to={`/gameDetail/${game.id}`} style={{ textDecoration: 'none' }}>
+                                            <Link to={`/gameDetail/${game.externalApiId || game.id}`} style={{ textDecoration: 'none' }}>
                                                 <button>Ver oferta</button>
                                             </Link>
                                         </div>
-                                    </a>
+                                    </div>
                                 );
                             })}
                         </div>
