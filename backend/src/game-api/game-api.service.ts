@@ -68,14 +68,30 @@ export class GameApiService {
   }
 
   async getDeals(
-    limit: number = 50,
+    limit: number = 60,
     offset: number = 0,
     country: string = 'BR',
     shops?: string,
+    minPrice: number = 50,
+    maxPrice: number = 250,
   ) {
     try {
       let url = `${this.baseUrl}/deals/v2?key=${this.apiKey}&limit=${limit}&offset=${offset}&country=${country}`;
+
       if (shops) url += `&shops=${shops}`;
+
+      if (minPrice !== undefined || maxPrice !== undefined) {
+        const filter = encodeURIComponent(
+          JSON.stringify({
+            price: {
+              min: minPrice ?? null,
+              max: maxPrice ?? null,
+            },
+          }),
+        );
+
+        url += `&filter=${filter}`;
+      }
 
       const response = await fetch(url);
       if (!response.ok) throw new Error('Falha ao buscar promocoes');
