@@ -1,13 +1,10 @@
-import { useState } from 'react';
 import styles from '../../styles/offer.module.css'
-import { FaChevronRight } from "react-icons/fa6";
-import { FaAngleDown } from "react-icons/fa6";
-import { FaAngleUp } from "react-icons/fa6";
-import { FaFilter, FaRegHeart } from "react-icons/fa";
+import { FaChevronRight, FaAngleDown, FaAngleUp, FaFilter, FaRegHeart, FaStar } from "react-icons/fa6";
 import { PriceFilter } from '../../utils/offer';
-import { FaStar } from "react-icons/fa";
-import { FaSteam } from "react-icons/fa";
-import { gamesMock } from '../../mocks/game';
+import { useEffect, useState, useMemo } from 'react';
+import { getGamesDeals } from '../../services/apiService';
+import { formatGamesDeals } from '../../utils/gameAdapter';
+import { Link } from 'react-router-dom';
 
 export function Offer() {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,25 +15,150 @@ export function Offer() {
     const [ratingOpen, setRatingOpen] = useState(false);
     const [releaseOpen, setReleaseOpen] = useState(false);
     const [compatOpen, setCompatOpen] = useState(false);
+
+    const [games, setGames] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const [sortOrder, setSortOrder] = useState('none');
+    const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+    const [selectedStores, setSelectedStores] = useState<string[]>([]);
+    const [minDiscount, setMinDiscount] = useState<number>(0);
+    const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
+
+    const GAMES_PER_PAGE = 12;
+
+    async function loadGames() {
+        try {
+            setLoading(true);
+            const response = await getGamesDeals(5000, 0);
+            const formatted = formatGamesDeals(response);
+            setGames(formatted);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        loadGames();
+    }, []);
+
+    const availableStores = useMemo(() => {
+        const stores = new Set<string>();
+        games.forEach(g => {
+            if (g.deal?.shop?.name) stores.add(g.deal.shop.name);
+        });
+        return Array.from(stores).sort();
+    }, [games]);
+
+    const availableGenres = useMemo(() => {
+        const genres = new Set<string>();
+        games.forEach(g => {
+            if (g.tags && Array.isArray(g.tags)) {
+                g.tags.forEach(tag => genres.add(tag));
+            }
+        });
+        return Array.from(genres).sort();
+    }, [games]);
+
+    const toggleFilter = (list: string[], setList: React.Dispatch<React.SetStateAction<string[]>>, value: string) => {
+        setList(prev => prev.includes(value) ? prev.filter(i => i !== value) : [...prev, value]);
+        setCurrentPage(1);
+    };
+
+    const clearFilters = () => {
+        setSelectedGenres([]);
+        setSelectedStores([]);
+        setMinDiscount(0);
+        setPriceRange([0, 500]);
+        setSortOrder('none');
+        setCurrentPage(1);
+    };
+
+    const processedGames = useMemo(() => {
+        let result = [...games];
+
+        if (selectedStores.length > 0) {
+            result = result.filter(g => g.deal?.shop?.name && selectedStores.includes(g.deal.shop.name));
+        }
+
+        if (selectedGenres.length > 0) {
+            result = result.filter(g => g.tags && g.tags.some((tag: string) => selectedGenres.includes(tag)));
+        }
+
+        if (minDiscount > 0) {
+            result = result.filter(g => {
+                if (!g.deal?.regular || !g.deal?.price) return false;
+                const pct = Math.round(((g.deal.regular.amount - g.deal.price.amount) / g.deal.regular.amount) * 100);
+                return pct >= minDiscount;
+            });
+        }
+
+        result = result.filter(g => {
+            const price = g.deal?.price?.amount || 0;
+            return price >= priceRange[0] && price <= priceRange[1];
+        });
+
+        if (sortOrder === 'lowest_price') {
+            result.sort((a, b) => (a.deal?.price?.amount || 0) - (b.deal?.price?.amount || 0));
+        } else if (sortOrder === 'highest_price') {
+            result.sort((a, b) => (b.deal?.price?.amount || 0) - (a.deal?.price?.amount || 0));
+        } else if (sortOrder === 'best_discount') {
+            result.sort((a, b) => {
+                const pctA = Math.round(((a.deal?.regular?.amount - a.deal?.price?.amount) / a.deal?.regular?.amount) * 100) || 0;
+                const pctB = Math.round(((b.deal?.regular?.amount - b.deal?.price?.amount) / b.deal?.regular?.amount) * 100) || 0;
+                return pctB - pctA;
+            });
+        }
+
+        return result;
+    }, [games, selectedGenres, selectedStores, minDiscount, priceRange, sortOrder]);
+
+    const startIndex = (currentPage - 1) * GAMES_PER_PAGE;
+    const visibleGames = processedGames.slice(startIndex, startIndex + GAMES_PER_PAGE);
+    const maxLoadedPages = Math.ceil(processedGames.length / GAMES_PER_PAGE);
+
+    function changePage(page: number) {
+        if (page >= 1 && page <= maxLoadedPages) {
+            setCurrentPage(page);
+        }
+    }
+
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = startPage + 4;
     
-    return(
+    if (startPage === 1) {
+        endPage = Math.min(5, maxLoadedPages);
+    } else if (endPage > maxLoadedPages) {
+        endPage = maxLoadedPages;
+        startPage = Math.max(1, endPage - 4);
+    }
+
+    const pageNumbers = [];
+    for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(i);
+    }
+
+    return (
         <section className={styles['offer-page']}>
             <div className={`${styles.container}`}>
                 <div className={`${styles['horizontal-border']}`}>
                     <div className={`${styles['link-border']}`}>
-                        <a href="\">Início</a>
+                        <a href="/">Início</a>
                         <span><FaChevronRight className={`${styles['icon-right']}`}/></span>
-                        <a href="\offers">Ofertas</a>
+                        <a href="/offers">Ofertas</a>
                     </div>
 
                     <div className={`${styles['show-border']}`}>
                         <div className={`${styles['show-result']}`}>    
-                            <p>Mostrando <span>1500</span> resultados</p>
+                            <p>Mostrando <span>{processedGames.length}</span> resultados</p>
                         </div>
 
                         <div className={`${styles['show-tags']}`}>
-                            <a href="">RPF Ação</a>
-                            <a href="">Menor que R$30</a>
+                            {selectedGenres.map(g => <a key={g} onClick={() => toggleFilter(selectedGenres, setSelectedGenres, g)}>{g}</a>)}
+                            {selectedStores.map(s => <a key={s} onClick={() => toggleFilter(selectedStores, setSelectedStores, s)}>{s}</a>)}
                         </div>
 
                         <div className={`${styles['dropdown-bar']}`}>
@@ -45,9 +167,10 @@ export function Offer() {
                                 { isOpen ? <FaAngleUp className={styles['icon-up']} /> : <FaAngleDown className={styles['icon-down']} /> }
                             </button>
                             <ul className={`${styles.dropdown} ${isOpen ? styles.open : ''}`}>
-                                <li>Menor Preço</li>
-                                <li>Maior Preço</li>
-                                <li>Melhor Desconto</li>
+                                <li onClick={() => { setSortOrder('lowest_price'); setIsOpen(false); }}>Menor Preço</li>
+                                <li onClick={() => { setSortOrder('highest_price'); setIsOpen(false); }}>Maior Preço</li>
+                                <li onClick={() => { setSortOrder('best_discount'); setIsOpen(false); }}>Melhor Desconto</li>
+                                <li onClick={() => { setSortOrder('none'); setIsOpen(false); }}>Padrão</li>
                             </ul>
                         </div>
                     </div>
@@ -57,206 +180,99 @@ export function Offer() {
                     <div className={`${styles['aside-bar']}`}>
                         <div className={`${styles['aside-filter']}`}>
                             <p><FaFilter className={`${styles['icon-filter']}`}/>Filtros</p>
-                            <button>Limpar tudo</button>
+                            <button onClick={clearFilters} style={{ background: 'none', border: 'none' }}>Limpar tudo</button>
                         </div>
 
                         <div className={styles['aside-genre']}>
                             <button className={styles['aside-header']} onClick={() => setGenreOpen(!genreOpen)}>
-                                <p>Gênero</p>
-                                {genreOpen
-                                    ? <FaAngleUp className={styles['icon-up-filter']} />
-                                    : <FaAngleDown className={styles['icon-down-filter']} />
-                                }
+                                <p>Gênero / Tags</p>
+                                {genreOpen ? <FaAngleUp className={styles['icon-up-filter']} /> : <FaAngleDown className={styles['icon-down-filter']} />}
                             </button>
-
                             <ul className={`${styles['dropdown-filter']} ${genreOpen ? styles.openFilter : ''}`}>
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>RPG </label>
-                                </li>
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Ação </label>
-                                </li>
-
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Aventura </label>
-                                </li>
+                                {availableGenres.map(genre => (
+                                    <li key={genre}>
+                                        <label> 
+                                            <input 
+                                                className={`${styles['input-checkbox']}`} 
+                                                type="checkbox"
+                                                checked={selectedGenres.includes(genre)}
+                                                onChange={() => toggleFilter(selectedGenres, setSelectedGenres, genre)}
+                                            />{genre} 
+                                        </label>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
 
                         <div className={`${styles['aside-price']}`}>
                             <button className={styles['aside-header']} onClick={() => setPriceOpen(!priceOpen)}>
                                 <p>Faixa de Preço</p>
-                                {priceOpen
-                                    ? <FaAngleUp className={styles['icon-up-filter']} />
-                                    : <FaAngleDown className={styles['icon-down-filter']} />
-                                }
+                                {priceOpen ? <FaAngleUp className={styles['icon-up-filter']} /> : <FaAngleDown className={styles['icon-down-filter']} />}
                             </button>
-
                             <ul className={`${styles['dropdown-filter']} ${priceOpen ? styles.openFilter : ''}`}>
-                                <li>
-                                    <PriceFilter/>
-                                </li>
+                                <li><PriceFilter onPriceChange={(min, max) => { setPriceRange([min, max]); setCurrentPage(1); }}/></li>
                             </ul>
                         </div>
 
                         <div className={`${styles['aside-store']}`}>
                             <button className={styles['aside-header']} onClick={() => setStoreOpen(!storeOpen)}>
-                                <p>Lojas</p>
-                                {storeOpen
-                                    ? <FaAngleUp className={styles['icon-up-filter']} />
-                                    : <FaAngleDown className={styles['icon-down-filter']} />
-                                }
+                                <p>Lojas Disponíveis</p>
+                                {storeOpen ? <FaAngleUp className={styles['icon-up-filter']} /> : <FaAngleDown className={styles['icon-down-filter']} />}
                             </button>
-
                             <ul className={`${styles['dropdown-filter']} ${storeOpen ? styles.openFilter : ''}`}>
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Steam</label>
-                                </li>
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>GOG</label>
-                                </li>
-
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Epic</label>
-                                </li>
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Humble</label>
-                                </li>
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Nuuvem</label>
-                                </li>
+                                {availableStores.map(store => (
+                                    <li key={store}>
+                                        <label> 
+                                            <input 
+                                                className={`${styles['input-checkbox']}`} 
+                                                type="checkbox"
+                                                checked={selectedStores.includes(store)}
+                                                onChange={() => toggleFilter(selectedStores, setSelectedStores, store)}
+                                            />{store}
+                                        </label>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
 
                         <div className={`${styles['aside-discount']}`}>
                             <button className={styles['aside-header']} onClick={() => setDiscountOpen(!discountOpen)}>
                                 <p>Descontos</p>
-                                {discountOpen
-                                    ? <FaAngleUp className={styles['icon-up-filter']} />
-                                    : <FaAngleDown className={styles['icon-down-filter']} />
-                                }
+                                {discountOpen ? <FaAngleUp className={styles['icon-up-filter']} /> : <FaAngleDown className={styles['icon-down-filter']} />}
                             </button>
-
                             <ul className={`${styles['dropdown-filter']} ${discountOpen ? styles.openFilter : ''}`}>
-                                <li>
-                                    <label> <input type="checkbox"/>Qualquer Desconto </label>
-                                </li>
-                                <li>
-                                    <label> <input type="checkbox"/>25%</label>
-                                </li>
-                                <li>
-                                    <label> <input type="checkbox"/>50%</label>
-                                </li>
-                                <li>
-                                    <label> <input type="checkbox"/>75%</label>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div className={`${styles['aside-rating']}`}>
-                            <button className={styles['aside-header']} onClick={() => setRatingOpen(!ratingOpen)}>
-                                <p>Avaliações</p>
-                                {ratingOpen
-                                    ? <FaAngleUp className={styles['icon-up-filter']} />
-                                    : <FaAngleDown className={styles['icon-down-filter']} />
-                                }
-                            </button>
-
-                            <ul className={`${styles['dropdown-filter']} ${ratingOpen ? styles.openFilter : ''}`}>
-                                <li>
-                                    <label><input className={`${styles['input-checkbox']}`} type="checkbox"/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><span>5+ Estrelas</span></label>
-                                </li>
-                                <li>
-                                    <label><input className={`${styles['input-checkbox']}`} type="checkbox"/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star-void']}/><span>4+ Estrelas</span></label>
-                                </li>
-                                <li>
-                                    <label><input className={`${styles['input-checkbox']}`} type="checkbox"/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><span>3+ Estrelas</span></label>
-                                </li>
-                                <li>
-                                    <label><input className={`${styles['input-checkbox']}`} type="checkbox"/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><span>2+ Estrelas</span></label>
-                                </li>
-                                <li>
-                                    <label><input className={`${styles['input-checkbox']}`} type="checkbox"/><FaStar className={styles['icon-star']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><FaStar className={styles['icon-star-void']}/><span>1+ Estrelas</span></label>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div className={`${styles['aside-release']}`}>
-                            <button className={styles['aside-header']} onClick={() => setReleaseOpen(!releaseOpen)}>
-                                <p>Ano de Lançamento</p>
-                                {releaseOpen
-                                    ? <FaAngleUp className={styles['icon-up-filter']} />
-                                    : <FaAngleDown className={styles['icon-down-filter']} />
-                                }
-                            </button>
-
-                            <ul className={`${styles['dropdown-filter']} ${releaseOpen ? styles.openFilter : ''}`}>
-                                <li>
-                                    <label>2018 - 2022</label>
-                                </li>
-                                <li>
-                                    <label>2022 - 2026</label>
-                                </li>
-                                <li>
-                                    <label>2010 - 2014</label>
-                                </li>
-                                <li>
-                                    <label>2014 - 2018</label>
-                                </li>
-                                <li>
-                                    <label>2002 - 2006</label>
-                                </li>
-                                <li>
-                                    <label>2006 - 2010</label>
-                                </li>
-                                <li>
-                                    <label>1994 - 1998</label>
-                                </li>
-                                <li>
-                                    <label>1998 - 2002</label>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div className={`${styles['aside-compati']}`}>
-                            <button className={styles['aside-header']} onClick={() => setCompatOpen(!compatOpen)}>
-                                <p>Compatibilidade</p>
-                                {compatOpen
-                                    ? <FaAngleUp className={styles['icon-up-filter']} />
-                                    : <FaAngleDown className={styles['icon-down-filter']} />
-                                }
-                            </button>
-
-                            <ul className={`${styles['dropdown-filter']} ${compatOpen ? styles.openFilter : ''}`}>
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Windows </label>
-                                </li>
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>macOS </label>
-                                </li>
-
-                                <li>
-                                    <label> <input className={`${styles['input-checkbox']}`} type="checkbox"/>Linux </label>
-                                </li>
+                                <li><label><input type="radio" name="discount" checked={minDiscount === 0} onChange={() => { setMinDiscount(0); setCurrentPage(1); }}/> Qualquer Desconto</label></li>
+                                <li><label><input type="radio" name="discount" checked={minDiscount === 25} onChange={() => { setMinDiscount(25); setCurrentPage(1); }}/> 25% ou mais</label></li>
+                                <li><label><input type="radio" name="discount" checked={minDiscount === 50} onChange={() => { setMinDiscount(50); setCurrentPage(1); }}/> 50% ou mais</label></li>
+                                <li><label><input type="radio" name="discount" checked={minDiscount === 75} onChange={() => { setMinDiscount(75); setCurrentPage(1); }}/> 75% ou mais</label></li>
                             </ul>
                         </div>
                     </div>
 
                     <div className={`${styles['offer-main']}`}>
+                        {visibleGames.length === 0 && !loading && (
+                            <div style={{ textAlign: 'center', padding: '2rem', color: '#9CA3AF' }}>
+                                Nenhum jogo encontrado com esses filtros.
+                            </div>
+                        )}
                         <div className={`${styles['container-card']}`}>
-                            {gamesMock.slice(0,12).map((game, index) => {
+                            {visibleGames.map((game, index) => {
+                                if (!game.deal || !game.deal.regular || !game.deal.price) return null;
+                                        
                                 const discountPercent = Math.round(
                                     ((game.deal.regular.amount - game.deal.price.amount) / game.deal.regular.amount) * 100
-                                );
+                                ) || 0;
+                                        
                                 return (
-                                    <div key={index} className={`${styles['card-game']}`}>
+                                    <a key={game.id || index} className={`${styles['card-game']}`}>
                                         <div className={`${styles['cards']}`}>
                                             <div className={styles['card-top']}>
                                                 <p className={styles['porcent-discount']}>-{discountPercent}%</p>
                                                 <p ><FaRegHeart className={styles['icon-heart']}/></p>
                                                 <img 
                                                     className={styles['image-game']} 
-                                                    src={game.deal.assets.boxart} 
+                                                    src={game.assets?.banner600 || game.assets?.banner400 || game.assets?.banner200 || '/assets/NoCape.png'}
+                                                    onError={(e) => { e.currentTarget.src = '/assets/NoCape.png'; }}
                                                     alt={`Capa do jogo ${game.title}`} 
                                                 />
                                             </div>
@@ -264,26 +280,13 @@ export function Offer() {
                                         
                                         <div className={`${styles['description']}`}>
                                             <p className={`${styles['game-name']}`}>{game.title}</p>
-                                            
                                             <span className={`${styles['tags']}`}>
-                                                {game.tags.slice(0, 2).map((tag, tagIndex) => (
+                                                {game.tags.slice(0, 2).map((tag: string, tagIndex: number) => (
                                                     <p key={tagIndex}>{tag}</p>
                                                 ))}
                                             </span>
-                                            
-                                            <span className={`${styles['stores']}`}>
-                                                <p><FaSteam className={styles['steam-icon']}/></p>
-                                            </span>
-                                            
-                                            <span className={`${styles['ratings']}`}>
-                                                <p>
-                                                    <FaStar className={styles['icon-star']}/>
-                                                    <FaStar className={styles['icon-star']}/>
-                                                    <FaStar className={styles['icon-star']}/>
-                                                    <FaStar className={styles['icon-star']}/>
-                                                    <FaStar className={styles['icon-star']}/>
-                                                    <span> 5.0</span>
-                                                </p>
+                                            <span className={styles.stores}>
+                                                <p>{game.deal.shop.name}</p>
                                             </span>
                                         </div>
                                         
@@ -296,27 +299,50 @@ export function Offer() {
                                                     R${game.deal.price.amount.toFixed(2).replace('.', ',')}
                                                 </p>
                                             </span>
-                                            <a href="/gameDetail"><button>Ver oferta</button></a>
+                                            <Link to={`/gameDetail/${game.id}`} style={{ textDecoration: 'none' }}>
+                                                <button>Ver oferta</button>
+                                            </Link>
                                         </div>
-                                    </div>
+                                    </a>
                                 );
                             })}
                         </div>
                         
-                        <div className={`${styles['select-button']}`}>
-                            <button className={`${styles['previous-button']}`}>Anterior</button>
-                            <button className={`${styles['number-button']}`}>1</button>
-                            <button className={`${styles['number-button']}`}>2</button>
-                            <button className={`${styles['number-button']}`}>3</button>
-                            <button className={`${styles['number-button-etc']}`}>...</button>
-                            <button className={`${styles['number-button']}`}>49</button>
-                            <button className={`${styles['number-button']}`}>50</button>
-                            <button className={`${styles['next-button']}`}>Próximo</button>
-                        </div>
+                        {maxLoadedPages > 1 && (
+                            <div className={`${styles['select-button']}`}>
+                                <button
+                                    className={styles['previous-button']}
+                                    disabled={currentPage === 1}
+                                    onClick={() => changePage(currentPage - 1)}
+                                    style={{ opacity: currentPage === 1 ? 0.5 : 1, cursor: currentPage === 1 ? 'not-allowed' : 'pointer' }}
+                                >
+                                    Anterior
+                                </button>
+
+                                {pageNumbers.map(page => (
+                                    <button
+                                        key={page}
+                                        className={`${styles['number-button']} ${currentPage === page ? styles.activePage : ''}`}
+                                        onClick={() => changePage(page)}
+                                        style={currentPage === page ? { backgroundColor: '#8B5CF6', borderColor: '#8B5CF6', color: '#fff' } : {}}
+                                    >
+                                        {page}
+                                    </button>
+                                ))}
+
+                                <button
+                                    className={styles['next-button']}
+                                    onClick={() => changePage(currentPage + 1)}
+                                    disabled={currentPage === maxLoadedPages}
+                                    style={{ opacity: currentPage === maxLoadedPages ? 0.5 : 1, cursor: currentPage === maxLoadedPages ? 'not-allowed' : 'pointer' }}
+                                >
+                                    Próximo
+                                </button>
+                            </div>
+                        )}
                     </div>   
                 </div>
             </div>
-
         </section>
     );
 }
