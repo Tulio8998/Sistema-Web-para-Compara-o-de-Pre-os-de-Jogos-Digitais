@@ -194,10 +194,14 @@ export class GameService {
       let allDeals: any[] = [];
       let historyLow: any = null;
       let historyShopName = 'Loja Desconhecida';
+      let historyTime = 'Sem Data';
 
       if (historyData && historyData.length > 0 && historyData[0].low) {
         historyLow = historyData[0].low.price;
         historyShopName = historyData[0].low.shop?.name || 'Loja Desconhecida';
+        historyTime = historyData[0].low.timestamp
+          ? new Date(historyData[0].low.timestamp).toLocaleDateString('pt-BR')
+          : 'Sem Data';
       }
 
       if (pricesData && pricesData.length > 0) {
@@ -246,6 +250,7 @@ export class GameService {
                 amount: historyLow.amount,
                 currency: historyLow.currency,
                 shopName: historyShopName,
+                timeStamp: historyTime,
               }
             : null,
         },
