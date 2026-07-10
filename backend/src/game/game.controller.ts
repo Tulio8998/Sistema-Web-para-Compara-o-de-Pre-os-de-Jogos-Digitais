@@ -18,7 +18,7 @@ import { Role } from '@prisma/client';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 
 @Controller('game')
-//@UseGuards(AuthGuard('jwt'), RolesGuard)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class GameController {
   constructor(private readonly gameService: GameService) {}
 
@@ -32,7 +32,7 @@ export class GameController {
   }
 
   @Get()
-  //@Roles(Role.ADMIN, Role.CLIENT)
+  @Roles(Role.ADMIN, Role.CLIENT)
   findAll(
     @Req() req: any,
     @Query('limit') limit?: string,
