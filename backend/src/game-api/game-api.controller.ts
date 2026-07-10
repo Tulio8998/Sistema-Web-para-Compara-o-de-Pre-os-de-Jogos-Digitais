@@ -32,8 +32,17 @@ export class GameApiController {
     @Query('offset') offset?: number,
     @Query('country') country?: string,
     @Query('shops') shops?: string,
+    @Query('minPrice') minPrice?: number,
+    @Query('maxPrice') maxPrice?: number,
   ) {
-    return this.gameService.getDeals(limit, offset, country, shops);
+    return this.gameService.getDeals(
+      limit,
+      offset,
+      country,
+      shops,
+      minPrice,
+      maxPrice,
+    );
   }
 
   @Post('prices')
