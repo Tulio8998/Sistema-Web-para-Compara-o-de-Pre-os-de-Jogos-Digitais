@@ -14,7 +14,7 @@ export function Footer() {
                         <span>
                             <a href=""><FaDiscord className={styles['discord-icon']}/></a>
                             <a href=""><FaInstagram className={styles['instagram-icon']}/></a>
-                            <a href=""><FaGithub className={styles['github-icon']}/></a>
+                            <a href="https://github.com/Tulio8998"><FaGithub className={styles['github-icon']}/></a>
                         </span>
                     </ul>
                     <ul>

@@ -5,6 +5,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { getGamesDeals } from '../../services/apiService';
 import { formatGamesDeals } from '../../utils/gameAdapter';
 import { Link } from 'react-router-dom';
+import { FavoriteButton } from '../../components/FavoriteButton';
 
 export function Offer() {
     const [isOpen, setIsOpen] = useState(false);
@@ -268,7 +269,7 @@ export function Offer() {
                                         <div className={`${styles['cards']}`}>
                                             <div className={styles['card-top']}>
                                                 <p className={styles['porcent-discount']}>-{discountPercent}%</p>
-                                                <p><FaRegHeart className={styles['icon-heart']}/></p>
+                                                <p className={styles['icon-heart']}><FavoriteButton gameId={game.externalApiId || game.id} /></p>
                                                 <img 
                                                     className={styles['image-game']} 
                                                     src={game.assets?.banner600 || game.assets?.banner400 || game.assets?.boxart || '/assets/NoCape.png'}

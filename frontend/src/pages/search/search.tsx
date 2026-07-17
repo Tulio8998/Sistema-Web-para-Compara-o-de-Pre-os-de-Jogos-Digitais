@@ -4,6 +4,7 @@ import { PriceFilter } from '../../utils/offer';
 import { useEffect, useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { searchGamesByTitle, getGamePrices } from '../../services/apiService';
+import { FavoriteButton } from '../../components/FavoriteButton';
 
 export function Search() {
     const { query } = useParams();
@@ -261,7 +262,7 @@ export function Search() {
                                             <div className={`${styles['cards']}`}>
                                                 <div className={styles['card-top']}>
                                                     <p className={styles['porcent-discount']}>-{discountPercent}%</p>
-                                                    <p ><FaRegHeart className={styles['icon-heart']}/></p>
+                                                    <p className={styles['icon-heart']}><FavoriteButton gameId={game.externalApiId || game.id} /></p>
                                                     <img 
                                                         className={styles['image-game']} 
                                                         src={game.assets?.banner600 || game.assets?.banner400 || game.assets?.boxart || '/assets/NoCape.png'}

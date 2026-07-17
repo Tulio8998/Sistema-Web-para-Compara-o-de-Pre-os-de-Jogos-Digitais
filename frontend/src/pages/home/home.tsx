@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { getGamesDeals } from '../../services/apiService';
 import { formatGamesDeals } from '../../utils/gameAdapter';
 import { Link } from 'react-router-dom';
+import { FavoriteButton } from '../../components/FavoriteButton';
 
 export function Home() {
     const [bestDeals, setBestDeals] = useState<any[]>([]);
@@ -50,7 +51,7 @@ export function Home() {
                 <div className={`${styles['cards']}`}>
                     <div className={styles['card-top']}>
                         <p className={styles['porcent-discount']}>-{discountPercent}%</p>
-                        <p><FaRegHeart className={styles['icon-heart']}/></p>
+                        <p className={styles['icon-heart']}><FavoriteButton gameId={game.externalApiId || game.id} /></p>
                         <img
                             className={styles['image-game']}
                             src={coverImage}

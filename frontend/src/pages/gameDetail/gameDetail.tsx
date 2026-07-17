@@ -10,26 +10,40 @@ import { RiShareBoxLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getGameById } from '../../services/apiService';
+import { getWishList, addGameToWishList, removeGameFromWishList } from '../../services/apiService';
 
 export function GameDetail() {
     const { id } = useParams();
     const [game, setGame] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-
+    const [isFavorite, setIsFavorite] = useState(false);
+    const [wishListId, setWishListId] = useState<string | null>(null);
+    
     useEffect(() => {
         async function fetchGame() {
             try {
                 if (id) {
                     const data = await getGameById(id);
                     setGame(data);
-
+                    
                     const savedRecent = JSON.parse(localStorage.getItem('recentGames') || '[]');
                     const filteredRecent = savedRecent.filter((g: any) => 
-                        (g.externalApiId || g.id) !== (data.externalApiId || data.id)
+                         (g.externalApiId || g.id) !== (data.externalApiId || data.id)
                     );
-                    
                     filteredRecent.unshift(data); 
                     localStorage.setItem('recentGames', JSON.stringify(filteredRecent.slice(0, 10)));
+
+                    const token = localStorage.getItem('token');
+                    if (token) {
+                        const favorites = await getWishList();
+                        const found = favorites.find((fav: any) => 
+                            fav.game?.externalApiId === id || fav.gameId === id
+                        );
+                        if (found) {
+                            setIsFavorite(true);
+                            setWishListId(found.id);
+                        }
+                    }
                 }
             } catch (error) {
                 console.error("Erro ao carregar jogo:", error);
@@ -39,6 +53,32 @@ export function GameDetail() {
         }
         fetchGame();
     }, [id]);
+
+    const handleToggleFavorite = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            alert('Você precisa estar logado para salvar jogos!');
+            return;
+        }
+        try {
+            if (isFavorite && wishListId) {
+                await removeGameFromWishList(wishListId);
+                setIsFavorite(false);
+                setWishListId(null);
+            } else {
+                const response = await addGameToWishList(id as string);
+                setIsFavorite(true);
+                setWishListId(response.id);
+            }
+        } catch (error) {
+            alert('Erro ao modificar favoritos.');
+        }
+    };
+
+    const handleShare = () => {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link copiado para a área de transferência!');
+    };
 
     if (loading) return <div style={{ textAlign: 'center', marginTop: '100px', color: '#fff' }}>Carregando Jogo...</div>;
     if (!game) return <div style={{ textAlign: 'center', marginTop: '100px', color: '#fff' }}>Jogo não encontrado!</div>;
@@ -88,8 +128,14 @@ export function GameDetail() {
                             </p>
                             
                             <span className={styles['button-options']}>
-                                <button> <MdFavorite className={styles['icon-favorite']}/>Adicionar aos Favoritos</button>
-                                <button> <RiShareBoxLine className={styles['icon-share']}/>Compartilhar</button>
+                                <button onClick={handleToggleFavorite}> 
+                                    <MdFavorite className={styles['icon-favorite']} style={{ color: isFavorite ? '#f53b57' : 'inherit' }}/>
+                                    {isFavorite ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
+                                </button>
+                                <button onClick={handleShare}> 
+                                    <RiShareBoxLine className={styles['icon-share']}/>
+                                    Compartilhar
+                                </button>
                             </span>
                             
                             <div className={styles['prices']}>
