@@ -193,7 +193,8 @@ export function SignUp() {
                         </div>
 
                         <div className={styles['terms-service']}>
-                            <p> Se inscrevendo você concorda com nossos <a href="" className={styles['link-term']}>Termos e Serviços</a> e <a href="" className={styles['link-poli']}>Politicas de Privicidade</a></p>
+                            <p> Se inscrevendo você concorda com nossos</p>
+                            <p><a href="" className={styles['link-term']}>Termos e Serviços</a> e <a href="" className={styles['link-poli']}>Politicas de Privicidade</a></p>
                         </div>
 
                     </div>

@@ -482,11 +482,7 @@
     margin-right: 0.5rem;
 }
 
-.create-account .terms-service {
-    width: 20rem;
-    font-size: 0.8rem;
-    text-align: center;
-}
+
 
 .create-account .terms-service p {
     color: #374151;
@@ -494,5 +490,8 @@
 
 .create-account .terms-service a {
     color: #6B7280;
-    border-bottom: 1px solid #6B7280;
+}
+
+.create-account .terms-service a:hover {
+    text-decoration: underline;
 }

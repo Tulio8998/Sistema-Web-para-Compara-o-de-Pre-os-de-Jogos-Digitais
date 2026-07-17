@@ -122,11 +122,6 @@ export function SignIn() {
                             <a><FcGoogle className={styles['icon-google']}/>Google</a>
                             <p className={styles['no-account']}>Não tem uma conta?  <a href="/signUp"> Se inscreva-se</a></p>
                         </div>
-
-                        <div className={styles['terms-service']}>
-                            <p> Se inscrevendo você concorda com nossos <a href="" className={styles['link-term']}>Termos e Serviços</a> e <a href="" className={styles['link-poli']}>Politicas de Privicidade</a></p>
-                        </div>
-
                     </div>
                 </div>
            </div>
