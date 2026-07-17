@@ -18,11 +18,11 @@ import { Role } from '@prisma/client';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 
 @Controller('game')
-@UseGuards(AuthGuard('jwt'), RolesGuard)
 export class GameController {
   constructor(private readonly gameService: GameService) {}
 
   @Post('sync')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.ADMIN)
   create(@Query('limit') limit?: string, @Query('offset') offset?: string) {
     const limitNumber = limit ? parseInt(limit, 10) : 100;
@@ -32,7 +32,6 @@ export class GameController {
   }
 
   @Get()
-  @Roles(Role.ADMIN, Role.CLIENT)
   findAll(
     @Req() req: any,
     @Query('limit') limit?: string,
@@ -45,12 +44,12 @@ export class GameController {
   }
 
   @Get(':id')
-  @Roles(Role.ADMIN, Role.CLIENT)
   findOne(@Param('id') id: string) {
     return this.gameService.findOne(id);
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.ADMIN, Role.CLIENT)
   update(
     @Param('id') id: string,
@@ -61,6 +60,7 @@ export class GameController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.ADMIN, Role.CLIENT)
   remove(@Param('id') id: string, @Req() req: any) {
     return this.gameService.remove(id, req.user);
