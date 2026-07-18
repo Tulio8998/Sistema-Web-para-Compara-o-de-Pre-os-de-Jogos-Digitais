@@ -22,7 +22,7 @@ model User {
   name      String
   email     String     @unique
   password  String
-  role      Role       @default(ADMIN)
+  role      Role       @default(CLIENT)
 
   userGames WishList[] @relation("Users")
   userComments Comments[] @relation("Users")
