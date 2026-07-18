@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from '../styles/topbar.module.css';
 
 export function TopbarAuth() {
@@ -5,7 +6,7 @@ export function TopbarAuth() {
         <aside className={styles['top-bar-auth']}>
             <div className={`container ${styles.container}`}>
                 <nav>
-                    <a className={styles.logo} href="">Logo</a>
+                    <Link className={styles.logo} to="/"><img src="public/assets/logo.png" alt="" /></Link>
                     <a href="/">Início</a>
                     <a href="/offers">Ofertas</a>
                 </nav>

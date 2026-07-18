@@ -35,7 +35,7 @@ export function Topbar() {
         <aside className={styles['top-bar']}>
             <div className={`container ${styles.container}`}>
                 <nav>
-                    <Link className={styles.logo} to="/">Logo</Link>
+                    <Link className={styles.logo} to="/"><img src="public/assets/logo.png" alt="" /></Link>
                     <Link to="/">Início</Link>
                     <Link to="/offers">Ofertas</Link>
                     
