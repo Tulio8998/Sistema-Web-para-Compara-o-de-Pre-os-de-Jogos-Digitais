@@ -60,7 +60,7 @@ export function SignIn() {
             <div className={styles.slogan}>
                 <div className={styles.container}>
                     <div className={styles.init}>
-                        <h1 className={styles.title}>Nome</h1>
+                        <h1 className={styles.title}>GameCompare</h1>
                         <h2 className={styles.subtitle}>COMPARE . ECONOMIZE . JOGUE</h2>
                     </div>
 
