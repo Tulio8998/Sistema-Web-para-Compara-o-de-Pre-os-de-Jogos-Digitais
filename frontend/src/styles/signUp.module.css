@@ -247,6 +247,7 @@
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     font-weight: 800;
+    justify-content: flex-start;
 }
 
 
@@ -435,6 +436,7 @@
 .create-account .no-account {
     display: flex;
     justify-content: center;
+    align-items: center;
     color: #6B7280;
     margin-top: 2rem;
     gap: 10px;

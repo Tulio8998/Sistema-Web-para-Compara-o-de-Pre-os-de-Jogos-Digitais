@@ -64,7 +64,6 @@ export function SignUp() {
             <div className={styles['slogan-create']}>
                 <div className={styles.container}>
                     <div className={styles.init}>
-                        <p className={styles.logo}>Logo</p>
                         <h1 className={styles.title}>Nome</h1>
                         <h2 className={styles.subtitle}>COMPARE . ECONOMIZE . JOGUE</h2>
                         <h3 className={styles['sub-subtitle']}>COMEÇAR É FÁCIL</h3>
@@ -99,7 +98,6 @@ export function SignUp() {
            <div className={styles['create-account']}>
                 <div className={styles.container}>
                     <div className={styles['create-init']}>
-                        <p className={styles.logo}>Logo</p>
                         <h2 className={styles.subtitle}>Seja bem vindo</h2>
                         <p className={styles.description}>Entre em sua conta para continuar</p>
 
