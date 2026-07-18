@@ -2,6 +2,7 @@ import styles from '../styles/footer.module.css';
 import { FaDiscord } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 export function Footer() {
     return(
@@ -9,7 +10,7 @@ export function Footer() {
             <div className={`container ${styles.container}`}>
                 <nav>
                     <ul>
-                        <a className={`${styles.logo} ${styles.title}`} href="">Logo</a>
+                        <Link className={styles.logo} to="/"><img src="public/assets/logo.png" alt="" /></Link>
                         <p className={styles.description}>Plataforma de comparar preço de jogos digitais.</p>
                         <span>
                             <a href=""><FaDiscord className={styles['discord-icon']}/></a>
@@ -42,7 +43,7 @@ export function Footer() {
                     </ul>
                 </nav>
                 <div className={styles.rights}>
-                    <p>© 2026 Nome. Todos os direitos reservados.</p>
+                    <p>© 2026 GameCompare. Todos os direitos reservados.</p>
                 </div>
             </div>
         </footer>
