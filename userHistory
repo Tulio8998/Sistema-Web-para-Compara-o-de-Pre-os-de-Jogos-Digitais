@@ -1,0 +1,24 @@
+HISTORIAS DE USUARIO - SISTEMA WEB DE COMPARACAO DE PREÇOS DE JOGOS
+
+1 - Como usuario comum, quero poder: 
+	- Me cadatrar no sistema, para:
+		* Favoritar jogos
+		* Editar meus dados
+		* (Possiveis):
+			+ Avaliar jogo
+			+ Comentar jogo
+	- Visualizar jogos tendências com preços bons no momento
+	- Filtrar jogos mais baratos ao aos mais caros
+	- Filtrar jogos por tipo (jogo ou dlc)
+	- Filtrar jogos por categoria
+	- Filtrar jogos por loja
+	- Buscar determinado jogo em uma barra de pesquisa, e ver sua pré  		visualização
+	- Receber recomendações do sistema com base no meu historico de 		jogos
+	- Filtrar jogos por mais vendidos
+	- Visualizar historio de preços de jogos, podendo ver em grafico
+	- Visualizar possiveis baixas de preços no futuro
+	
+2 - Como administrador, quero poder:
+	- Visualizar usuarios cadastrados
+	- Remover e editar usuarios
+	- Ter funcionalidades de usuario comum

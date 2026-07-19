@@ -1,0 +1,151 @@
+.top-bar {
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    position: static;
+    background-color: var(--bg-top-bar);
+    width: 100%;
+    height: 8rem;
+    border-bottom: 1px solid #2D3243;
+}
+
+.top-bar .container {
+    width: 100%;
+    display: flex;
+}
+
+.logo img {
+    width: 100px;
+    height: auto;
+    display: block;
+}
+
+.top-bar nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.top-bar a {
+    font-size: 1rem;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.top-bar a:hover {
+    transition: 0.8s;
+    transform: scale(1.05);
+    filter:
+        drop-shadow(0 0 5px rgb(79, 79, 79));
+}
+
+.top-bar .logo {
+    margin-right: auto;
+}
+
+.top-bar .myAccount {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    gap: 10px;
+    margin-left: 4.7rem;
+} 
+
+.top-bar .icon-account {
+    font-size: 2rem;
+} 
+
+.top-bar .searchbar {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    max-width: 500px;
+    background-color: #1A1D27;
+    border: 1px solid #252936;
+    border-radius: 12px;
+    padding: 0.4rem;
+}
+
+.top-bar input {
+    display: flex;
+    padding: 0.8rem;
+    width: 100%;
+    font-size: 1rem;
+    color: var(--white);
+    font-weight: 500;
+    border-radius: 7%;
+}
+
+.top-bar button {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.top-bar button:hover {
+    transition: 0.8s;
+    transform: scale(1.05);
+    filter:
+        drop-shadow(0 0 5px rgb(79, 79, 79));
+}
+
+.clearbutton {
+    color: var(--white);
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+}
+
+.searchbutton {
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    background: var(--bg-top-search-button);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.search-icon {
+    color: var(--color-top-search-icon);
+    font-size: 30px;
+}
+
+
+
+
+.top-bar-auth {
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    position: static;
+    background-color: var(--bg-top-bar);
+    width: 100%;
+    height: 8rem;
+    border-bottom: 1px solid #2D3243;
+}
+
+.top-bar-auth .container {
+    width: 100%;
+    display: flex;
+}
+
+.top-bar-auth nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.top-bar-auth a {
+    font-size: 1rem;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.top-bar-auth a:hover {
+    transition: 0.8s;
+    transform: scale(1.1);
+    filter:
+        drop-shadow(0 0 5px rgb(79, 79, 79));
+}

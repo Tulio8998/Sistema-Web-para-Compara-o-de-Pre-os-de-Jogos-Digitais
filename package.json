@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -n FRONT,BACK -c blue,green \"npm run dev --prefix frontend\" \"npm start --prefix backend\"",
+    "frontend": "npm run dev --prefix frontend",
+    "backend": "npm start --prefix backend"
+  }
+}
