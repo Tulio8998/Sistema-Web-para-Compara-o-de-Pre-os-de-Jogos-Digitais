@@ -1,0 +1,1027 @@
+{
+  "info": {
+    "_postman_id": "8aa9bca8-7499-4b67-8b62-bb088816d285",
+    "name": "WebGames",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "41280511"
+  },
+  "item": [
+    {
+      "name": "Test",
+      "item": [
+        {
+          "name": "ITAD_SearchGame",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.isthereanydeal.com/games/search/v1?key=suaChave&title=The%20Witcher%203&results=10",
+              "protocol": "https",
+              "host": [
+                "api",
+                "isthereanydeal",
+                "com"
+              ],
+              "path": [
+                "games",
+                "search",
+                "v1"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "suaChave"
+                },
+                {
+                  "key": "title",
+                  "value": "The%20Witcher%203"
+                },
+                {
+                  "key": "results",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ITAD_SearchGame Copy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.isthereanydeal.com/games/info/v2?key=suaChave&title=The%20Witcher%203&results=10",
+              "protocol": "https",
+              "host": [
+                "api",
+                "isthereanydeal",
+                "com"
+              ],
+              "path": [
+                "games",
+                "info",
+                "v2"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "suaChave"
+                },
+                {
+                  "key": "title",
+                  "value": "The%20Witcher%203"
+                },
+                {
+                  "key": "results",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sharck_SearchGame",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.isthereanydeal.com/games/prices/v3?key=suaChave&id=018d937f-1212-7232-b23f-a046f6fd4a57",
+              "protocol": "https",
+              "host": [
+                "api",
+                "isthereanydeal",
+                "com"
+              ],
+              "path": [
+                "games",
+                "prices",
+                "v3"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "suaChave"
+                },
+                {
+                  "key": "id",
+                  "value": "018d937f-1212-7232-b23f-a046f6fd4a57"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sharck_SearchGame Copy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=20&metacritic=80&steamRating=85&onSale=1&sortBy=Savings&desc=1",
+              "protocol": "https",
+              "host": [
+                "www",
+                "cheapshark",
+                "com"
+              ],
+              "path": [
+                "api",
+                "1.0",
+                "deals"
+              ],
+              "query": [
+                {
+                  "key": "storeID",
+                  "value": "1"
+                },
+                {
+                  "key": "upperPrice",
+                  "value": "20"
+                },
+                {
+                  "key": "metacritic",
+                  "value": "80"
+                },
+                {
+                  "key": "steamRating",
+                  "value": "85"
+                },
+                {
+                  "key": "onSale",
+                  "value": "1"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "Savings"
+                },
+                {
+                  "key": "desc",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"018d937f-1212-7232-b23f-a046f6fd4a57\",\n  \"01849782-1017-7389-8de4-c97c587fd7e3\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.isthereanydeal.com/games/prices/v3?key=suaChave",
+              "protocol": "https",
+              "host": [
+                "api",
+                "isthereanydeal",
+                "com"
+              ],
+              "path": [
+                "games",
+                "prices",
+                "v3"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "suaChave"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "AuthUsuario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"admin;\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CriarUsuario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Admin\",\n  \"email\": \"admin@admin.com\",\n  \"password\": \"admin;\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CriarComentario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Admin\",\n  \"email\": \"admin@admin\",\n  \"password\": \"admin;\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BuscarUsuarioId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user/6a0cd65ee48613590c601919",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user",
+                "6a0cd65ee48613590c601919"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BuscarUsuarioEmail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user/email/admin@admin",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user",
+                "email",
+                "admin@admin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ListarUsuario",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTBjZDk3YWE0NzM5MjYyODZjYzYwNDgiLCJlbWFpbCI6ImFkbWluQGFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzc5OTAwODE3LCJleHAiOjE3ODA1MDU2MTd9.kPldNNsysbOwfQlGgcM5I9kR7ynu4KRLrOB01ruL7ZU",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "AtualizarUsuario",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"role\": \"ADMIN\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/user/6a0cd65ee48613590c601919",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user",
+                "6a0cd65ee48613590c601919"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeletarUsuario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user/6a0cd65ee48613590c601919",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user",
+                "6a0cd65ee48613590c601919"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTBjZDk3YWE0NzM5MjYyODZjYzYwNDgiLCJlbWFpbCI6ImFkbWluQGFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzgwNTE1Nzk2LCJleHAiOjE3ODExMjA1OTZ9.wvoLIrSbTBoR4JovDvPzmv8pLkaTPFYrfSBwTbrJF3U",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Game",
+      "item": [
+        {
+          "name": "CreateGame",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/game/sync?limit=80 &offset=1660",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "sync"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "80 "
+                },
+                {
+                  "key": "offset",
+                  "value": "1660"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BuscarGameId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/game/018d937f-1212-7232-b23f-a046f6fd4a57",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "018d937f-1212-7232-b23f-a046f6fd4a57"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ListarGame",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/game",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "AtualizarGame",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"role\": \"ADMIN\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/game/018d937f-1212-7232-b23f-a046f6fd4a57",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "018d937f-1212-7232-b23f-a046f6fd4a57"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeletarGame",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/game/018d937f-1212-7232-b23f-a046f6fd4a576a0cd65ee48613590c601919",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "018d937f-1212-7232-b23f-a046f6fd4a576a0cd65ee48613590c601919"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTVhNzU3NzA0YmE0ZmVhYzg3MzU4NjIiLCJlbWFpbCI6InR1bGlvODlsb3Blc0B0ZXN0ZS5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODQzMTMyMTUsImV4cCI6MTc4NDkxODAxNX0.wSenpHc_8Nj7YwwfO5M4woDX1-4tcoRmEHakQsjfIEo",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "WishList",
+      "item": [
+        {
+          "name": "CriarWishList",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTBjZDk3YWE0NzM5MjYyODZjYzYwNDgiLCJlbWFpbCI6ImFkbWluQGFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzc5OTAwODE3LCJleHAiOjE3ODA1MDU2MTd9.kPldNNsysbOwfQlGgcM5I9kR7ynu4KRLrOB01ruL7ZU",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"favorite\": true,\n    \"gameId\": \"018d937f-1212-7232-b23f-a046f6fd4a57\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/wish-list",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "wish-list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BuscarWishListId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user/6a0cd65ee48613590c601919",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user",
+                "6a0cd65ee48613590c601919"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ListarWishList",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "AtualizarWishList",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"role\": \"ADMIN\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/user/6a0cd65ee48613590c601919",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user",
+                "6a0cd65ee48613590c601919"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeletarWishList",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user/6a0cd65ee48613590c601919",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user",
+                "6a0cd65ee48613590c601919"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTBjZDk3YWE0NzM5MjYyODZjYzYwNDgiLCJlbWFpbCI6ImFkbWluQGFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzgwNTA4MDI5LCJleHAiOjE3ODExMTI4Mjl9.W8mdxi4nXU2FPw-PGkZxIj9sRqjmX9TTi8-NfDi91gU",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GameAPI",
+      "item": [
+        {
+          "name": "BuscaGameTitle",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/game/search/the witcher",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "search",
+                "the witcher"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BuscaGameInfoId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/game/info/018e3d11-9d89-73cc-98d7-02d35bfa4799",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "info",
+                "018e3d11-9d89-73cc-98d7-02d35bfa4799"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BuscaGamePrice",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n    \"018d937f-1212-7232-b23f-a046f6fd4a57\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/game/prices",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "prices"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ListaGameDeals",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/game/deals?minPrice=50&maxPrice=500",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "deals"
+              ],
+              "query": [
+                {
+                  "key": "minPrice",
+                  "value": "50",
+                  "type": "text"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "500",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ListaGameHistoryLow",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"018e3d11-9d89-73cc-98d7-02d35bfa4799\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/game/history-low?country=BR",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "history-low"
+              ],
+              "query": [
+                {
+                  "key": "country",
+                  "value": "BR"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ListaGameStoreLow",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"018d937f-1212-7232-b23f-a046f6fd4a57\",\n  \"01849782-1017-7389-8de4-c97c587fd7e3\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/game/store-low?country=BR&shops=61",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "store-low"
+              ],
+              "query": [
+                {
+                  "key": "country",
+                  "value": "BR"
+                },
+                {
+                  "key": "shops",
+                  "value": "61"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ListaGameOverview",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"018d937f-1212-7232-b23f-a046f6fd4a57\",\n  \"01849782-1017-7389-8de4-c97c587fd7e3\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/game/overview?country=BR",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "game",
+                "overview"
+              ],
+              "query": [
+                {
+                  "key": "country",
+                  "value": "BR"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTRmZDY1Y2JlYmEyYWYzNzMzYTZiNzAiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4MzYxNzEyOSwiZXhwIjoxNzg0MjIxOTI5fQ.eI2Hs7BuYsxJ6uEaQ_IqelngYUPShO9iP6pUSYVMOwo",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,131 +1,139 @@
-# CSI606-2026-01 – Trabalho Final
+# 🎮 Sistema Web para Comparação de Preços de Jogos Digitais
 
-**Discente:** Túlio Vilela Lopes
-
-## Título do Trabalho
-
-Sistema Web para Comparação de Preços de Jogos Digitais
+Este é o repositório do Trabalho Final da disciplina de Sistemas Web I. O projeto consiste em uma plataforma *Full-Stack* que permite aos usuários buscar jogos, comparar preços em diferentes lojas digitais, visualizar o histórico de valores e salvar seus títulos favoritos em uma *Wishlist* personalizada.
 
 ---
 
-# Resumo
+## 🛠️ Tecnologias Utilizadas
 
-O mercado de jogos digitais apresenta grande variação de preços entre diferentes lojas online, dificultando que usuários encontrem rapidamente as melhores ofertas disponíveis. Além disso, promoções ocorrem com frequência e variam conforme plataforma, região e período do ano, tornando o acompanhamento manual pouco eficiente. Diante desse cenário, este trabalho consistiu no desenvolvimento e implementação de uma aplicação web voltada para comparação, monitoramento e análise de preços de jogos digitais.
+### Backend
+*   **Node.js** com **NestJS** (Framework modular e arquitetura MVC)
+*   **Prisma ORM** (Modelagem de dados e schemas)
+*   **MongoDB** (Banco de dados NoSQL)
+*   **Autenticação:** JWT (JSON Web Tokens) e bcrypt (Hashing de senhas)
+*   **Integração:** Consumo da API externa *IsThereAnyDeal* (ITAD)
 
-O sistema permite que usuários pesquisem jogos e acompanhem informações relevantes, como preços atuais em diferentes lojas, menor preço histórico registrado, promoções ativas e variações de preço ao longo do tempo mediante gráficos. Também foram implementadas funcionalidades de autenticação de usuários, sistema de favoritos (Wishlist) armazenado em banco de dados e filtros de listagem.
-
-Os dados em tempo real são obtidos por meio da API pública especializada IsThereAnyDeal. O projeto foi construído utilizando uma arquitetura cliente-servidor moderna, com frontend (React/Vite) e backend (NestJS) separados, banco de dados NoSQL MongoDB e persistência orquestrada pelo Prisma ORM.
-
----
-
-# 1. Tema
-
-O trabalho final teve como tema o desenvolvimento de uma aplicação web full-stack para comparação de preços de jogos digitais em diferentes plataformas de venda online. O sistema centraliza informações de preços, promoções e histórico de valores, permitindo que usuários encontrem melhores ofertas e acompanhem as tendências do mercado.
-
----
-
-# 2. Escopo
-
-O projeto finalizado contempla as seguintes funcionalidades funcionais e técnicas:
-
-* Cadastro e autenticação de usuários com criptografia de senhas (bcrypt) e controle de acesso utilizando tokens JWT.
-
-
-* Pesquisa dinâmica de jogos por título via integração com a API externa IsThereAnyDeal.
-
-
-* Comparação de preços entre diferentes lojas digitais na página de detalhes do jogo.
-
-
-* Aplicação de filtros avançados por faixa de preço, descontos, lojas disponíveis e gêneros na página de listagem de ofertas.
-
-
-* Exibição do histórico de preços dos jogos através de gráficos interativos na interface de detalhes.
-
-
-* Sistema de favoritos (Wishlist) interligado ao perfil do usuário no banco de dados, permitindo salvar e gerenciar os jogos de interesse.
-
-
-* Armazenamento de jogos recentes no *LocalStorage* do navegador para uma navegação personalizada na página inicial.
-
-
-* Arquitetura baseada em NestJS no Backend e persistência de dados em MongoDB utilizando o Prisma ORM para a definição de *schemas* e *types*.
-
-
+### Frontend
+*   **React** com **Vite**
+*   **Estilização:** CSS Modules
+*   **Gráficos:** Recharts
+*   **Roteamento:** React Router DOM
 
 ---
 
-# 3. Restrições
+## ⚙️ Pré-requisitos
 
-Para manter o foco no objetivo da aplicação, as seguintes restrições foram aplicadas:
+Antes de iniciar, certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
+*   [Node.js](https://nodejs.org/en/) (Versão 18 ou superior)
+*   Uma conta e um cluster no [MongoDB Atlas](https://www.mongodb.com/atlas/database) (ou MongoDB rodando localmente)
+*   Uma chave de API (*API Key*) da [IsThereAnyDeal](https://api.isthereanydeal.com/)
 
-* Não ocorre a compra direta de jogos pela plataforma (o sistema atua como um comparador e redireciona o usuário para as respectivas lojas).
-* Não há integração com gateways ou meios de pagamento próprios.
-* Não há marketplace entre usuários.
-* Não possui sistema de chat ou comentários.
-* A aplicação é focada em ambiente web, não havendo um aplicativo mobile nativo.
-* Não abrange a comparação de preços de jogos em mídia física.
-* A atualização e a exatidão das informações de preços dependem diretamente da disponibilidade, da estabilidade e dos dados retornados pela API externa IsThereAnyDeal.
+---
+
+## 🚀 Como Executar o Projeto
+
+O projeto é dividido em duas partes principais: `backend` e `frontend`. É necessário rodar ambas para que o sistema funcione corretamente.
+
+### 1. Configurando e Rodando o Backend
+
+1. Abra o terminal e navegue até a pasta do servidor:
+   ```bash
+   cd backend
+    ```
+
+2. Instale as dependências do projeto:
+    ```bash
+    npm install
+
+    ```
+
+
+3. Crie um arquivo `.env` na raiz da pasta `backend` e preencha com as suas credenciais baseadas no arquivo `.env.example` (se houver), ou utilize a estrutura abaixo:
+    ```env
+    # Configurações do Servidor
+    PORT=3000
+
+    # Banco de Dados (MongoDB)
+    DATABASE_URL="mongodb+srv://<USUARIO>:<SENHA>@cluster.mongodb.net/nome-do-banco?retryWrites=true&w=majority"
+
+    # Autenticação JWT
+    TOKEN_SECRET="sua_chave_secreta_super_segura"
+    TOKEN_EXPIRATION="7d"
+
+    # API Externa (IsThereAnyDeal)
+    ITAD_API_KEY="sua_api_key_aqui"
+
+    ```
+
+
+4. Gere o cliente do Prisma para sincronizar o schema com o MongoDB:
+    ```bash
+    npx prisma generate
+
+    ```
+
+
+5. Inicie o servidor em modo de desenvolvimento:
+    ```bash
+    npm run start:dev
+
+    ```
+
+
+> O servidor backend estará rodando na porta `http://localhost:3000`. O CORS já está configurado para aceitar requisições do frontend local.
 
 
 
 ---
 
-# 4. Interfaces e Implementação
+### 2. Configurando e Rodando o Frontend
 
-O planejamento estrutural e visual da aplicação foi inicialmente elaborado utilizando a ferramenta Figma (com o plugin UX Pilot), focando na organização das informações e usabilidade. Os protótipos podem ser consultados em:
-[https://www.figma.com/design/1RK0AqVwu4swHSRK0xifLJ/Sem-t%C3%ADtulo?node-id=0-1&t=AqP2qtH2jniBh37Q-1](https://www.figma.com/design/1RK0AqVwu4swHSRK0xifLJ/Sem-t%C3%ADtulo?node-id=0-1&t=AqP2qtH2jniBh37Q-1)
+1. Abra um **novo terminal** e navegue até a pasta do cliente:
+    ```bash
+    cd frontend
 
-A implementação final do sistema em React refletiu o planejamento de design, estruturando as seguintes páginas funcionais:
+    ```
 
-* **Página Inicial:** Apresentação da proposta, vitrine de jogos recentes (baseados na sessão do usuário) e as melhores ofertas do momento sincronizadas.
-* **Ofertas e Pesquisa:** Listagem em *grid* de jogos com descontos, contendo uma barra lateral com múltiplos filtros combináveis (loja, faixa de preço, porcentagem de desconto) e ordenação dinâmica.
-* **Detalhes do Jogo:** Um painel aprofundado contendo a capa do título, *tags*, pontuação e um comparativo de preços detalhado por loja, além da visualização gráfica do histórico de preços vs. mínimo histórico.
-* **Autenticação:** Telas simples e diretas de Login e Cadastro para acesso restrito.
-* **Meus Favoritos (Wishlist):** Dashboard autenticado com os jogos que o usuário decidiu monitorar, exibindo o desconto atualizado para cada um deles.
+
+2. Instale as dependências:
+    ```bash
+    npm install
+
+    ```
+
+
+3. Inicie o servidor de desenvolvimento do Vite:
+    ```bash
+    npm run dev
+
+    ```
+
+
+> O frontend estará disponível no seu navegador no endereço: `http://localhost:5173`.
+
+
 
 ---
 
-# 5. Referências
+## 📬 Testando as Rotas da API (Postman)
 
-DOCKER. Docker Documentation. Disponível em:
+Todas as rotas do backend (Autenticação, Usuários, Jogos, Wishlist e Sincronização) foram documentadas e podem ser testadas diretamente pelo Postman.
 
-[https://docs.docker.com/](https://docs.docker.com/)
+Para facilitar a avaliação e o teste do sistema, disponibilizei uma *Collection* completa com exemplos de requisições (GET, POST, PATCH, DELETE) e o envio automático do Token JWT nos cabeçalhos (Headers).
 
-Acesso em: 15 maio 2026.
+🔗 **Link para o Workspace/Collection do Postman:**
 
-IS THERE ANY DEAL. API Documentation. Disponível em:
+> [Clique aqui para acessar a Collection do Postman](WebGames.postman_collection.json)
 
-[https://api.isthereanydeal.com/](https://api.isthereanydeal.com/)
+**Como usar a Collection:**
 
-Acesso em: 15 maio 2026.
+1. Clique no link acima para abrir o Postman na web ou no seu aplicativo desktop.
+2. Faça um "Fork" da Collection para o seu Workspace ou faça o download do arquivo `.json` e importe manualmente.
+3. Comece pela pasta de **Auth**: crie um usuário (`POST /user`), faça login (`POST /auth/login`) para gerar o token e utilize as demais rotas restritas.
 
-JWT.IO. Introduction to JSON Web Tokens. Disponível em:
+---
 
-[https://jwt.io/](https://jwt.io/)
+## 👨‍💻 Autor
 
-Acesso em: 15 maio 2026.
+Desenvolvido por **Túlio Vilela Lopes** como requisito de Trabalho Final para a disciplina de Sistemas Web I.
 
-MONGODB. MongoDB Documentation. Disponível em:
-
-[https://www.mongodb.com/docs/](https://www.mongodb.com/docs/)
-
-Acesso em: 17 jul. 2026.
-
-NESTJS. NestJS Documentation. Disponível em:
-
-[https://nestjs.com/](https://nestjs.com/)
-
-Acesso em: 15 maio 2026.
-
-PRISMA ORM. Prisma Documentation. Disponível em:
-
-[https://www.prisma.io/docs](https://www.prisma.io/docs)
-
-Acesso em: 15 maio 2026.
-
-REACT. React Documentation. Disponível em:
-
-[https://react.dev/](https://react.dev/)
-
-Acesso em: 15 maio 2026.
